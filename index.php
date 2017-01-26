@@ -45,7 +45,7 @@
                         <div class="panel-body">
                            <a href="Page_1.php">Page 1</a>
                           <br/><br/>  
-                            lien vers boostrap : <a href="http://getbootstrap.com/components/" target="_blank"> clic </a>
+                            lien vers boostrap ttt : <a href="http://getbootstrap.com/components/" target="_blank"> clic </a>
                           <br/><br/>
                             lien pour code couleur : <a href="http://htmlcolorcodes.com/fr/" target="_blank"> clic </a>
                         </div>
