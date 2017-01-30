@@ -28,7 +28,14 @@
 
 <body>
 
-    <?php include("./header_index.php"); ?> 
+    <?php 
+		//Cette fonction doit être appelée avant tout code html
+		session_start();
+		
+		include("bdd/identifiants.php");
+		include("bdd/variableSession.php");
+		include("./header_index.php"); 
+	?> 
 	
     <!-- Page Content -->
     <div class="container">
@@ -53,6 +60,24 @@
                 </div>
             </div>
             <!-- /.row -->
+			<div class="row">
+                <div class="col-lg-offset-3 col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="background: #0C9277">
+                            <h3 class="panel-title text-center">Connexion</h3>
+                        </div>
+                        <div class="panel-body">
+							<form action="bdd\connexion.php" method="post">
+								Id_Fruit: <input type="text" name="Id_Fruit" value="" />
+					 
+								NomFruit: <input type="password" name="NomFruit" value="" />
+					 
+								<input type="submit" name="connexion" value="Connexion" />
+							</form>
+						</div>
+                    </div>
+                </div>
+            </div>
         
         <!-------------------------- /Container --------------------------------->
 
