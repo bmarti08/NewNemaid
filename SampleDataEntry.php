@@ -16,6 +16,13 @@
 
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
+	
+	<!-- Bootstrap Core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	
+	<link href="https://rawgithub.com/hayageek/jquery-upload-file/master/css/uploadfile.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="https://rawgithub.com/hayageek/jquery-upload-file/master/js/jquery.uploadfile.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,34 +55,39 @@
 			 </ol>
             <!-- /.row -->
         <br/>
-
-		
-		<div class="row">
-			<div class="col-md-7">
-				<div class="panel panel-default">
-					<div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
-						<div class="panel-body">
-							<div class="input-group image-preview">
-										<div class="btn btn-default image-preview-input"> 
-											<span class="glyphicon glyphicon-folder-open"></span> 
-											<span class="image-preview-input-title">Browse</span>
-											<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
-											<!-- rename it --> 
-										</div> 
-							</div>
-						</div>
-					</div>
-				</div>
+	
+	<!-- ---------------------------TEST 1---------------------- -->
+		<div class="col-lg-offset-2 col-lg-8">
+			<div class="input-group">
+				<span class="input-group-btn">
+					<button id="fake-file-button-browse" type="button" class="btn btn-default">
+						<span class="glyphicon glyphicon-file"> Search </span>
+					</button>
+				</span>
+				<input type="file" id="files-input-upload" style="display:none">
+				<input type="text" id="fake-file-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" disabled="disabled" id="fake-file-button-upload">
+						<span class="glyphicon glyphicon-upload"> Upload </span>
+					</button>
+				</span>
 			</div>
-		</div>
-		
+			<script type="text/javascript">
+			// Fake file upload
+			document.getElementById('fake-file-button-browse').addEventListener('click', function() {
+				document.getElementById('files-input-upload').click();
+			});
 
-        
-            <!-- ICI mettre ce qu'on veut -->
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <!-- ------------------------ -->
-        
-        <!-------------------------- /Container --------------------------------->
+			document.getElementById('files-input-upload').addEventListener('change', function() {
+				document.getElementById('fake-file-input-name').value = this.value;
+				
+				document.getElementById('fake-file-button-upload').removeAttribute('disabled');
+			});
+			</script>
+		</div>        
+        <!-------------------------- /TODO --------------------------------->
+		<br/><br/><br/>
+		<center><b>faire l'enregistrement de la piéce jointe !</b></center>
 
         
     <?php include("footer.php"); ?> 
@@ -87,6 +99,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+	
+	<!-- Bootstrap Core JavaScript -->
+    <script src="js/upload_file.js"></script>
 
 </body>
 
