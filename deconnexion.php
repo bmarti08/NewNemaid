@@ -12,13 +12,13 @@
     <title>NEMAID</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/portfolio-item.css" rel="stylesheet">
+    <link href="css/portfolio-item.css" rel="stylesheet">
 	
 	<!-- Perso Core CSS -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,18 +36,10 @@
 		session_start();
 		session_destroy();
 
-		include("../bdd/variableSession.php");
-		include("../bdd/identifiants.php");
+		include("bdd/variableSession.php");
+		include("bdd/identifiants.php");
 
-		
-		if ($id==0)
-		{
-			include("../header_index.php"); 
-		}
-		else
-		{
-			include("../header.php"); 
-		}
+		include("header_index.php"); 
 	?>
 
 	<!-- Page Content -->
@@ -55,16 +47,16 @@
 		<?php
 			msg_deconnexion_INFO(MSG_DECO);
 		
-			include("../footer.php");
+			include("footer.php");
 		?> 
     </div>
     <!-- /content -->
 
     <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
