@@ -19,7 +19,7 @@
                         <a href="SelectGenus.php">SelectGenus</a>
                     </li>
                     <li>
-                        <a href="#">Sample Data Entry</a>
+                        <a href="SampleDataEntry.php">Sample Data Entry</a>
                     </li>
 					<li>
                         <a href="#">Perform a Comparison</a>
