@@ -15,7 +15,7 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 					<li>
-                        <a href="./connexion.php">Connexion</a>
+                        <a href="./connexion.php">Log On</a>
                     </li>
                 </ul>
             </div>

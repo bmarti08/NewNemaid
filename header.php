@@ -76,7 +76,7 @@
                         <a href="help.php">Help</a>
                     </li>
 					<li>
-                        <a href="bdd/deconnexion.php">Déconnexion</a>
+                        <a href="deconnexion.php">Log Out</a>
                     </li>
                 </ul>
             </div>
