@@ -16,9 +16,6 @@
 
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
-	
-	<!-- Perso Core CSS -->
-    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,112 +28,42 @@
 
 <body>
 
-    <?php 
-	
-	
-		//Cette fonction doit être appelée avant tout code html
-		session_start();
+    <?php include("header.php"); ?>
 
-		//On donne ensuite un titre à la page, puis on appelle notre fichier debut.php
-		include("bdd/variableSession.php");
-		include("bdd/identifiants.php");
-		include("./header_index.php"); 
-	?> 
-	
     <!-- Page Content -->
     <div class="container">
 
         <!-------------------------- Container --------------------------------->
-		
-		    <!-- Page Heading -->
+            <!-- Page Heading -->
             <div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background: #0C9277">
-                            <h3 class="panel-title text-center">Connexion</h3>
-                        </div>
-                        <div class="panel-body">
-                           <a href="SelectGenus.php">Select Genus</a>
-                          <br/><br/>  
-                            lien vers boostrap ttt : <a href="http://getbootstrap.com/components/" target="_blank"> clic </a>
-                          <br/><br/>
-                            lien pour code couleur : <a href="http://htmlcolorcodes.com/fr/" target="_blank"> clic </a>
-                        </div>
-                    </div>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Welcome to NEMAID 3.4 !
+                    </h1>                    
                 </div>
             </div>
             <!-- /.row -->
-			<br/><br/><br/>
-			<div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background: #0C9277">
-							<?php
-								echo '<h3 class="panel-title text-center">Connexion</h3>';
-								//if ($id!='') erreur(ERR_IS_CO);
-							?>
-                        </div>
-                        <div class="panel-body">
-						
-						<?php
-							if (!isset($_POST['Mail'])) //On est dans la page de formulaire
-							{
-								echo '<form method="post" action="index.php">
-								<fieldset>
-								<p>
-								<label for="Mail"> Adresse mail :</label><input name="Mail" type="text" id="Mail" /><br />
-								<label for="pswd"> Mot de passe :</label><input type="password" name="pswd" id="pswd" />
-								</p>
-								</fieldset>
-								<p><input type="submit" value="Connexion" /></p></form>
-																 
-								
-								';
-							}
-							else
-							{
-								$message='';
-								if (empty($_POST['Mail']) || empty($_POST['pswd']) ) //Oublie d'un champ
-								{
-									
-									msg_connexion_WARNING(MSG_CO_empty);
-
-								}
-								else //On check le mot de passe
-								{
-									$query=$bdd->prepare('SELECT idCompte, Mail, pswd, level FROM compte inner join type_compte using(level) WHERE Mail = :mail');
-									$query->bindValue(':mail',$_POST['Mail'], PDO::PARAM_STR);
-									$query->execute();
-									$data=$query->fetch();
-						
-									if ($data['pswd'] == $_POST['pswd']) // Acces OK !
-									{
-										$_SESSION['Mail'] = $data['Mail'];
-										$_SESSION['level'] = $data['level'];
-										$_SESSION['idCompte'] = $data['idCompte'];
-									
-										
-										msg_connexion_INFO(MSG_CO);
-										
-									}
-									else // Acces pas OK !
-									{
-										
-										msg_connexion_ERROR(MSG_CO_ERR);
-										
-									}
-									$query->CloseCursor();
-								}
-
-							echo $message;
-								
-							}
-						?>
-						
-						</div>
-                    </div>
-                </div>
-            </div>
+        <br/>
+		<br/><br/>
+		<div class="Texte">
+			NEMAID is an identification aid that calculates the similarity between the specimens to be identified and all of the
+			species in a genus. It does not give one answer but a list of species that are most similar to the unknown specimens. It is
+			then up to the user to study the published descriptions of the likely candidates and make the final identification.
+			<br/><br/>
+			NEMAID was first implemented in 1983 and an improved version was proposed in 1985. Nemaid 3.0 was
+			implemented in 2012 and the current version (3.4) in 2017. The earlier versions were described in the following
+			publications.	
+		</div>	
+		<br/><br/>
+		<a href="https://openclassrooms.com"> Fortuner (1983): short presentation of the program</a><br/>
+		<a href="https://openclassrooms.com"> Fortuner & Wong (1983): NEMAID 1.0 user's manual</a><br/>
+		<a href="https://openclassrooms.com"> Fortuner & Wong (1985): published rationale for the program</a><br/>
+		<a href="https://openclassrooms.com"> Fortuner & Ahmadi (1986): NEMAID 2.0 user's manual</a><br/>
+		<a href="https://openclassrooms.com"> Fortuner (1986): modification of the computation algorithm for qualitative characters</a><br/>
+		
+        
+            <!-- ICI mettre ce qu'on veut -->
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <!-- ------------------------ -->
         
         <!-------------------------- /Container --------------------------------->
 

@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">NEMAID</a>
+                <a class="navbar-brand" href="index.php">NEMAID</a>
             </div>
 
         </div>

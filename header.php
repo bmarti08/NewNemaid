@@ -9,12 +9,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home.php">NEMAID</a>
+                <a class="navbar-brand" href="index.php">NEMAID</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
+                    
+					<li>
                         <a href="SelectGenus.php">SelectGenus</a>
                     </li>
                     <li>
@@ -79,6 +80,9 @@
                     </li>
 					<li>
                         <a href="help.php">Help</a>
+                    </li>
+					<li>
+                        <a href="connexion.php">Connexion</a>
                     </li>
                 </ul>
             </div>
