@@ -49,8 +49,8 @@
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li><a href="#">Genus1</a></li>
-				<li><a href="#">Genus2</a></li>
+				<li><a href="#">Helicotylenchus </a></li>
+				<li><a href="#">Aphasmatylenchus(In progress)</a></li>
 				<li><a href="#">Genus3</a></li>
 			</ul>
 			<input type="submit" name="SelectedGenus" value="Confirm" />	
