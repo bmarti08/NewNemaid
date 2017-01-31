@@ -28,7 +28,7 @@
 
 <body>
 
-    <!--<?php include("header.php"); ?> -->
+    <?php include("header.php"); ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -40,20 +40,36 @@
                     <h1 class="page-header">Sample data entry</h1>                    
                 </div>
             </div>
+			<br/>	
+			<ol class="breadcrumb">
+				 <li><a href="SelectedGenus.php">Add a new Genus</a>
+				 </li>
+				 <li class="active"></li>
+			 </ol>
             <!-- /.row -->
         <br/>
 
-		<p> Fichier: <input type="button" class="SlectFile" value="Choisir un fichier"/></p> 
-		<input type="submit" name="SendaFile" value="Envoyer le fichier" />
+		
+		<div class="row">
+			<div class="col-md-7">
+				<div class="panel panel-default">
+					<div class="panel-heading"><strong>Upload files</strong> <small> </small></div>
+						<div class="panel-body">
+							<div class="input-group image-preview">
+										<div class="btn btn-default image-preview-input"> 
+											<span class="glyphicon glyphicon-folder-open"></span> 
+											<span class="image-preview-input-title">Browse</span>
+											<input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
+											<!-- rename it --> 
+										</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 
-		
-		<br/><br/>	
-		<ol class="breadcrumb">
-             <li><a href="SelectedGenus.php">Add a new Genus</a>
-             </li>
-             <li class="active"></li>
-         </ol>
         
             <!-- ICI mettre ce qu'on veut -->
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

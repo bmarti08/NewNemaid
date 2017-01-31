@@ -28,7 +28,7 @@
 
 <body>
 
-    <!--<?php include("header.php"); ?> -->
+    <?php include("header.php"); ?>
 
     <!-- Page Content -->
     <div class="container">

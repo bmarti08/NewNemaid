@@ -28,7 +28,7 @@
 
 <body>
 
-    <!--<?php include("header.php"); ?> -->
+    <?php include("header.php"); ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -41,6 +41,14 @@
                     </h1>                    
                 </div>
             </div>
+			<br/>	
+			<ol class="breadcrumb">
+				 <li><a href="SelectedGenus.php">Add a new Genus</a>
+				 </li>
+				 <li class="active"></li>
+			 </ol>
+			
+			
             <!-- /.row -->
         <br/>
 		<div class="dropdown">
@@ -56,12 +64,7 @@
 			<input type="submit" name="SelectedGenus" value="Confirm" />	
 		</div>
 		
-		<br/><br/>	
-		<ol class="breadcrumb">
-             <li><a href="SelectedGenus.php">Add a new Genus</a>
-             </li>
-             <li class="active"></li>
-         </ol>
+		
         
             <!-- ICI mettre ce qu'on veut -->
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

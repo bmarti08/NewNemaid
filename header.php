@@ -29,11 +29,7 @@
                         <a href="SelectGenus.php">SelectGenus</a>
                     </li>
                     <li>
-<<<<<<< HEAD
-                        <a href="SampleDataEntry.php">Sample Data Entry</a>
-=======
                         <a href="sampleDataEntry.php">Sample Data Entry</a>
->>>>>>> origin/master
                     </li>
 					<li>
                         <a href="#">Perform a Comparison</a>
