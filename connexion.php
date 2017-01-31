@@ -49,7 +49,7 @@
         <!-------------------------- Container --------------------------------->
 				<br/><br/><br/><br/>
 						<?php
-							if (!isset($_POST['Mail'])) //On est dans la page de formulaire
+							if (!isset($_POST['e_mail'])) //On est dans la page de formulaire
 							{
 								echo '
 								<div class="row">
@@ -64,12 +64,12 @@
 												<fieldset>
 													<div style="margin-bottom: 25px" class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-														<input id="Mail" type="text" class="form-control" name="Mail" value="" placeholder="eMail adress">                                        
+														<input id="e_mail" type="text" class="form-control" name="e_mail" value="" placeholder="e-mail adress">                                        
 													</div>
 													
 													<div style="margin-bottom: 25px" class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-														<input id="pswd" type="password" class="form-control" name="pswd" placeholder="password">
+														<input id="Password" type="password" class="form-control" name="Password" placeholder="Password">
 													</div>
 												</fieldset>
 												
@@ -99,18 +99,67 @@
 												<form method="post" action="">
 												<fieldset>
 													<div class="form-group">
-														<label for="email" class="col-md-3 control-label">Email</label>
+														<label for="e_mail" class="col-md-3 control-label">E-mail</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="email" placeholder="Email Address">
+															<input type="text" class="form-control" name="e_mail" placeholder="E-mail Address">
 														</div>
 													</div>
 													
+													<br/><br/>
+													
 													<div class="form-group">
-														<label for="password" class="col-md-3 control-label">Password</label>
+														<label for="Password" class="col-md-3 control-label">Password</label>
 														<div class="col-md-9">
-															<input type="password" class="form-control" name="passwd" placeholder="Password">
+															<input type="password" class="form-control" name="Password" placeholder="Password">
 														</div>
 													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="First_Name" class="col-md-3 control-label">First Name</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="First_Name" placeholder="First Name">
+														</div>
+													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="Last_Name" class="col-md-3 control-label">Last Name</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="Last_Name" placeholder="Last Name">
+														</div>
+													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="Country" class="col-md-3 control-label">Country</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="Country" placeholder="Country">
+														</div>
+													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="City" class="col-md-3 control-label">City</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="City" placeholder="City">
+														</div>
+													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="Institution" class="col-md-3 control-label">Institution</label>
+														<div class="col-md-9">
+															<input type="text" class="form-control" name="Institution" placeholder="Institution">
+														</div>
+													</div>
+													
+													<br/><br/>
 												</fieldset>
 												
 												<div class="col-sm-12 controls">
@@ -126,7 +175,7 @@
 							else
 							{
 								$message='';
-								if (empty($_POST['Mail']) || empty($_POST['pswd']) ) //Oublie d'un champ
+								if (empty($_POST['e_mail']) || empty($_POST['Password']) ) //Oublie d'un champ
 								{
 									
 									msg_connexion_WARNING(MSG_CO_empty);
@@ -134,17 +183,21 @@
 								}
 								else //On check le mot de passe
 								{
-									$query=$bdd->prepare('SELECT idCompte, Mail, pswd, level FROM compte inner join type_compte using(level) WHERE Mail = :mail');
-									$query->bindValue(':mail',$_POST['Mail'], PDO::PARAM_STR);
+									$query=$bdd->prepare('SELECT Id_User, e_mail, First_Name, Last_Name, Country, City, Institution, Admin, Password FROM compte WHERE e_mail = :mail');
+									$query->bindValue(':mail',$_POST['e_mail'], PDO::PARAM_STR);
 									$query->execute();
 									$data=$query->fetch();
 						
-									if ($data['pswd'] == $_POST['pswd']) // Acces OK !
+									if ($data['Password'] == $_POST['Password']) // Acces OK !
 									{
-										$_SESSION['Mail'] = $data['Mail'];
-										$_SESSION['level'] = $data['level'];
-										$_SESSION['idCompte'] = $data['idCompte'];
-									
+										$_SESSION['Id_User'] = $data['Id_User'];
+										$_SESSION['e_mail'] = $data['e_mail'];
+										$_SESSION['First_Name'] = $data['First_Name'];
+										$_SESSION['Last_Name'] = $data['Last_Name'];
+										$_SESSION['Country'] = $data['Country'];
+										$_SESSION['City'] = $data['City'];
+										$_SESSION['Institution'] = $data['Institution'];
+										$_SESSION['Admin'] = $data['Admin'];
 										
 										msg_connexion_INFO(MSG_CO);
 										
