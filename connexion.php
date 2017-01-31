@@ -67,30 +67,31 @@
             </div>
             <!-- /.row -->
 			<br/><br/><br/>
-			<div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background: #0C9277">
-							<?php
-								echo '<h3 class="panel-title text-center">Connexion</h3>';
-								//if ($id!='') erreur(ERR_IS_CO);
-							?>
-                        </div>
-                        <div class="panel-body">
+			
 						
 						<?php
 							if (!isset($_POST['Mail'])) //On est dans la page de formulaire
 							{
-								echo '<form method="post" action="connexion.php">
-								<fieldset>
-								<p>
-								<label for="Mail"> Adresse mail :</label><input name="Mail" type="text" id="Mail" /><br />
-								<label for="pswd"> Mot de passe :</label><input type="password" name="pswd" id="pswd" />
-								</p>
-								</fieldset>
-								<p><input type="submit" value="Connexion" /></p></form>
-																 
-								
+								echo '
+								<div class="row">
+									<div class="col-lg-offset-3 col-lg-6">
+										<div class="panel panel-default">
+											<div class="panel-heading" style="background: #0C9277">
+												<h3 class="panel-title text-center">Connexion</h3>
+											</div>
+											<div class="panel-body">
+												<form method="post" action="connexion.php">
+												<fieldset>
+												<p>
+												<label for="Mail"> Adresse mail :</label><input name="Mail" type="text" id="Mail" /><br />
+												<label for="pswd"> Mot de passe :</label><input type="password" name="pswd" id="pswd" />
+												</p>
+												</fieldset>
+												<p><input type="submit" value="Connexion" /></p></form>
+											</div>
+										</div>
+									</div>
+								</div>								 	
 								';
 							}
 							else
@@ -133,10 +134,6 @@
 							}
 						?>
 						
-						</div>
-                    </div>
-                </div>
-            </div>
         
         <!-------------------------- /Container --------------------------------->
 
