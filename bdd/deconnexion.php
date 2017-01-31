@@ -11,7 +11,6 @@
 	if ($id==0) erreur(ERR_IS_CO);
 	else{
 		echo '<p>Vous êtes à présent déconnecté <br />
-		Cliquez <a href="'.htmlspecialchars($_SERVER['HTTP_REFERER']).'">ici</a> 
-		pour revenir à la page précédente.<br />';
+		<p>Cliquez <a href="../index.php">ici</a> pour revenir à la page d\'accueil</p>';
 		}
 ?>

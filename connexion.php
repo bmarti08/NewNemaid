@@ -81,7 +81,7 @@
 						<?php
 							if (!isset($_POST['Mail'])) //On est dans la page de formulaire
 							{
-								echo '<form method="post" action="index.php">
+								echo '<form method="post" action="connexion.php">
 								<fieldset>
 								<p>
 								<label for="Mail"> Adresse mail :</label><input name="Mail" type="text" id="Mail" /><br />

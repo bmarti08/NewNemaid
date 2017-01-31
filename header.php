@@ -82,7 +82,7 @@
                         <a href="help.php">Help</a>
                     </li>
 					<li>
-                        <a href="connexion.php">Connexion</a>
+                        <a href="bdd/deconnexion.php">Déconnexion</a>
                     </li>
                 </ul>
             </div>

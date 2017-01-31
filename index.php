@@ -28,7 +28,23 @@
 
 <body>
 
-    <?php include("header.php"); ?>
+    <?php 
+		//Cette fonction doit être appelé avant tout code html
+	session_start();
+	
+	include("bdd/variableSession.php");
+	include("bdd/identifiants.php");
+
+	
+	if ($id==0)
+	{
+		include("header_index.php"); 
+	}
+	else
+	{
+		include("header.php"); 
+	}
+	?>
 
     <!-- Page Content -->
     <div class="container">

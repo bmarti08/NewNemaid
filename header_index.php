@@ -12,6 +12,14 @@
                 <a class="navbar-brand" href="index.php">NEMAID</a>
             </div>
 
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+					<li>
+                        <a href="connexion.php">Connexion</a>
+                    </li>
+                </ul>
+            </div>
+			
         </div>
         <!-- /.container -->
     </nav>
