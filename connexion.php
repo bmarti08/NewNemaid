@@ -47,28 +47,7 @@
     <div class="container">
 
         <!-------------------------- Container --------------------------------->
-		
-		    <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" style="background: #0C9277">
-                            <h3 class="panel-title text-center">Connexion</h3>
-                        </div>
-                        <div class="panel-body">
-                           <a href="SelectGenus.php">Select Genus</a>
-                          <br/><br/>  
-                            lien vers boostrap ttt : <a href="http://getbootstrap.com/components/" target="_blank"> clic </a>
-                          <br/><br/>
-                            lien pour code couleur : <a href="http://htmlcolorcodes.com/fr/" target="_blank"> clic </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-			<br/><br/><br/>
-			
-						
+				<br/><br/><br/><br/>
 						<?php
 							if (!isset($_POST['Mail'])) //On est dans la page de formulaire
 							{
@@ -138,7 +117,7 @@
         <!-------------------------- /Container --------------------------------->
 
         
-    <?php include("footer.php"); ?> 
+		<?php include("footer.php"); ?> 
     </div>
     <!-- /content -->
 
