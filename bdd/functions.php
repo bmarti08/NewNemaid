@@ -16,7 +16,7 @@ function erreur2($err='')
 function msg_connexion_ERROR($msg='')
 {
    $mess=($msg!='')? $msg: '';
-   exit('<center><div class="alert alert-danger" role="alert"'.$mess.'
+   exit('<center><div class="alert alert-danger" role="alert">'.$mess.'
 			<p>Cliquez <a href="./connexion.php">ici</a> pour revenir à la page de connexion</p></div></center>');
 }
 
