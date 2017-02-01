@@ -200,7 +200,7 @@
 									$query->execute();
 									$data=$query->fetch();
 						
-									if ($data['Password'] == $_POST['Password']) // Acces OK !
+									if ($data['Password'] == md5($_POST['Password'])) // Acces OK !
 									{
 										$_SESSION['Id_User'] = $data['Id_User'];
 										$_SESSION['e_mail'] = $data['e_mail'];
