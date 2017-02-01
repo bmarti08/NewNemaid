@@ -81,7 +81,7 @@
 													<div class="col-md-12 control">
 														<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
 															Don\'t have an account! 
-																<a href="#" onClick="$(\'#loginbox\').hide(); $(\'#signupbox\').show();">
+																<a href="#" onClick="$(\'#loginbox\').hide(); $(\'#signupbox1\').show(); $(\'#signupbox2\').show();">
 																	Sign Up Here
 																</a>
 														</div>
@@ -90,7 +90,16 @@
 											</div>
 										</div>
 								<!-- --------------------FORMULAIRE INSCRIPTION---------------------------- -->		
-										<div id="signupbox" class="panel panel-default" style="display:none;">
+										<div class="panel panel-warning" id="signupbox1" style="display:none;">
+											<div class="panel-heading">
+												<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+												<br/>
+												<h4>ATTENTION : Veillez à remplir tous les champs suivis d\'un <span style="color:red">*</span> !</h4>
+												<p>Certaines informations peuvent vous être demandées lors de l\'oublie du mot de passe ... </p></center>
+											</div>
+										</div>
+										
+										<div id="signupbox2" class="panel panel-default" style="display:none;">
 											<div class="panel-heading" style="background: #0C9277">
 												<h3 class="panel-title text-center"><b>Sign Up</b></h3>
 												<div style="float:right; font-size: 85%; position: relative; top:-10px"><a style="color:white;" id="signinlink" href="#" onclick="$(\'#signupbox\').hide(); $(\'#loginbox\').show()">Sign In</a></div>
@@ -100,7 +109,7 @@
 												
 												<fieldset>
 													<div class="form-group">
-														<label for="e_mail" class="col-md-3 control-label">E-mail *</label>
+														<label for="e_mail" class="col-md-3 control-label">E-mail <span style="color:red">*</span></label>
 														<div class="col-md-9">
 															<input id="e_mail" type="text" class="form-control" name="e_mail" placeholder="E-mail Address" required="true">
 														</div>
@@ -109,7 +118,7 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Password" class="col-md-3 control-label">Password *</label>
+														<label for="Password" class="col-md-3 control-label">Password <span style="color:red">*</span></label>
 														<div class="col-md-9">
 															<input id="Password" type="password" class="form-control" name="Password" placeholder="Password" required="true">
 														</div>
@@ -118,7 +127,7 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="confirm" class="col-md-3 control-label">Confirm password *</label>
+														<label for="confirm" class="col-md-3 control-label">Confirm password <span style="color:red">*</span></label>
 														<div class="col-md-9">
 															<input id="confirm" type="password" class="form-control" name="confirm" placeholder="Password" required="true">
 														</div>
@@ -127,7 +136,7 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="First_name" class="col-md-3 control-label">First Name *</label>
+														<label for="First_name" class="col-md-3 control-label">First Name <span style="color:red">*</span></label>
 														<div class="col-md-9">
 															<input id="First_name" type="text" class="form-control" name="First_name" placeholder="First Name" required="true">
 														</div>
@@ -136,7 +145,7 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Last_name" class="col-md-3 control-label">Last Name *</label>
+														<label for="Last_name" class="col-md-3 control-label">Last Name <span style="color:red">*</span></label>
 														<div class="col-md-9">
 															<input id="Last_name" type="text" class="form-control" name="Last_name" placeholder="Last Name" required="true">
 														</div>
@@ -145,27 +154,27 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Country" class="col-md-3 control-label">Country</label>
+														<label for="Country" class="col-md-3 control-label">Country <span style="color:red">*</span></label>
 														<div class="col-md-9">
-															<input id="Country" type="text" class="form-control" name="Country" placeholder="Country">
+															<input id="Country" type="text" class="form-control" name="Country" placeholder="Country" required="true">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="City" class="col-md-3 control-label">City</label>
+														<label for="City" class="col-md-3 control-label">City <span style="color:red">*</span></label>
 														<div class="col-md-9">
-															<input id="City" type="text" class="form-control" name="City" placeholder="City">
+															<input id="City" type="text" class="form-control" name="City" placeholder="City" required="true">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Institution" class="col-md-3 control-label">Institution</label>
+														<label for="Institution" class="col-md-3 control-label">Institution <span style="color:red">*</span></label>
 														<div class="col-md-9">
-															<input id="Institution" type="text" class="form-control" name="Institution" placeholder="Institution">
+															<input id="Institution" type="text" class="form-control" name="Institution" placeholder="Institution" required="true">
 														</div>
 													</div>
 													
@@ -173,7 +182,7 @@
 												</fieldset>
 												
 												<div class="col-sm-12 controls">
-													<p>Les champs précédés d\'un * sont obligatoires</p>
+													<p>Les champs suivis d\'un <span style="color:red">*</span> sont obligatoires</p>
 													<input type="submit" value="Submit" class="btn btn-primary"/></p>
 													</form>
 												</div>
