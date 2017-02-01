@@ -70,11 +70,11 @@
 			publications.	
 		</div>	
 		<br/><br/>
-		<a href="https://openclassrooms.com"> Fortuner (1983): short presentation of the program</a><br/>
-		<a href="https://openclassrooms.com"> Fortuner & Wong (1983): NEMAID 1.0 user's manual</a><br/>
-		<a href="https://openclassrooms.com"> Fortuner & Wong (1985): published rationale for the program</a><br/>
-		<a href="https://openclassrooms.com"> Fortuner & Ahmadi (1986): NEMAID 2.0 user's manual</a><br/>
-		<a href="https://openclassrooms.com"> Fortuner (1986): modification of the computation algorithm for qualitative characters</a><br/>
+		<a href="http://genisys.prd.fr/Fortuner_1983b.pdf"> Fortuner (1983): short presentation of the program</a><br/>
+		<a href="http://genisys.prd.fr/Fortuner_Wong_1983.pdf"> Fortuner & Wong (1983): NEMAID 1.0 user's manual</a><br/>
+		<a href="http://genisys.prd.fr/Fortuner_Wong_1985.pdf"> Fortuner & Wong (1985): published rationale for the program</a><br/>
+		<a href="http://genisys.prd.fr/Fortuner_Ahmadi_1986.pdf"> Fortuner & Ahmadi (1986): NEMAID 2.0 user's manual</a><br/>
+		<a href="http://genisys.prd.fr/Fortuner_1986d.pdf"> Fortuner (1986): modification of the computation algorithm for qualitative characters</a><br/>
 		
         
             <!-- ICI mettre ce qu'on veut -->
