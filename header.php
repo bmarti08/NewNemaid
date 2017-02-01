@@ -1,15 +1,4 @@
 <!-- Navigation -->
-<style>
-	.dropdown-submenu {
-		position: relative;
-	}
-	
-	.dropdown-submenu .dropdown-menu {
-		top: 0;
-		left: 100%;
-		margin-top: -1px;
-	}
-</style>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -32,46 +21,46 @@
                         <a href="sampleDataEntry.php">Sample Data Entry</a>
                     </li>
 					<li>
-                        <a href="#">Perform a Comparison</a>
+                        <a href="PerformComparison.php">Comparison Performance</a>
                     </li>
 					<li>
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                             <li><a href="#">Sous page 1</a></li>
-							 <li><a href="#">Sous Page 2</a></li>							 
+                            <li><a href="#">Species data</a></li>
+							<li><a href="#">References</a></li>
+							<li><a href="#">Characters</a></li>							 
                          </ul>
                     </li>					
 					<li>
-						<a href="#" class="dropdown-toggle"  data-toggle="dropdown">Database Mangement<span class="caret"></span></a>
-                        <ul class="dropdown-menu">   
-							<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Genera <span class="caret"></span></a>  
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">Database Management<b class="caret"></b></a>
+						<ul class="dropdown-menu multi-level" role="menu" aria-labelleby="dropdownMenu">   
+							<li class ="dropdown-submenu">
+								<a tabindex="-1" href="#">Genera</a>  
 								<ul class="dropdown-menu">
-									<li><a href="#">Add a new genus</a></li>
+									<li><a tabindex="-1" href="#">Add a new genus</a></li>
 									<li><a href="#">Find a genus</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Species Data<span class="caret"></span></a>  
+							<li class ="dropdown-submenu">
+								<a tabindex="-1" href="#">Species Data</span></a>  
 								<ul class="dropdown-menu">
 									<li><a href="#">Add a new description</a></li>
 									<li><a href="#">Find a species</a></li>
 								</ul>
 							</li>
 							<li><a href="#">References</a></li>
-							<li>
-								<a href="" class="dropdown" data-toggle="dropdown">Characters<b class="caret"></b></a>
+							<li class ="dropdown-submenu">
+								<a tabindex="-1" href="#">Characters</a>
 								<ul class="dropdown-menu">
 									<li><a href="#">Add a new characters</a></li>
 									<li><a href="#">List of characters</a></li>
 									<li><a href="#">Fill characters</a></li>
 								</ul>
-							</li>					
+							</li>				
 							<li>
 								<a href="#">Users</a>
 							</li>
-                        </ul>
-                    </li>
+						</ul>
 					<li>
                         <a href="help.php">Help</a>
                     </li>
@@ -84,11 +73,60 @@
         </div>
 		<script>
 			$(document).ready(function(){
-			$('.dropdown-submenu a.test').on("click", function(e){
-				$(this).next('ul').toggle();
-				e.stopPropagation();
-				e.preventDefault();
+				$('.dropdown-submenu a.test').on("click", function(e){
+					$(this).next('ul').toggle();
+					e.stopPropagation();
+					e.preventDefault();
+				});
 			});
-			});
-		</script>		
+		</script>	
     </nav>
+<style>	
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+</style>
