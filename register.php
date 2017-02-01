@@ -43,8 +43,7 @@
 
 	<div class="container">
 		<?php
-		if (!empty($_POST['e_mail']) && !empty($_POST['Password']) && !empty($_POST['Confirm']) && !empty($_POST['First_Name']) && !empty($_POST['Last_Name'])) //On est dans la page de formulaire
-		{
+		
 			//On récupère les variables
 
 			$i=0;
@@ -133,12 +132,7 @@
 			   
 				echo'<p>Cliquez <a href="./connexion.php">ici</a> pour recommencer</p>';
 			}
-		}
-		else
-		{
-			echo '<center><div class="alert alert-danger" role="alert"> Vous devez remplir toutes les informations obligatoires ! </div></center>';
-			echo'<p>Cliquez <a href="./connexion.php">ici</a> pour recommencer</p>';
-		}
+		
 
 		?>
 	</div>

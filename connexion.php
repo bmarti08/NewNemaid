@@ -64,12 +64,12 @@
 												<fieldset>
 													<div style="margin-bottom: 25px" class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-														<input id="e_mail" type="text" class="form-control" name="e_mail" value="" placeholder="e-mail adress">                                        
+														<input id="e_mail" type="text" class="form-control" name="e_mail" value="" placeholder="e-mail adress" required="true">                                        
 													</div>
 													
 													<div style="margin-bottom: 25px" class="input-group">
 														<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-														<input id="Password" type="password" class="form-control" name="Password" placeholder="Password">
+														<input id="Password" type="password" class="form-control" name="Password" placeholder="Password" required="true">
 													</div>
 												</fieldset>
 												
@@ -102,7 +102,7 @@
 													<div class="form-group">
 														<label for="e_mail" class="col-md-3 control-label">E-mail *</label>
 														<div class="col-md-9">
-															<input id="e_mail" type="text" class="form-control" name="e_mail" placeholder="E-mail Address">
+															<input id="e_mail" type="text" class="form-control" name="e_mail" placeholder="E-mail Address" required="true">
 														</div>
 													</div>
 													
@@ -111,7 +111,7 @@
 													<div class="form-group">
 														<label for="Password" class="col-md-3 control-label">Password *</label>
 														<div class="col-md-9">
-															<input id="Password" type="password" class="form-control" name="Password" placeholder="Password">
+															<input id="Password" type="password" class="form-control" name="Password" placeholder="Password" required="true">
 														</div>
 													</div>
 													
@@ -120,7 +120,7 @@
 													<div class="form-group">
 														<label for="confirm" class="col-md-3 control-label">Confirm password *</label>
 														<div class="col-md-9">
-															<input id="confirm" type="password" class="form-control" name="confirm" placeholder="Password">
+															<input id="confirm" type="password" class="form-control" name="confirm" placeholder="Password" required="true">
 														</div>
 													</div>
 													
@@ -129,7 +129,7 @@
 													<div class="form-group">
 														<label for="First_Name" class="col-md-3 control-label">First Name *</label>
 														<div class="col-md-9">
-															<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name">
+															<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name" required="true">
 														</div>
 													</div>
 													
@@ -138,7 +138,7 @@
 													<div class="form-group">
 														<label for="Last_Name" class="col-md-3 control-label">Last Name *</label>
 														<div class="col-md-9">
-															<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name">
+															<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name" required="true">
 														</div>
 													</div>
 													
