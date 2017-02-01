@@ -53,21 +53,7 @@
 			<div class="panel-body">
 				<div class="col-lg-offset-3 col-lg-6">	
 					<form action="mailto:fortuner@wanadoo.fr" method="post" enctype="text/plain">
-						<div class="form-group">
-							 <label for="name">Name:
-							 </label><input type="text" class="form-control" id="name" placeholder="Name" required="true">
-						</div>
-						<div class="form-group">
-							 <label for="mail">E-mail: </label>
-							 <input type="text" class="form-control" id="mail" placeholder="Mail" required="true">
-						</div>
-						<div class="form-group">
-							<label for="comment">Comment: </label>
-							<textarea class="form-control" rows="5" id="comment" required="true"></textarea>
-						</div>
-							<br/><br/>
-						<input type="submit" value="Send" class="btn btn-success">
-						<input type="reset" value="Reset" class="btn btn-danger">
+						<center><input type="submit" value="Send Mail" class="btn btn-success"></center>
 					</form>
 				</div>
 			</div>
