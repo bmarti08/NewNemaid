@@ -57,7 +57,7 @@
 										<div id="loginbox" class="panel panel-default">
 											<div class="panel-heading" style="background: #0C9277">
 												<h3 class="panel-title text-center"><b>Connexion</b></h3>
-												<div style="float:right; font-size: 80%; position: relative; top:-10px;"><a style="color:white;" href="#">Forgot password?</a></div>
+												<div style="float:right; font-size: 80%; position: relative; top:-10px;"><a style="color:white;" href="forgot_password">Forgot password?</a></div>
 											</div>
 											<div class="panel-body">
 												<form method="post" action="connexion.php">
@@ -95,14 +95,13 @@
 												<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
 												<br/>
 												<h4>ATTENTION : Veillez à remplir tous les champs suivis d\'un <span style="color:red">*</span> !</h4>
-												<p>Certaines informations peuvent vous être demandées lors de l\'oublie du mot de passe ... </p></center>
 											</div>
 										</div>
 										
 										<div id="signupbox2" class="panel panel-default" style="display:none;">
 											<div class="panel-heading" style="background: #0C9277">
 												<h3 class="panel-title text-center"><b>Sign Up</b></h3>
-												<div style="float:right; font-size: 85%; position: relative; top:-10px"><a style="color:white;" id="signinlink" href="#" onclick="$(\'#signupbox\').hide(); $(\'#loginbox\').show()">Sign In</a></div>
+												<div style="float:right; font-size: 85%; position: relative; top:-10px"><a style="color:white;" id="signinlink" href="#" onclick="$(\'#signupbox1\').hide(); $(\'#signupbox2\').hide(); $(\'#loginbox\').show()">Sign In</a></div>
 											</div>
 											<div class="panel-body">
 												<form method="post" action="register.php" enctype="multipart/form-data">
