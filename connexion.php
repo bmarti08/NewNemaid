@@ -127,18 +127,18 @@
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="First_Name" class="col-md-3 control-label">First Name *</label>
+														<label for="First_name" class="col-md-3 control-label">First Name *</label>
 														<div class="col-md-9">
-															<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name" required="true">
+															<input id="First_name" type="text" class="form-control" name="First_name" placeholder="First Name" required="true">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Last_Name" class="col-md-3 control-label">Last Name *</label>
+														<label for="Last_name" class="col-md-3 control-label">Last Name *</label>
 														<div class="col-md-9">
-															<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name" required="true">
+															<input id="Last_name" type="text" class="form-control" name="Last_name" placeholder="Last Name" required="true">
 														</div>
 													</div>
 													
@@ -195,7 +195,7 @@
 								}
 								else //On check le mot de passe
 								{
-									$query=$bdd->prepare('SELECT Id_User, e_mail, First_Name, Last_Name, Country, City, Institution, Admin, Password FROM compte WHERE e_mail = :mail');
+									$query=$bdd->prepare('SELECT Id_User, e_mail, First_name, Last_name, Country, City, Institution, Admin, Password FROM usr WHERE e_mail = :mail');
 									$query->bindValue(':mail',$_POST['e_mail'], PDO::PARAM_STR);
 									$query->execute();
 									$data=$query->fetch();
@@ -204,8 +204,8 @@
 									{
 										$_SESSION['Id_User'] = $data['Id_User'];
 										$_SESSION['e_mail'] = $data['e_mail'];
-										$_SESSION['First_Name'] = $data['First_Name'];
-										$_SESSION['Last_Name'] = $data['Last_Name'];
+										$_SESSION['First_name'] = $data['First_name'];
+										$_SESSION['Last_name'] = $data['Last_name'];
 										$_SESSION['Country'] = $data['Country'];
 										$_SESSION['City'] = $data['City'];
 										$_SESSION['Institution'] = $data['Institution'];

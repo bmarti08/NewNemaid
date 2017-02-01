@@ -47,10 +47,9 @@
 			//On récupère les variables
 
 			$i=0;
-			$id=0;
 			$mail=$_POST['e_mail'];
-			$First_Name=$_POST['First_Name'];
-			$Last_Name =$_POST['Last_Name'];
+			$First_name=$_POST['First_name'];
+			$Last_name =$_POST['Last_name'];
 			$Country =$_POST['Country'];
 			$City =$_POST['City'];
 			$Institution =$_POST['Institution'];
@@ -64,7 +63,7 @@
 			
 			
 			//Vérification de l'adresse mail
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM compte WHERE e_mail =:mail');
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM usr WHERE e_mail =:mail');
 			$query->bindValue(':mail',$mail, PDO::PARAM_STR);
 			$query->execute();
 			$mail_free=($query->fetchColumn()==0)?1:0;
@@ -99,16 +98,16 @@
 				echo'<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d accueil</p>';
 			
 				//requête SQL
-				$query=$bdd->prepare('INSERT INTO `compte` (`Id_User`, `e_mail`, `Password`, `First_Name`, `Last_Name`, `Country`, `City`, `Institution`, `Admin`) 
-										VALUES (:Id_User, :e_mail, :Password, :First_Name, :Last_Name, :Country, :City, :Institution, :Admin)');
+				$query=$bdd->prepare('INSERT INTO `usr` (`Id_User`, `First_name`, `Last_name`, `e_mail`, `Country`, `City`, `Institution`, `Password`, `Admin`) 
+										VALUES (:Id_User, :First_name, :Last_name, :e_mail, :Country, :City, :Institution, :Password, :Admin)');
 			$query->bindValue(':Id_User', $id, PDO::PARAM_INT);
+			$query->bindValue(':First_name', $First_name, PDO::PARAM_STR);
+			$query->bindValue(':Last_name', $Last_name, PDO::PARAM_STR);
 			$query->bindValue(':e_mail', $mail, PDO::PARAM_STR);
-			$query->bindValue(':Password', $pass, PDO::PARAM_STR);
-			$query->bindValue(':First_Name', $First_Name, PDO::PARAM_STR);
-			$query->bindValue(':Last_Name', $Last_Name, PDO::PARAM_STR);
 			$query->bindValue(':Country', $Country, PDO::PARAM_STR);
 			$query->bindValue(':City', $City, PDO::PARAM_STR);
 			$query->bindValue(':Institution', $Institution, PDO::PARAM_STR);
+			$query->bindValue(':Password', $pass, PDO::PARAM_STR);
 			$query->bindValue(':Admin', $Admin, PDO::PARAM_INT);
 				$query->execute();
 				
