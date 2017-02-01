@@ -89,46 +89,56 @@
 												</div>    
 											</div>
 										</div>
-								<!-- ------------------------------------------------ -->		
+								<!-- --------------------FORMULAIRE INSCRIPTION---------------------------- -->		
 										<div id="signupbox" class="panel panel-default" style="display:none;">
 											<div class="panel-heading" style="background: #0C9277">
 												<h3 class="panel-title text-center"><b>Sign Up</b></h3>
 												<div style="float:right; font-size: 85%; position: relative; top:-10px"><a style="color:white;" id="signinlink" href="#" onclick="$(\'#signupbox\').hide(); $(\'#loginbox\').show()">Sign In</a></div>
 											</div>
 											<div class="panel-body">
-												<form method="post" action="">
+												<form method="post" action="register.php" enctype="multipart/form-data">
+												
 												<fieldset>
 													<div class="form-group">
-														<label for="e_mail" class="col-md-3 control-label">E-mail</label>
+														<label for="e_mail" class="col-md-3 control-label">E-mail *</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="e_mail" placeholder="E-mail Address">
+															<input id="e_mail" type="text" class="form-control" name="e_mail" placeholder="E-mail Address">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Password" class="col-md-3 control-label">Password</label>
+														<label for="Password" class="col-md-3 control-label">Password *</label>
 														<div class="col-md-9">
-															<input type="password" class="form-control" name="Password" placeholder="Password">
+															<input id="Password" type="password" class="form-control" name="Password" placeholder="Password">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="First_Name" class="col-md-3 control-label">First Name</label>
+														<label for="confirm" class="col-md-3 control-label">Confirm password *</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="First_Name" placeholder="First Name">
+															<input id="confirm" type="password" class="form-control" name="confirm" placeholder="Password">
 														</div>
 													</div>
 													
 													<br/><br/>
 													
 													<div class="form-group">
-														<label for="Last_Name" class="col-md-3 control-label">Last Name</label>
+														<label for="First_Name" class="col-md-3 control-label">First Name *</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="Last_Name" placeholder="Last Name">
+															<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name">
+														</div>
+													</div>
+													
+													<br/><br/>
+													
+													<div class="form-group">
+														<label for="Last_Name" class="col-md-3 control-label">Last Name *</label>
+														<div class="col-md-9">
+															<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name">
 														</div>
 													</div>
 													
@@ -137,7 +147,7 @@
 													<div class="form-group">
 														<label for="Country" class="col-md-3 control-label">Country</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="Country" placeholder="Country">
+															<input id="Country" type="text" class="form-control" name="Country" placeholder="Country">
 														</div>
 													</div>
 													
@@ -146,7 +156,7 @@
 													<div class="form-group">
 														<label for="City" class="col-md-3 control-label">City</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="City" placeholder="City">
+															<input id="City" type="text" class="form-control" name="City" placeholder="City">
 														</div>
 													</div>
 													
@@ -155,7 +165,7 @@
 													<div class="form-group">
 														<label for="Institution" class="col-md-3 control-label">Institution</label>
 														<div class="col-md-9">
-															<input type="text" class="form-control" name="Institution" placeholder="Institution">
+															<input id="Institution" type="text" class="form-control" name="Institution" placeholder="Institution">
 														</div>
 													</div>
 													
@@ -163,7 +173,9 @@
 												</fieldset>
 												
 												<div class="col-sm-12 controls">
-													<input type="submit" value="Submit" class="btn btn-primary"/></p></form>
+													<p>Les champs précédés d\'un * sont obligatoires</p>
+													<input type="submit" value="Submit" class="btn btn-primary"/></p>
+													</form>
 												</div>
 											</div>
 										</div>
