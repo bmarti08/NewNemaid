@@ -37,35 +37,19 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Select genus
-                    </h1>  
+                    <h1 class="page-header">Find a genus</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Genus Selection </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <FONT color="#BDBDBD"> Find a genus </FONT>
 						</li>
 						<li class="active"></li>
-					</ol>					
+					</ol>	
                 </div>
             </div>
 			<br/>	
-
-			
+		
 			
             <!-- /.row -->
-        <br/>
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				-- Choose a Genus --
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li><a href="#">Helicotylenchus </a></li>
-				<li><a href="#">Aphasmatylenchus(In progress)</a></li>
-				<li><a href="#">Genus3</a></li>
-			</ul>
-			<input type="submit" name="SelectedGenus" value="Confirm" />	
-		</div>
-		
-		
+        <br/>		
         
             <!-- ICI mettre ce qu'on veut -->
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

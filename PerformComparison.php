@@ -37,25 +37,31 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Comparison performance</h1>    
-					<h2 class="second-title"> Sample selection </h2>
-					<h3 class="third_tiltle"> Your samples </h3>
+                    <h1 class="page-header">Comparison performance</h1>  
+					<ol class="breadcrumb">
+						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Comparison Performance </FONT>
+						</li>
+						<li class="active"></li>
+					</ol>						
                 </div>
             </div>
 			<br/>				
 			
             <!-- /.row -->
+		
+        
+            <!-- ICI mettre ce qu'on veut -->
+		<h2 class="second-title"> Sample selection </h2>
+		<h3 class="third_tiltle"> Your samples </h3>
+		<br/>				
+			
         <br/>
 		<div class="row_text">
 			<h2 class="second-title2">Comparison Parameters</h2>	
 			<h3 class="third_tiltle2">Formula version</h3>
 			<h3 class="third_tiltle3">Validity of species</h3>
-			<h3 class="third_tiltle4">Type of description</h3>
+			<h3 class="third_tiltle4">T</h3>
 		</div>
-		
-		
-        
-            <!-- ICI mettre ce qu'on veut -->
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <!-- ------------------------ -->
         

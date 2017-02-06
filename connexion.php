@@ -57,7 +57,7 @@
 										<div id="loginbox" class="panel panel-default">
 											<div class="panel-heading" style="background: #0C9277">
 												<h3 class="panel-title text-center"><b>Connexion</b></h3>
-												<div style="float:right; font-size: 80%; position: relative; top:-10px;"><a style="color:white;" href="forgot_password">Forgot password?</a></div>
+												<div style="float:right; font-size: 80%; position: relative; top:-10px;"><a style="color:white;" href="forgot_password.php">Forgot password?</a></div>
 											</div>
 											<div class="panel-body">
 												<form method="post" action="connexion.php">

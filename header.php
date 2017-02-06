@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">                    
 					<li>
-                        <a href="SelectGenus.php">SelectGenus</a>
+                        <a href="SelectGenus.php">Genus selection</a>
                     </li>
                     <li>
                         <a href="sampleDataEntry.php">Sample Data Entry</a>
@@ -24,11 +24,11 @@
                         <a href="PerformComparison.php">Comparison Performance</a>
                     </li>
 					<li>
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases<b class="caret"></b></a>
+						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases views<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Species data</a></li>
-							<li><a href="#">References</a></li>
-							<li><a href="#">Characters</a></li>							 
+                            <li><a href="#">Species data view</a></li>
+							<li><a href="#">References view</a></li>
+							<li><a href="#">Characters view</a></li>							 
                          </ul>
                     </li>					
 					<li>
@@ -37,8 +37,8 @@
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Genera</a>  
 								<ul class="dropdown-menu">
-									<li><a tabindex="-1" href="#">Add a new genus</a></li>
-									<li><a href="#">Find a genus</a></li>
+									<li><a tabindex="-1" href="addgenus.php">Add a new genus</a></li>
+									<li><a href="findGenus.php">Find a genus</a></li>
 								</ul>
 							</li>
 							<li class ="dropdown-submenu">

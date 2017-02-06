@@ -37,8 +37,12 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Help section
-                    </h1>                    
+                    <h1 class="page-header">Help section</h1>  
+					<ol class="breadcrumb">
+						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Help section </FONT>
+						</li>
+						<li class="active"></li>
+					</ol>						
                 </div>
             </div>
             <!-- /.row -->

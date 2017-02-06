@@ -44,15 +44,16 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Sample data entry</h1>                    
+                    <h1 class="page-header">Sample data entry</h1>  
+					<ol class="breadcrumb">
+						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Sample Data Entry </FONT>
+						</li>
+						<li class="active"></li>
+					</ol>					
                 </div>
             </div>
 			<br/>	
-			<ol class="breadcrumb">
-				 <li><a href="SelectedGenus.php">Add a new Genus</a>
-				 </li>
-				 <li class="active"></li>
-			 </ol>
+
             <!-- /.row -->
         <br/>
 	
