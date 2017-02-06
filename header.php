@@ -62,10 +62,12 @@
 							</li>
 						</ul>
 					<li>
-                        <a href="help.php">Help</a>
+                        <a href="help.php"><span class="glyphicon glyphicon-question-sign text-center" style="font-size:15px;" title="Help"></span></a>
                     </li>
 					<li>
-                        <a href="deconnexion.php">Log Out</a>
+                        <a href="deconnexion.php">
+							<span class="glyphicon glyphicon-off text-center" style="color:red;font-size:15px;" title="Log off"></span>
+						</a>
                     </li>
                 </ul>
             </div>
