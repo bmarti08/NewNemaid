@@ -23,6 +23,10 @@
 					<li>
                         <a href="PerformComparison.php">Comparison Performance</a>
                     </li>
+				<?php
+					if($Admin == 1){
+						echo'
+					
 					<li>
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases views<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -58,9 +62,12 @@
 								</ul>
 							</li>				
 							<li>
-								<a href="#">Users</a>
+								<a href="user.php">Users</a>
 							</li>
 						</ul>
+					';
+					}
+			?>
 					<li>
                         <a href="help.php"><span class="glyphicon glyphicon-question-sign text-center" style="font-size:15px;" title="Help"></span></a>
                     </li>
