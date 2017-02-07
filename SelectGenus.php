@@ -64,18 +64,14 @@
             <!-- /.row -->
         <br/>
 		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				-- Choose a Genus --
-				<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li><a href="#">Helicotylenchus </a></li>
-				<li><a href="#">Aphasmatylenchus(In progress)</a></li>
-				<li><a href="#">Genus3</a></li>
-			</ul>
-			<input type="submit" name="SelectedGenus" value="Confirm" />	
+			<FORM name "SelectGenus">
+			<SELECT name="" size="1">
+			<OPTION selected> -- Choose a Genus -- </OPTION>
+			<OPTION> Helicotylenchus </OPTION>
+			<OPTION> Aphasmatylenchus (In Progress) </OPTION>
+			</FORM>
 		</div>
-		
+		<input type="submit" name="SelectedGenus" value="Confirm" />	
 		
         
             <!-- ICI mettre ce qu'on veut -->
