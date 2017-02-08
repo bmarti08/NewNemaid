@@ -1,50 +1,140 @@
-<!-- line modal -->
-<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	<div class="modal-content">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-			<h3 class="modal-title" id="lineModalLabel">My Modal</h3>
-		</div>
-		<div class="modal-body">
-			
-            <!-- content goes here -->
-			<form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Example block-level help text here.</p>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Check me out
-                </label>
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+<!DOCTYPE html>
+<html lang="en">
 
-		</div>
-		<div class="modal-footer">
-			<div class="btn-group btn-group-justified" role="group" aria-label="group button">
-				<div class="btn-group" role="group">
-					<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
-				</div>
-				<div class="btn-group btn-delete hidden" role="group">
-					<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-				</div>
-				<div class="btn-group" role="group">
-					<button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
-				</div>
-			</div>
-		</div>
-	</div>
-  </div>
-</div>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NEMAID</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/portfolio-item.css" rel="stylesheet">
+	
+	<!-- Bootstrap Core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+	
+	<link href="https://rawgithub.com/hayageek/jquery-upload-file/master/css/uploadfile.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="https://rawgithub.com/hayageek/jquery-upload-file/master/js/jquery.uploadfile.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+	<?php 
+	include("../bdd/identifiants.php");
+	?>
+
+
+<!-- content goes here -->
+                <?php	
+//var_dump($_GET['IdU']);
+
+					if(isset($_GET['IdU'])){
+						$idU = $_GET['IdU'];
+						$query=$bdd->prepare('SELECT * FROM `usr` WHERE Id_User='.$idU.'');
+						$query->execute();
+
+							$data = $query->fetch();
+							
+							$Fname = $data['First_name'];
+							$Lname = $data['Last_name'];
+							$Email = $data['e_mail'];
+							$Ctry = $data['Country'];
+							$Cty = $data['City'];
+							$Inst = $data['Institution'];
+							$passwd = $data['Password'];
+							$Adm = $data['Admin'];
+							
+					
+						echo'
+						<table width="50%">
+							<tr>
+								<td width="50%">
+									<p><strong>First name : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Fname.'</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>Last name : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Lname.'</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>E-mail : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Email.'</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>Country : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Ctry.'</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>City : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Cty.'</p>
+								</td>
+							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>Institution : </strong></p>
+								</td>
+								<td width="50%">
+									<p>'.$Inst.'</p>
+								</td>
+							</tr>
+						</table>
+						<hr width="50%">
+						<form>	
+								<div class="form-group">
+									<label for="exampleInputEmail1">Password</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" placeholder=\'Enter a new password\'>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">Admin</label>';
+									if ($Adm == 1){
+										echo'<input type="text" class="form-control" id="exampleInputEmail1" value=\'Yes\'>';
+									}
+									else{
+										echo'<input type="text" class="form-control" id="exampleInputEmail1" value=\'No\'>';
+									}
+									
+								echo'</div>';
+						echo'</form>'; 
+								$query->CloseCursor();
+					}
+					else{
+						echo'<h3> ERROR </h3>';
+					}
+				?>
+</body>
+
+</html>
