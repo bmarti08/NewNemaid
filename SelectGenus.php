@@ -64,15 +64,16 @@
             <!-- /.row -->
         <br/>
 		<div class="dropdown">
-			<FORM name "SelectGenus">
-			<SELECT name="" size="1">
-			<OPTION selected> -- Choose a Genus -- </OPTION>
-			<OPTION> Helicotylenchus </OPTION>
-			<OPTION> Aphasmatylenchus (In Progress) </OPTION>
+			<FORM method="post" action="genusselect.php">
+			<SELECT name="genusselection" size="1">
+			<OPTION selected value="0"> -- Choose a Genus -- </OPTION>
+			<OPTION value="2"> Helicotylenchus </OPTION>
+			<OPTION value ="3"> Aphasmatylenchus (In Progress) </OPTION>
 			</FORM>
+			<input type="submit" name="SelectedGenus" value="Confirm"/>
 		</div>
-		<input type="submit" name="SelectedGenus" value="Confirm" />	
-		
+			
+        
         
             <!-- ICI mettre ce qu'on veut -->
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
