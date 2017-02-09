@@ -91,8 +91,9 @@
 										<td>'.$data['Last_name'].'</td>
 										<td>'.$data['e_mail'].'</td>
 										<td class="text-center">
-											<a data-toggle="modal" data-target="#squarespaceModal" class="btn btn-info btn-xs" href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-											<a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a>
+											<button data-toggle="modal" data-target="#squarespaceModal" id="'.$data['Id_User'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+																						
+											<button data-toggle="modal" data-target="#suppModal" id="'.$data['Id_User'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>
 										</td>
 									</tr>';
 								}
@@ -103,9 +104,57 @@
 			</div>
 		</div>
 		<!-- -------------------------------------------------------- -->
-        
+		<!-- edit modal -->
+		<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="lineModalLabel">User Edit</h3>
+				</div>
+				<div class="modal-body edit-content">
+						   
+					
+
+				</div>
+				<div class="modal-footer">
+					<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+						</div>
+						<div class="btn-group btn-delete hidden" role="group">
+							<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		</div>   
+	<!-- -------------------------------------------------------- -->
+	<!-- edit modal -->
+		<div class="modal fade" id="suppModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" data-keyboard="false" data-backdrop="static">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div style="background-color:#d9534f;" class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" onclick='window.location.reload(false)'><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="lineModalLabel">Delete user</h3>
+				</div>
+				<div class="modal-body edit-content">
+						   
+					
+
+				</div>
+			</div>
+		  </div>
+		</div>   
+
+
+
+	   
     <?php 
-	include ("modal/Edit_User.php");
 	include("footer.php"); 
 	?> 
     </div>
@@ -117,8 +166,46 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 	
-	<!-- Bootstrap Core JavaScript -->
-    <script src="js/upload_file.js"></script>
+
+	
+	<script>
+			$('#squarespaceModal').on('show.bs.modal', function(e) {
+				
+				var $idU = $(this),
+					esseyId = e.relatedTarget.id;
+				
+				$.ajax({
+					cache: false,
+					type: 'GET',
+					url: 'modal/Edit_User.php',
+					data: 'IdU='+esseyId,
+					success: function(data) 
+					{
+						$(".edit-content").html(data);
+					}
+				});
+				
+			})
+			
+
+    $('#suppModal').on('show.bs.modal', function(e) {
+				
+				var $idU = $(this),
+					esseyId = e.relatedTarget.id;
+				
+				$.ajax({
+					cache: false,
+					type: 'GET',
+					url: 'modal/Supprimer_User.php',
+					data: 'IdU='+esseyId,
+					success: function(data) 
+					{
+						$(".edit-content").html(data);
+					}
+				});
+				
+			})
+    </script>
 
 </body>
 
