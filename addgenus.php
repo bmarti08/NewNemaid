@@ -28,7 +28,18 @@
 
 <body>
 
-    <?php include("header.php"); ?>
+                    <?php 
+		//Cette fonction doit être appelé avant tout code html
+	session_start();
+	
+	include("bdd/variableSession.php");
+	include("bdd/identifiants.php");
+	
+	include("header.php"); 
+
+	
+	if ($id==0) erreur2(ERR_IS_CO);
+	?>
 
     <!-- Page Content -->
     <div class="container">
@@ -37,7 +48,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Comparison performance</h1>    
+                    <h1 class="page-header">Add a new genus</h1>    
 					<ol class="breadcrumb">
 						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <FONT color="#BDBDBD"> Add a new genus </FONT>
 						</li>
@@ -46,16 +57,95 @@
                 </div>
             </div>
 			<br/>	
-		
 			
-            <!-- /.row -->
-        <br/>		
-        
-            <!-- ICI mettre ce qu'on veut -->
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <!-- ------------------------ -->
+	<?php
+		if (!isset($_POST['Genus_Name'])) //On est dans la page de formulaire
+		{
+			echo'<!-- --------------------FORMULAIRE INSCRIPTION---------------------------- -->		
+			<div class="row">
+			   <div class="col-lg-offset-3 col-lg-6">	
+				<div class="panel panel-warning" id="signupbox1" style="display:none;">
+						<div class="panel-heading">
+							<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+							<br/>
+							<h4>ATTENTION : Veillez à remplir tous les champs suivis d\'un <span style="color:red">*</span> !</h4>
+						</div>
+					</div>
+					
+					<div id="signupbox2" class="panel panel-default">
+						<div class="panel-body">
+							<form method="POST" action="addgenus.php" enctype="multipart/form-data">
+							
+							<fieldset>
+								<div class="form-group">
+									<label for="Genus_Name" class="col-md-3 control-label">Genus Name <span style="color:red">*</span></label>
+									<div class="col-md-9">
+										<input id="Genus_Name" type="text" class="form-control" name="Genus_Name" placeholder="Enter a name" required="true">
+									</div>
+								</div>
+								
+								<br/><br/>
+							</fieldset>
+							
+							<div class="col-sm-12 controls">
+								<input type="submit" value="Submit" class="btn btn-primary"/></p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>';
+		}
+		else{
+			$Genusname=$_POST['Genus_Name'];
+			$i=0;
+			
+			//initialisation
+			$mail_erreur1 = NULL;
+			$mail_erreur2 = NULL;
+			$pswd_erreur = NULL;
+			
+			//Vérification de la présence
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM genus WHERE Genus_Name =:Genusname');
+			$query->bindValue(':Genusname',$Genusname, PDO::PARAM_STR);
+			$query->execute();
+			$nameG_free=($query->fetchColumn()==0)?1:0;
+			$query->CloseCursor();
+			
+			if(!$nameG_free)
+			{
+				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
+				$i++;
+			}
+			
+			//vérification pour l'enregistrement dans la BDD
+		   if ($i==0)
+		   {
+			   $query=$bdd->prepare('INSERT INTO `genus` (`Genus_Name`) VALUES (:GenusName)');
+				$query->bindValue(':GenusName', $Genusname, PDO::PARAM_STR);
+				$query->execute();
+				//var_dump($Genusname);
+				echo'<center><div class="alert alert-sucess" role="alert">The new genus is adding !</div></center>
+				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findGenus.php">';
+		   }
+		   else{
+			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
+					echo'<h1 style="color:red">ERROR</h1>';
+				echo'</span>';
+				echo'<br/>
+				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addgenus.php">';
+				echo $mail_erreur1;
+		   }
+			
+		}
+		?>
+		
+	</div>
+</div>								 	
+						
         
         <!-------------------------- /Container --------------------------------->
+
 
         
     <?php include("footer.php"); ?> 
