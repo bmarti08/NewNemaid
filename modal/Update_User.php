@@ -51,8 +51,8 @@
 
 <!-- content goes here -->
                 <?php	
-					var_dump($_GET['Password']);
-					var_dump($_GET['IdU']);
+					//var_dump($_GET['Password']);
+					//var_dump($_GET['IdU']);
 
 				if(!empty($_GET['Password']) && !empty($_GET['IdU'])){			
 						

@@ -13,6 +13,8 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
+	
 
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
@@ -71,9 +73,10 @@
 		<div class="row">
 			<div class="col-lg-offset-2 col-lg-8">
 				<div class="panel panel-default">
-					<table class="table table-striped table-hover">
+			
+					<table id="userList" class="table table-striped table-hover">
 						<thead>
-						<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new user</a>						
+						<!--<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new user</a>-->						
 							<tr>
 								<th>First Name</th>
 								<th>Last Name</th>
@@ -81,6 +84,7 @@
 								<th class="text-center">Action</th>
 							</tr>
 						</thead>
+						<tbody>
 							<?php
 								$query=$bdd->prepare('SELECT * FROM `usr` order by First_name ASC ');
 									$query->execute();
@@ -99,7 +103,8 @@
 									</tr>';
 								}
 								$query->CloseCursor();
-							?>						
+							?>	
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -130,7 +135,7 @@
 					<button type="button" class="close" data-dismiss="modal" onclick='window.location.reload(false)'><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 					<h3 class="modal-title" id="lineModalLabel">Delete user</h3>
 				</div>
-				<div class="modal-body edit-content">
+				<div class="modal-body supp-content">
 						   
 					
 
@@ -156,8 +161,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-	
-
+	<script src="js/dataTables.bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
 	
 	<script>
 			$('#squarespaceModal').on('show.bs.modal', function(e) {
@@ -179,6 +184,7 @@
 			})
 			
 
+	////////////////////////////////////////////////////////////////
     $('#suppModal').on('show.bs.modal', function(e) {
 				
 				var $idU = $(this),
@@ -191,11 +197,16 @@
 					data: 'IdU='+esseyId,
 					success: function(data) 
 					{
-						$(".edit-content").html(data);
+						$(".supp-content").html(data);
 					}
 				});
 				
 			})
+			
+		////////////////////////////////////////////////////////////////
+		$(document).ready(function() {
+			$('#userList').DataTable();
+		} );
     </script>
 
 </body>

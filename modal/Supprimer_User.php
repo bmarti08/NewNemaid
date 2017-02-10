@@ -42,7 +42,7 @@
 
 <!-- content goes here -->
                 <?php	
-var_dump($_GET['IdU']);
+			//var_dump($_GET['IdU']);
 
 				if(isset($_GET['IdU'])){			
 
