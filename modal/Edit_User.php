@@ -113,21 +113,39 @@
 							</tr>
 						</table>
 						<hr width="50%">
-						<form>	
+						<form method="POST" action="user.php">	
 								<div class="form-group">
 									<label for="exampleInputEmail1">Password</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" placeholder=\'Enter a new password\'>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputEmail1">Admin</label>';
+									<label for="exampleInputEmail1">Admin</label>
+									<br/>';
 									if ($Adm == 1){
-										echo'<input type="text" class="form-control" id="exampleInputEmail1" value=\'Yes\'>';
+										echo'
+											<div id="radioBtn" class="btn-group">
+												<a name="Admin" class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+												<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N" value="0">NO</a>
+											</div>';
 									}
 									else{
-										echo'<input type="text" class="form-control" id="exampleInputEmail1" value=\'No\'>';
+										echo'<div id="radioBtn" class="btn-group">
+												<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="1">YES</a>
+												<a name="Admin" class="btn btn-primary btn-sm active " data-toggle="happy" data-title="N" value="0">NO</a>
+											</div>';
 									}
 									
 								echo'</div>';
+								echo'
+									<div class="btn-group btn-group-justified" role="group" aria-label="group button">
+										<div class="btn-group" role="group">
+											<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
+										</div>
+										<div class="btn-group" role="group">
+											<button type="submit" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
+										</div>
+									</div>
+								';
 						echo'</form>'; 
 								$query->CloseCursor();
 					}
@@ -135,6 +153,17 @@
 						echo'<h3> ERROR </h3>';
 					}
 				?>
-</body>
+				
+	</body>
 
 </html>
+	<script>
+			$('#radioBtn a').on('click', function(){
+				var sel = $(this).data('title');
+				var tog = $(this).data('toggle');
+				$('#'+tog).prop('value', sel);
+				
+				$('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+				$('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+			})
+	</script>

@@ -65,6 +65,11 @@
             </div>
 			<br/>	
 
+			
+	<?php
+		if (!isset($_POST['Password']))
+				{
+	?>
             <!-- /.row -->
         <br/>
 		<div class="row">
@@ -117,19 +122,6 @@
 					
 
 				</div>
-				<div class="modal-footer">
-					<div class="btn-group btn-group-justified" role="group" aria-label="group button">
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
-						</div>
-						<div class="btn-group btn-delete hidden" role="group">
-							<button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-						</div>
-						<div class="btn-group" role="group">
-							<button type="button" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
-						</div>
-					</div>
-				</div>
 			</div>
 		  </div>
 		</div>   
@@ -150,7 +142,16 @@
 			</div>
 		  </div>
 		</div>   
+			<?php
+				}
+				else{
+					echo'<p>blblaaaaaaaaaaaaaa</p>';
+				}
+			?>
 
+				
+					
+				
 
 
 	   
