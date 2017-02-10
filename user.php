@@ -66,10 +66,6 @@
 			<br/>	
 
 			
-	<?php
-		if (!isset($_POST['Password']))
-				{
-	?>
             <!-- /.row -->
         <br/>
 		<div class="row">
@@ -142,12 +138,6 @@
 			</div>
 		  </div>
 		</div>   
-			<?php
-				}
-				else{
-					echo'<p>blblaaaaaaaaaaaaaa</p>';
-				}
-			?>
 
 				
 					

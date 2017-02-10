@@ -44,13 +44,14 @@
                 <?php	
 //var_dump($_GET['IdU']);
 
-					if(isset($_GET['IdU'])){
+				if(isset($_GET['IdU'])){
 						$idU = $_GET['IdU'];
 						$query=$bdd->prepare('SELECT * FROM `usr` WHERE Id_User='.$idU.'');
 						$query->execute();
 
 							$data = $query->fetch();
 							
+							$IdU = $data['Id_User'];
 							$Fname = $data['First_name'];
 							$Lname = $data['Last_name'];
 							$Email = $data['e_mail'];
@@ -111,38 +112,36 @@
 									<p>'.$Inst.'</p>
 								</td>
 							</tr>
+							<tr>
+								<td width="50%">
+									<p><strong>Administrator : </strong></p>
+								</td>
+								<td width="50%">';
+									if ($Adm == 1){
+										echo'<p> Yes </p>';
+									}
+									else {
+										echo'<p> False </p>';
+									}
+								echo'</td>
+							</tr>
 						</table>
 						<hr width="50%">
-						<form method="POST" action="user.php">	
+						<form action="modal/Update_User.php" id="UpdateForm">
+								<input type="text" class="form-control hidden" value="'.$IdU.'" id="'.$IdU.'" name="IdU">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Password</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" placeholder=\'Enter a new password\'>
+									<label for="Password">Password <span style="color:red">*</span></label>
+									<input type="text" class="form-control" id="Password" name="Password" placeholder=\'Enter a new password\' required="true">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Admin</label>
-									<br/>';
-									if ($Adm == 1){
-										echo'
-											<div id="radioBtn" class="btn-group">
-												<a name="Admin" class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-												<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N" value="0">NO</a>
-											</div>';
-									}
-									else{
-										echo'<div id="radioBtn" class="btn-group">
-												<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="1">YES</a>
-												<a name="Admin" class="btn btn-primary btn-sm active " data-toggle="happy" data-title="N" value="0">NO</a>
-											</div>';
-									}
-									
-								echo'</div>';
-								echo'
+									<br/>
 									<div class="btn-group btn-group-justified" role="group" aria-label="group button">
 										<div class="btn-group" role="group">
 											<button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
 										</div>
 										<div class="btn-group" role="group">
-											<button type="submit" id="saveImage" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
+											<button type="submit" class="btn btn-default btn-hover-green" data-action="save" role="button">Save</button>
 										</div>
 									</div>
 								';
@@ -166,4 +165,17 @@
 				$('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
 				$('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
 			})
+			
+		$(function() {	
+			$('#UpdateForm').on('submit', function(e)  {	
+					var $this = $(this); // L'objet jQuery du formulaire
+	
+					
+				$.ajax({
+					type: 'GET',
+					url: $this.attr('action'),
+					data: $this.serialize();//recupere les données du formulaire 
+				});	
+			})
+		});
 	</script>
