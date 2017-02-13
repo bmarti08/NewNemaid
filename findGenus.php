@@ -69,7 +69,12 @@
 			
 					<table id="userList" class="table table-striped table-hover">
 						<thead>
-							<a href="addgenus.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new genus</a>					
+							<?php
+								if($Admin == 1){
+									echo'							
+										<a href="addgenus.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new genus</a>';
+								}
+							?>
 							<tr>
 								<th>Genus Name</th>
 								<th class="text-center">Action</th>

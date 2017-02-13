@@ -14,8 +14,14 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">                    
+					<li>
+                        <a href="SelectGenus.php">Genus selection</a>
+                    </li>
                     <li>
                         <a href="sampleDataEntry.php">Sample Data Entry</a>
+                    </li>
+					<li>
+                        <a href="PerformComparison.php">Comparison Performance</a>
                     </li>
 					<li>
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases views<b class="caret"></b></a>
@@ -53,10 +59,10 @@
 								</ul>
 							</li>	
 							<li class ="dropdown-submenu">
-								<a tabindex="-1" href="#">Author</span></a>  
+								<a tabindex="-1" href="#">Authors</span></a>  
 								<ul class="dropdown-menu">
-									<li><a href="addReferences.php">Add an author</a></li>
-									<li><a href="findReferences.php">Manage author</a></li>
+									<li><a href="addAuthors.php">Add an author</a></li>
+									<li><a href="findAuthors.php">Manage author</a></li>
 								</ul>
 							</li>							
 							<li class ="dropdown-submenu">

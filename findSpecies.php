@@ -69,7 +69,12 @@
 			
 					<table id="speciesList" class="table table-striped table-hover">
 						<thead>
-							<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new species</a>					
+							<?php
+								if($Admin == 1){
+									echo'
+										<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new species</a>';
+								}
+							?>
 							<tr>
 								<th>Species Name</th>
 								<th>Genus Name</th>
@@ -86,10 +91,14 @@
 									<tr>
 										<td>'.$data['Species_Name'].'</td>
 										<td>'.$data['Genus_Name'].'</td>
-										<td class="text-center">
-											<button data-toggle="modal" data-target="#edit_species" id="'.$data['Species_Name'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>';
+										<td class="text-center">';
+											if($Admin == 0){
+												echo'<button data-toggle="modal" data-target="#edit_species" id="'.$data['Species_Name'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open"></span> View</button>';
+											}
+											
 											if($Admin == 1){											
-												echo'											
+												echo'
+												<button data-toggle="modal" data-target="#edit_species" id="'.$data['Species_Name'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>
 												<button data-toggle="modal" data-target="#supp_species" id="'.$data['Species_Name'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>';
 											}
 										echo'</td>

@@ -69,7 +69,11 @@
 			
 					<table id="characterList" class="table table-striped table-hover">
 						<thead>
-							<a href="addCharacters.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new character</a>					
+							<?php
+								if($Admin == 1){
+									echo'<a href="addCharacters.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new character</a>';	
+								}
+							?>
 							<tr>
 								<th>Character Name</th>
 								<th>Explaination</th>
@@ -92,10 +96,14 @@
 										<td>'.$data['Entitled_Character'].'</td>
 										<td>'.$data['Weight'].'</td>
 										<td>'.$data['Correction_Factor'].'</td>
-										<td class="text-center">
-											<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>';
+										<td class="text-center">';
+											if($Admin == 0){											
+												echo'<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-eye-open"></span> View</button>';
+											}
 											if($Admin == 1){											
-												echo'<button data-toggle="modal" data-target="#supp_character" id="'.$data['Id_Character'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>';
+												echo'
+													<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+													<button data-toggle="modal" data-target="#supp_character" id="'.$data['Id_Character'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>';
 											}
 										echo'</td>
 									</tr>';
