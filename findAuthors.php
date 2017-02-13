@@ -50,7 +50,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find a genus</h1>    
+                    <h1 class="page-header">Find an author</h1>    
 					<ol class="breadcrumb">
 						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <FONT color="#BDBDBD"> Find an author </FONT>
 						</li>
@@ -168,7 +168,7 @@
 				$.ajax({
 					cache: false,
 					type: 'GET',
-					url: 'modal/Edit_Author.php',
+					url: 'modal/Edit_Authors.php',
 					data: 'authorName='+esseyId,
 					success: function(data) 
 					{
@@ -188,7 +188,7 @@
 				$.ajax({
 					cache: false,
 					type: 'GET',
-					url: 'modal/Supprimer_Author.php',
+					url: 'modal/Supprimer_Authors.php',
 					data: 'authorName='+esseyId,
 					success: function(data) 
 					{
