@@ -59,12 +59,12 @@
 			<br/>	
 			
 	<?php
-		/*
-		if (!isset($_POST['Genus_Name'])) //On est dans la page de formulaire
+		
+		if (!isset($_POST['Name_Author'])) //On est dans la page de formulaire
 		{
 			//recherche des genus qui ne sont pas déjà rattaché à une species 
 			//Vérification de la présence
-			$query=$bdd->prepare('SELECT `Genus_Name` FROM `genus` where Genus_Name not in (SELECT Genus_Name FROM species)');
+			$query=$bdd->prepare('SELECT `Name_Author` FROM `author`');
 			$query->execute();
 			
 			
@@ -85,26 +85,55 @@
 							
 							<fieldset>
 								<div class="form-group">
-									<label for="Species_Name" class="col-md-3 control-label">Species Name <span style="color:red">*</span></label>
+									<label for="Title" class="col-md-3 control-label">Title <span style="color:red">*</span></label>
 									<div class="col-md-9">
-										<input id="Species_Name" type="text" class="form-control" name="Species_Name" placeholder="Enter a name" required="true">
+										<input id="Title" type="text" class="form-control" name="Title" placeholder="Enter the title" required="true">
+									</div>
+								</div>
+								<br/>
+								<div class="form-group">
+									<label for="Year" class="col-md-3 control-label">Year <span style="color:red">*</span></label>
+									<div class="col-md-9">
+										<input id="Year" type="text" class="form-control" name="Year" placeholder="Enter the Year (YYYY)" required="true">
+									</div>
+								</div>
+								<br/>
+								<div class="form-group">
+									<label for="Journal" class="col-md-3 control-label">Journal <span style="color:red">*</span></label>
+									<div class="col-md-9">
+										<input id="Journal" type="text" class="form-control" name="Journal" placeholder="Enter the Journal\'s name" required="true">
+									</div>
+								</div>
+								<br/>
+								<div class="form-group">
+									<label for="Published_in" class="col-md-3 control-label">Published in <span style="color:red">*</span></label>
+									<div class="col-md-9">
+										<input id="Published_in" type="text" class="form-control" name="Published_in" placeholder="Enter the Year (YYYY)" required="true">
 									</div>
 								</div>
 								<br/>
 								<!-- Select Basic -->
 								<div class="form-group">
-								  <label for="Genus_Name" class="col-md-3 control-label">Genus Name <span style="color:red">*</span></label>
+								  <label for="Name_Author" class="col-md-3 control-label">Genus Name <span style="color:red">*</span></label>
 								  <div class="col-md-9">
-									<input id="Genus_Name" list="genName" class="form-control" placeholder="Enter a name" name="Genus_Name">
+									<input id="Name_Author" list="genName" class="form-control" placeholder="Enter a name" name="Name_Author">
 									<datalist id="genName">';
 										while($result=$query->fetch()){	
-										  echo'<option value="'.$result['Genus_Name'].'">'.$result['Genus_Name'].'</option>';
+										  echo'<option value="'.$result['Name_Author'].'">'.$result['Name_Author'].'</option>';
 										}
 										$query->CloseCursor();
 									echo'
 									</datalist>
 								  </div>
 								</div>
+								<br/>
+								<div class="form-group">
+									<label for="Rank" class="col-md-3 control-label">Rank <span style="color:red">*</span></label>
+									<div class="col-md-9">
+										<input id="Rank" type="text" class="form-control" name="Rank" placeholder="Enter the Rank" required="true">
+									</div>
+								</div>
+								<br/>
 								
 								<br/><br/>
 							</fieldset>
@@ -117,10 +146,15 @@
 					</div>
 				</div>
 			</div>';
-		}
+		}/*
 		else{
-			$Speciesname=$_POST['Species_Name'];
-			$Genusname=$_POST['Genus_Name'];
+			$Title=$_POST['Title'];
+			$Year=$_POST['Year'];
+			$Year=$_POST['Journal'];
+			$Year=$_POST['Published_in'];
+			$Year=$_POST['Name_Author'];
+			$Year=$_POST['Rank'];
+
 			$i=0;
 			
 			//initialisation
@@ -129,15 +163,15 @@
 			$pswd_erreur = NULL;
 			
 			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM species WHERE Species_Name =:Speciesname');
-			$query->bindValue(':Speciesname',$Speciesname, PDO::PARAM_STR);
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM bibliography WHERE Title =:Title');
+			$query->bindValue(':Title',$Title, PDO::PARAM_STR);
 			$query->execute();
-			$nameS_free=($query->fetchColumn()==0)?1:0;
+			$Title_free=($query->fetchColumn()==0)?1:0;
 			$query->CloseCursor();
 			
-			if(!$nameS_free)
+			if(!$Title_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
+				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
 				$i++;
 			}
 			
