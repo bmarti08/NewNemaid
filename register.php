@@ -129,7 +129,7 @@
 				echo $mail_erreur2;
 				echo $pswd_erreur;
 			   
-				echo'<p>Click<a href="./connexion.php">here</a> to restart registration</p>';
+				echo'<p>Click <a href="./connexion.php">here</a> to restart registration</p>';
 			}
 		
 

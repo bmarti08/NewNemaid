@@ -48,7 +48,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new genus</h1>    
+                    <h1 class="page-header">Add a new Author</h1>    
 					<ol class="breadcrumb">
 						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <FONT color="#BDBDBD"> Add a new author </FONT>
 						</li>
@@ -59,8 +59,8 @@
 			<br/>	
 			
 	<?php
-		/*
-		if (!isset($_POST['Genus_Name'])) //On est dans la page de formulaire
+		
+		if (!isset($_POST['Name_Author'])) //On est dans la page de formulaire
 		{
 			echo'<!-- --------------------FORMULAIRE INSCRIPTION---------------------------- -->		
 			<div class="row">
@@ -75,13 +75,13 @@
 					
 					<div id="signupbox2" class="panel panel-default">
 						<div class="panel-body">
-							<form method="POST" action="addgenus.php" enctype="multipart/form-data">
+							<form method="POST" action="addAuthors.php" enctype="multipart/form-data">
 							
 							<fieldset>
 								<div class="form-group">
-									<label for="Genus_Name" class="col-md-3 control-label">Genus Name <span style="color:red">*</span></label>
+									<label for="Name_Author" class="col-md-3 control-label">Name of the Author <span style="color:red">*</span></label>
 									<div class="col-md-9">
-										<input id="Genus_Name" type="text" class="form-control" name="Genus_Name" placeholder="Enter a name" required="true">
+										<input id="Name_Author" type="text" class="form-control" name="Name_Author" placeholder="Enter a name" required="true">
 									</div>
 								</div>
 								
@@ -98,7 +98,7 @@
 			</div>';
 		}
 		else{
-			$Genusname=$_POST['Genus_Name'];
+			$Authorname=$_POST['Name_Author'];
 			$i=0;
 			
 			//initialisation
@@ -107,38 +107,38 @@
 			$pswd_erreur = NULL;
 			
 			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM genus WHERE Genus_Name =:Genusname');
-			$query->bindValue(':Genusname',$Genusname, PDO::PARAM_STR);
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM author WHERE Name_Author =:Authorname');
+			$query->bindValue(':Authorname',$Authorname, PDO::PARAM_STR);
 			$query->execute();
 			$nameG_free=($query->fetchColumn()==0)?1:0;
 			$query->CloseCursor();
 			
 			if(!$nameG_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
+				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name already present in the databas !</div></center>";
 				$i++;
 			}
 			
 			//vérification pour l'enregistrement dans la BDD
 		   if ($i==0)
 		   {
-			   $query=$bdd->prepare('INSERT INTO `genus` (`Genus_Name`) VALUES (:GenusName)');
-				$query->bindValue(':GenusName', $Genusname, PDO::PARAM_STR);
+			   $query=$bdd->prepare('INSERT INTO `author` (`Name_Author`) VALUES (:Authorname)');
+				$query->bindValue(':Authorname', $Authorname, PDO::PARAM_STR);
 				$query->execute();
-				//var_dump($Genusname);
-				echo'<center><div class="alert alert-sucess" role="alert">The new genus is adding !</div></center>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findGenus.php">';
+				//var_dump($Authorname);
+				echo'<center><div class="alert alert-sucess" role="alert">The new author is adding !</div></center>
+				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findAuthors.php">';
 		   }
 		   else{
 			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
 					echo'<h1 style="color:red">ERROR</h1>';
 				echo'</span>';
 				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addgenus.php">';
+				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthors.php">';
 				echo $mail_erreur1;
 		   }
 			
-		}*/
+		}
 		?>
 		
 	</div>
