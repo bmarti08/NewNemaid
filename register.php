@@ -70,21 +70,21 @@
 			$query->CloseCursor();
 			if(!$mail_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Un compte existe déjà avec cette adresse mail !</div></center>";
+				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">There is already an account with this E-mail adress !</div></center>";
 				$i++;
 			}
 
 			//On vérifie la forme
 			if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $mail) || empty($mail))
 			{
-				$mail_erreur2 = "<center><div class=\"alert alert-danger\" role=\"alert\">Votre adresse E-Mail n'a pas un format valide</div></center>";
+				$mail_erreur2 = "<center><div class=\"alert alert-danger\" role=\"alert\">Your E-mail adress do not have a right format.</div></center>";
 				$i++;
 			}
 
 			//Vérification du mdp
 			if ($pass != $confirm || empty($confirm) || empty($pass))
 			{
-				$pswd_erreur = "<center><div class=\"alert alert-warning\" role=\"alert\">Votre mot de passe et votre confirmation diffèrent, ou sont vides</div></center>";
+				$pswd_erreur = "<center><div class=\"alert alert-warning\" role=\"alert\">Your password and your conformation password are different, or are empty</div></center>";
 				$i++;
 			}
 			
@@ -92,10 +92,10 @@
 		   if ($i==0)
 		   {
 			echo '<center><div class="alert alert-info" role="alert">';
-				echo'<h1><strong>Inscription terminée</strong></h1>';
-				echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['e_mail'])).' vous êtes maintenant inscrit !</p>';
+				echo'<h1><strong>Registration completed</strong></h1>';
+				echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['e_mail'])).' You are registered !</p>';
 			echo'</div></center>';
-				echo'<p>Cliquez <a href="./index.php">ici</a> pour revenir à la page d accueil</p>';
+				echo'<p>Click <a href="./index.php">here</a> to return to the homepage</p>';
 			
 				//requête SQL
 				$query=$bdd->prepare('INSERT INTO `usr` (`Id_User`, `First_name`, `Last_name`, `e_mail`, `Country`, `City`, `Institution`, `Password`, `Admin`) 
@@ -121,15 +121,15 @@
 			else
 			{
 				echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
-					echo'<h1 style="color:red">Inscription interrompue</h1>';
-					echo'<p>Il y a '.$i.'erreur(s) pendant l\'incription</p>';
+					echo'<h1 style="color:red">Recording interrupted</h1>';
+					echo'<p>There is(are) '.$i.'error(s) during the registration</p>';
 				echo'</span>';
 				echo'<br/>';				
 				echo $mail_erreur1;
 				echo $mail_erreur2;
 				echo $pswd_erreur;
 			   
-				echo'<p>Cliquez <a href="./connexion.php">ici</a> pour recommencer</p>';
+				echo'<p>Click<a href="./connexion.php">here</a> to restart registration</p>';
 			}
 		
 

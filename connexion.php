@@ -56,7 +56,7 @@
 									<div class="col-lg-offset-3 col-lg-6">
 										<div id="loginbox" class="panel panel-default">
 											<div class="panel-heading" style="background: #0C9277">
-												<h3 class="panel-title text-center"><b>Connexion</b></h3>
+												<h3 class="panel-title text-center"><b>Connection</b></h3>
 												<div style="float:right; font-size: 80%; position: relative; top:-10px;"><a style="color:white;" href="forgot_password.php">Forgot password?</a></div>
 											</div>
 											<div class="panel-body">
@@ -74,7 +74,7 @@
 												</fieldset>
 												
 												<div class="col-sm-12 controls">
-													<input type="submit" value="Connexion" class="btn btn-success"/></p></form>
+													<input type="submit" value="Connection" class="btn btn-success"/></p></form>
 												</div>
 												
 												<div class="form-group">
