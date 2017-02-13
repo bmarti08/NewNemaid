@@ -46,22 +46,22 @@
 
 					if(isset($_GET['IdU'])){		
 						$idU = $_GET['IdU'];		
-						$GName = "";							
+						$GName = NULL;						
 						echo'
 						<table width="50%">		
 							<tr>';
 								echo '
 								<td width="50%">
 									<strong>Genus name: </strong>
-									<input id="genusName" list="geName" name="genusName" type="text" onclick="save(this)">
-										<datalist id="geName" >';
+										<select id="genusName" name="genusName" onchange="save(this)">
+											<option disabled selected value> -- select an option -- </option>';
 											$query=$bdd->prepare('SELECT * FROM `genus`'); 
 											$query->execute();									
 											while($data=$query->fetch()){	
-												echo '<option value='.$data['Genus_Name'].'/>';
+												echo '<option value='.$data['Genus_Name'].'>'.$data['Genus_Name'].'</option>';
 											}
 											$query->CloseCursor();
-								echo '</datalist>
+								echo '</select>
 								</td>';								
 								//$GName = isset($_POST['genusName']) ? $_POST['genusName'] : NULL;								
 					echo'</tr>	
@@ -86,9 +86,10 @@
 							$query3->execute();									
 							while($data3=$query3->fetch())
 							{	
-								echo'								
+								echo'
+								<tr><td width="50%"><p>------------------------------------------------------------------------------</p></td></tr>
 								<tr>
-									<td width="100%">';
+									<td width="50%">';
 										$query4=$bdd->prepare('SELECT * FROM `characters` WHERE Id_Character='.$data3['Id_Character'].''); 
 										$query4->execute();									
 										while($data4=$query4->fetch())
@@ -111,7 +112,7 @@
 													$query6=$bdd->prepare('SELECT * FROM `composed_by` WHERE Id_Qual_Possible_Value_List ='.$data4['Id_Qual_Possible_Value_List'].'');  
 													$query6->execute();									
 													while($data6=$query6->fetch()){	
-													echo '<option value="'.$data6['Value_Name'].'"/>';		
+													echo '<option value="'.$data6['Value_Name'].'">'.$data6['Value_Name'].'</option>';		
 													}	
 													$query6->CloseCursor();
 											echo'</SELECT>
@@ -134,22 +135,7 @@
 						<div id="radioBtn" class="btn-group">
 							<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="1">OK</a>
 							<a name="Admin" class="btn btn-primary btn-sm active " data-toggle="happy" data-title="N" value="0">Cancel</a>
-						</div>
-						<script type="text/javascript">
-							function toggle_text(id) {
-								var span = document.getElementById(id);
-								if(span.style.display == "none") {
-									span.style.display = "inline";
-								} 
-								else {
-									span.style.display = "none";
-								}
-							}
-							function save(form_element){
-								var gNameJS = document.getElementById("geName").value;
-								alert(gNameJS); 
-							}
-						</script>';							
+						</div>';							
 					}							
 					else{
 						echo'<h3> ERROR </h3>';
@@ -158,6 +144,29 @@
 	</body>
 
 </html>
+	<script type="text/javascript">
+		function toggle_text(id) {
+			var span = document.getElementById(id);
+			if(span.style.display == "none") {
+				span.style.display = "inline";
+			} 
+			else {
+				span.style.display = "none";
+			}
+		}
+		
+		function save(form_element){
+			var $GName = document.getElementById("genusName").value;
+			alert($GName); 
+			esseyId = e.relatedTarget.id;		
+			$.ajax({
+				cache: false,
+				type: 'GET',
+				url: 'modal/Add_Sample.php',
+				data: 'GName='+esseyId,
+			});	
+		}
+	</script>'
 	<script>
 			$('#radioBtn a').on('click', function(){
 				var sel = $(this).data('title');
@@ -172,4 +181,16 @@
 				data: 'maVariable='+ maVariable				
 				}
 			});
+			
+			$('#genusName').change(function(){		
+				alert('essai n°1'); 			
+				//var $GName = $(this).,
+				//	esseyId = e.relatedTarget.id;				
+				//$.ajax({
+				//	cache: false,
+				//	type: 'GET',
+				//	url: 'modal/Add_Sample.php',
+				//	data: 'GName='+esseyId,					
+				//});				
+			})
 	</script>
