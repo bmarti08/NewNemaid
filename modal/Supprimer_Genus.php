@@ -49,7 +49,7 @@
 						$query=$bdd->prepare('DELETE FROM `genus` WHERE Genus_Name="'.$GenusName.'"');
 						$query->execute();
 
-						echo'<h3 class="text-center">Suppression réalisée ! </h3>';
+						echo'<h3 class="text-center">Deletion completed! </h3>';
 							
 						$query->CloseCursor();
 					}

@@ -42,12 +42,11 @@
 
 <!-- content goes here -->
                 <?php	
-			//var_dump($_GET['IdU']);
+				//var_dump($_GET['ReferencesId']);
 
-				if(isset($_GET['IdU'])){			
-
-						$idU = $_GET['IdU'];
-						$query=$bdd->prepare('DELETE FROM `usr` WHERE Id_User='.$idU.'');
+				if(isset($_GET['ReferencesId'])){	
+						$ReferencesId = $_GET['ReferencesId'];
+						$query=$bdd->prepare('DELETE FROM `bibliography` WHERE `bibliography`.`Id_Biblio` ="'.$ReferencesId.'"');
 						$query->execute();
 
 						echo'<h3 class="text-center">Deletion completed! </h3>';
