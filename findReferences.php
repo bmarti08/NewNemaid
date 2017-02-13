@@ -126,7 +126,6 @@
 					<h3 class="modal-title" id="lineModalLabel">Reference details </h3>
 				</div>
 				<div class="modal-body edit-content">
-						   
 					
 
 				</div>

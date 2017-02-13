@@ -36,12 +36,15 @@
 <body>
 
 	<?php 
+	session_start();
 	include("../bdd/identifiants.php");
+	include("../bdd/variableSession.php");
 	?>
 
 
 <!-- content goes here -->
                 <?php	
+		
 				//var_dump($_GET['ReferencesId']);
 
 				if(isset($_GET['ReferencesId'])){
@@ -59,6 +62,11 @@
 						echo'<h3 class="text-center">'.$result['Title'].'</h3>
 						<hr width="50%">';
 						
+						if($Admin == 1){
+							echo'
+							<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another author</a>';
+						} 
+					
 					echo'<table class="table table-striped table-hover" width="50%">
 						<thead>	
 							<tr>

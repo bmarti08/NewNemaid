@@ -64,7 +64,7 @@
 		{
 			echo'<!-- --------------------FORMULAIRE INSCRIPTION---------------------------- -->		
 			<div class="row">
-			   <div class="col-lg-offset-3 col-lg-6">	
+			   <div class="col-lg-offset-2 col-lg-8">	
 				<div class="panel panel-warning" id="signupbox1" style="display:none;">
 						<div class="panel-heading">
 							<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>

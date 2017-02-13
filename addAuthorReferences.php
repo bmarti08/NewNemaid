@@ -43,14 +43,18 @@
 
     <!-- Page Content -->
     <div class="container">
-
+		<?php
+			$query=$bdd->prepare('SELECT * FROM `bibliography` WHERE Id_Biblio='.$_GET['IdRef'].'');
+			$query->execute();
+			$result = $query->fetch();
+		?>
         <!-------------------------- Container --------------------------------->
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new reference</h1>    
+                    <h1 class="page-header">Add a new author for "<u><i><?php echo $result['Title'] ?></i></u>"</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#BDBDBD"> Add a new reference </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <a href="findReferences.php"> Find a reference </a> / <FONT color="#BDBDBD"> Add a new author for "<u><i><?php echo $result['Title'] ?></i></u>" </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -81,36 +85,9 @@
 					
 					<div id="signupbox2" class="panel panel-default">
 						<div class="panel-body">
-							<form method="POST" action="addReferences.php" enctype="multipart/form-data">
+							<form method="POST" action="addAuthorReferences.php?IdRef='.$_GET['IdRef'].'" enctype="multipart/form-data">
 							
 							<fieldset>
-								<div class="form-group">
-									<label for="Title" class="col-md-3 control-label">Title <span style="color:red">*</span></label>
-									<div class="col-md-9">
-										<input id="Title" type="text" class="form-control" name="Title" placeholder="Enter the title" required="true">
-									</div>
-								</div>
-								<br/>
-								<div class="form-group">
-									<label for="Year" class="col-md-3 control-label">Year <span style="color:red">*</span></label>
-									<div class="col-md-9">
-										<input format="NNNN" minlength="4" maxlength="4" id="Year" type="text" class="form-control" name="Year" placeholder="Enter the Year (YYYY)" required="true">
-									</div>
-								</div>
-								<br/>
-								<div class="form-group">
-									<label for="Journal" class="col-md-3 control-label">Journal <span style="color:red">*</span></label>
-									<div class="col-md-9">
-										<input id="Journal" type="text" class="form-control" name="Journal" placeholder="Enter the Journal\'s name" required="true">
-									</div>
-								</div>
-								<br/>
-								<div class="form-group">
-									<label for="Published_in" class="col-md-3 control-label">Published in <span style="color:red">*</span></label>
-									<div class="col-md-9">
-										<input format="NNNN" minlength="4" maxlength="4" id="Published_in" type="text" class="form-control" name="Published_in" placeholder="Enter the Year (YYYY)" required="true">
-									</div>
-								</div>
 								<br/>
 								<!-- Select Basic -->
 								<div class="form-group">
@@ -148,30 +125,36 @@
 			</div>';
 		}
 		else{
-			$Title=$_POST['Title'];
-			$Year=$_POST['Year'];
-			$Journal=$_POST['Journal'];
-			$Published_in=$_POST['Published_in'];
+			$idRef = $_GET['IdRef'];
 			$NameAuthor=$_POST['Name_Author'];
 			$Rank=$_POST['Rank'];
 
-			var_dump($NameAuthor);
+			//var_dump($idRef);
+			//var_dump($NameAuthor);
+			//var_dump($Rank);
 			
 			$i=0;
 			
 			//initialisation
 			$mail_erreur1 = NULL;
-			$mail_erreur2 = NULL;
-			$pswd_erreur = NULL;
+			
+			//recherche id de l'auteur sélectionné
+			   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
+			   $queryIdAuthor->execute();
+			   $result = $queryIdAuthor->fetch();
+					$IdAuthor = $result['Id_Author'];
+				
+				//var_dump($IdAuthor);
 			
 			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM bibliography WHERE Title =:Title');
-			$query->bindValue(':Title',$Title, PDO::PARAM_STR);
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM writen_by WHERE Id_Author =:IdAuthor and Id_Biblio=:IdBiblio');
+			$query->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
+			$query->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
 			$query->execute();
-			$Title_free=($query->fetchColumn()==0)?1:0;
+			$refAuthor_free=($query->fetchColumn()==0)?1:0;
 			$query->CloseCursor();
 			
-			if(!$Title_free)
+			if(!$refAuthor_free)
 			{
 				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
 				$i++;
@@ -179,50 +162,25 @@
 			
 			//vérification pour l'enregistrement dans la BDD
 		   if ($i==0)
-		   {			   
-			   //ajout des données en lien avec la table bibliography
-				$queryAjoutBiblio=$bdd->prepare('INSERT INTO `bibliography` (`Id_Biblio`, `Title`, `Year`, `Journal`, `Published_in`) 
-													VALUES (NULL, :Title, :Year, :Journal, :Published_in)');
-				$queryAjoutBiblio->bindValue(':Title', $Title, PDO::PARAM_STR);
-				$queryAjoutBiblio->bindValue(':Year', $Year, PDO::PARAM_INT);
-				$queryAjoutBiblio->bindValue(':Journal', $Journal, PDO::PARAM_STR);
-				$queryAjoutBiblio->bindValue(':Published_in', $Published_in, PDO::PARAM_INT);
-				$queryAjoutBiblio->execute();
-					
-				//recherche id des données entrées dans la bibliography
-			   $queryIdBiblio=$bdd->prepare('SELECT * FROM `bibliography` WHERE Title="'.$Title.'"');
-			   $queryIdBiblio->execute();
-			   $result2 = $queryIdBiblio->fetch();
-					$IdBiblio = $result2['Id_Biblio'];
-					
-					//var_dump($IdBiblio);
-				
-			   //recherche id de l'auteur sélectionné
-			   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
-			   $queryIdAuthor->execute();
-			   $result = $queryIdAuthor->fetch();
-					$IdAuthor = $result['Id_Author'];
-				
-					//var_dump($IdAuthor);
-					
+		   {			   				
 			   //ajout du lien entre auteur et bibliography => table write_by
 			   $queryAjoutRef=$bdd->prepare('INSERT INTO `writen_by` (`Id_Author`, `Id_Biblio`, `Rank`) 
 													VALUES (:IdAuthor, :IdBiblio, :Rank)');
-				$queryAjoutRef->bindValue(':IdAuthor', $IdAuthor, PDO::PARAM_STR);
-				$queryAjoutRef->bindValue(':IdBiblio', $IdBiblio, PDO::PARAM_STR);
+				$queryAjoutRef->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
+				$queryAjoutRef->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
 				$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
 				$queryAjoutRef->execute();
 			   
-				
+						
 				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
+				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">';   
 		   }
 		   else{
 			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
 					echo'<h1 style="color:red">ERROR</h1>';
 				echo'</span>';
 				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addReferences.php">';
+				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">'; 
 				echo $mail_erreur1;
 		   }
 			
