@@ -2,13 +2,13 @@
 	define('ADMIN',1);
 	define('VISITEUR',2);
 
-	define('ERR_IS_CO','Vous ne pouvez pas accéder à cette page si vous n\'êtes pas connecté');
+	define('ERR_IS_CO','You cannot access to this page if you are not connected');
 	
-	define('MSG_CO','<strong>Bienvenue ! Vous êtes maintenant connecté ! </strong>');
+	define('MSG_CO','<strong>Welcome ! You are connected ! </strong>');
 	
-	define('MSG_CO_empty','<strong>ATTENTION : Vous devez remplir tous les champs !</strong>');
+	define('MSG_CO_empty','<strong>WARNING : You must fill in all the fields !</strong>');
 	
-	define('MSG_CO_ERR','<strong>Une erreur s\'est produite pendant votre identification. Le mot de passe ou le mail entré n\'est pas correcte ! </strong>');
+	define('MSG_CO_ERR','<strong>An error has occured during your registration. The password or the e-mail adress are incorrect ! </strong>');
 	
-	define('MSG_DECO','<strong>Vous êtes à présent déconnecté !</strong>');
+	define('MSG_DECO','<strong>You are now offline !</strong>');
 ?>

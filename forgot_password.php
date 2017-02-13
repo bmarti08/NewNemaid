@@ -47,7 +47,7 @@
 				<div class="panel-tittle">
 					<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
 					<br/>
-					<h4>Forgotten, please contact the administrator: Mr Renaud Fortuner !</h4> 
+					<h4>Forgot your password , please contact the administrator: Mr Renaud Fortuner !</h4> 
 				</div>
 			</div>
 			<div class="panel-body">

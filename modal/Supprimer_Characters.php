@@ -42,12 +42,11 @@
 
 <!-- content goes here -->
                 <?php	
-			//var_dump($_GET['IdU']);
+				var_dump($_GET['characterId']);
 
-				if(isset($_GET['IdU'])){			
-
-						$idU = $_GET['IdU'];
-						$query=$bdd->prepare('DELETE FROM `usr` WHERE Id_User='.$idU.'');
+				if(isset($_GET['characterId'])){	
+						$characterId = $_GET['characterId'];
+						$query=$bdd->prepare('DELETE FROM `characters` WHERE `characters`.`Id_Character` ="'.$characterId.'"');
 						$query->execute();
 
 						echo'<h3 class="text-center">Deletion completed! </h3>';

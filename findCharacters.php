@@ -14,17 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
-	
 
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
-	
-	<!-- Bootstrap Core CSS -->
-    <link href="css/style.css" rel="stylesheet">
-	
-	<link href="https://rawgithub.com/hayageek/jquery-upload-file/master/css/uploadfile.css" rel="stylesheet">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script src="https://rawgithub.com/hayageek/jquery-upload-file/master/js/jquery.uploadfile.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,7 +29,8 @@
 
 <body>
 
-            <?php 
+    
+                <?php 
 		//Cette fonction doit être appelé avant tout code html
 	session_start();
 	
@@ -57,49 +50,54 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">List of users</h1>  
+                    <h1 class="page-header">Find a character</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Users </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <FONT color="#BDBDBD"> Find a character </FONT>
 						</li>
 						<li class="active"></li>
-					</ol>					
+					</ol>	
                 </div>
             </div>
 			<br/>	
-
+		
 			
             <!-- /.row -->
         <br/>
 		<div class="row">
-			<div class="col-lg-offset-2 col-lg-8">
+			<div class="col-lg-offset-1 col-lg-10">
 				<div class="panel panel-default">
 			
-					<table id="userList" class="table table-striped table-hover">
+					<table id="characterList" class="table table-striped table-hover">
 						<thead>
-						<!--<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new user</a>-->						
+							<a href="addCharacters.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new character</a>					
 							<tr>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>E-Mail</th>
+								<th>Character Name</th>
+								<th>Explaination</th>
+								<th>Entitled Character</th>
+								<th>Weight</th>
+								<th>Correction Factor</th>
 								<th class="text-center">Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-								$query=$bdd->prepare('SELECT * FROM `usr` order by First_name ASC ');
+								$query=$bdd->prepare('SELECT * FROM `characters` order by Character_Name ASC ');
 									$query->execute();
 									
 								while($data=$query->fetch()){	
 									echo'
 									<tr>
-										<td>'.$data['First_name'].'</td>
-										<td>'.$data['Last_name'].'</td>
-										<td>'.$data['e_mail'].'</td>
+										<td>'.$data['Character_Name'].'</td>
+										<td>'.$data['Explaination'].'</td>
+										<td>'.$data['Entitled_Character'].'</td>
+										<td>'.$data['Weight'].'</td>
+										<td>'.$data['Correction_Factor'].'</td>
 										<td class="text-center">
-											<button data-toggle="modal" data-target="#squarespaceModal" id="'.$data['Id_User'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-																						
-											<button data-toggle="modal" data-target="#suppModal" id="'.$data['Id_User'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>
-										</td>
+											<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>';
+											if($Admin == 1){											
+												echo'<button data-toggle="modal" data-target="#supp_character" id="'.$data['Id_Character'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>';
+											}
+										echo'</td>
 									</tr>';
 								}
 								$query->CloseCursor();
@@ -108,15 +106,15 @@
 					</table>
 				</div>
 			</div>
-		</div>
-		<!-- -------------------------------------------------------- -->
+		</div>		
+    <!-- -------------------------------------------------------- -->
 		<!-- edit modal -->
-		<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal fade" id="edit_character" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel">User Edit</h3>
+					<h3 class="modal-title" id="lineModalLabel"> Character details </h3>
 				</div>
 				<div class="modal-body edit-content">
 						   
@@ -128,12 +126,12 @@
 		</div>   
 	<!-- -------------------------------------------------------- -->
 	<!-- edit modal -->
-		<div class="modal fade" id="suppModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" data-keyboard="false" data-backdrop="static">
+		<div class="modal fade" id="supp_character" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="false" data-keyboard="false" data-backdrop="static">
 		  <div class="modal-dialog">
 			<div class="modal-content">
 				<div style="background-color:#d9534f;" class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" onclick='window.location.reload(false)'><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel">Delete user</h3>
+					<h3 class="modal-title" id="lineModalLabel">Delete character</h3>
 				</div>
 				<div class="modal-body supp-content">
 						   
@@ -142,14 +140,10 @@
 				</div>
 			</div>
 		  </div>
-		</div>   
-
-				
-					
-				
+		</div>       
 
 
-	   
+        
     <?php 
 	include("footer.php"); 
 	?> 
@@ -164,17 +158,17 @@
 	<script src="js/dataTables.bootstrap.min.js"></script>
 	<script src="js/jquery.dataTables.min.js"></script>
 	
-	<script>
-			$('#squarespaceModal').on('show.bs.modal', function(e) {
+	<script>	
+		$('#edit_character').on('show.bs.modal', function(e) {
 				
-				var $idU = $(this),
+				var $characterId = $(this),
 					esseyId = e.relatedTarget.id;
 				
 				$.ajax({
 					cache: false,
 					type: 'GET',
-					url: 'modal/Edit_User.php',
-					data: 'IdU='+esseyId,
+					url: 'modal/Edit_Characters.php',
+					data: 'characterId='+esseyId,
 					success: function(data) 
 					{
 						$(".edit-content").html(data);
@@ -185,16 +179,16 @@
 			
 
 	////////////////////////////////////////////////////////////////
-    $('#suppModal').on('show.bs.modal', function(e) {
+    $('#supp_character').on('show.bs.modal', function(e) {
 				
-				var $idU = $(this),
+				var $ReferencesId = $(this),
 					esseyId = e.relatedTarget.id;
 				
 				$.ajax({
 					cache: false,
 					type: 'GET',
-					url: 'modal/Supprimer_User.php',
-					data: 'IdU='+esseyId,
+					url: 'modal/Supprimer_Characters.php',
+					data: 'characterId='+esseyId,
 					success: function(data) 
 					{
 						$(".supp-content").html(data);
@@ -202,10 +196,11 @@
 				});
 				
 			})
-			
+	
+	
 		////////////////////////////////////////////////////////////////
 		$(document).ready(function() {
-			$('#userList').DataTable();
+			$('#characterList').DataTable();
 		} );
     </script>
 
