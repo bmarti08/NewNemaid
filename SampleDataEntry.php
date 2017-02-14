@@ -233,7 +233,7 @@
 				$.ajax({
 					cache: false,
 					type: 'GET',
-					url: 'modal/Add_Sample.php',
+					url: 'modal/Select_Genus.php',
 					data: 'IdU='+esseyId,
 					success: function(data) 
 					{

@@ -41,105 +41,87 @@
 
 
 <!-- content goes here -->
-                <?php	
+    <?php	
 //var_dump($_GET['IdU']);
 
-					if(isset($_GET['IdU'])){		
-						$idU = $_GET['IdU'];		
-						$GName = NULL;						
-						echo'
-						<table width="50%">		
-							<tr>';
-								echo '
-								<td width="50%">
-									<strong>Genus name: </strong>
-										<select id="genusName" name="genusName" onchange="save(this)">
-											<option disabled selected value> -- select an option -- </option>';
-											$query=$bdd->prepare('SELECT * FROM `genus`'); 
-											$query->execute();									
-											while($data=$query->fetch()){	
-												echo '<option value='.$data['Genus_Name'].'>'.$data['Genus_Name'].'</option>';
-											}
-											$query->CloseCursor();
-								echo '</select>
-								</td>';								
-								//$GName = isset($_POST['genusName']) ? $_POST['genusName'] : NULL;								
-					echo'</tr>	
-							Le genus est '.$GName.', mais si y\'a rien c\'est cassé									
-							<tr>
-								<td width="50%">';
-									echo '
-									<strong>Specie name: </strong>
-									<input id="specieName" list="speName" action="Add_Sample.php">
-									<datalist id="speName" >';
-										$query2=$bdd->prepare('SELECT * FROM `species` WHERE Genus_Name="Helico"');  
-										$query2->execute();									
-										while($data2=$query2->fetch()){	
-											echo '<option value='.$data2['Species_Name'].'/>';
-										}
-										$query2->CloseCursor();
-							echo '</datalist>
-								</td>
-							</tr>';
-							
-							$query3=$bdd->prepare('SELECT * FROM `is_characterized_by` WHERE Genus_Name="Helico"'); 
-							$query3->execute();									
-							while($data3=$query3->fetch())
-							{	
-								echo'
-								<tr><td width="50%"><p>------------------------------------------------------------------------------</p></td></tr>
-								<tr>
-									<td width="50%">';
-										$query4=$bdd->prepare('SELECT * FROM `characters` WHERE Id_Character='.$data3['Id_Character'].''); 
-										$query4->execute();									
-										while($data4=$query4->fetch())
-										{	
-											if ($data4['Id_Qual_Possible_Value_List'] == NULL)
-											{
-												echo'Quantitative character: <B>'.$data4['Character_Name'].'</B>';
-												$query5=$bdd->prepare('SELECT * FROM `in_range` WHERE Id_Range='.$data4['Id_Range'].''); 
-												$query5->execute();	
-												$data5=$query5->fetch();												
-												echo'<br/><B>'.$data5['Unit'].'</B> between <B>'.$data5['Min_Range'].'</B> and <B>'.$data5['Max_Range'].'</B>';
-												echo'<input id="CharValue"  type="text">';
-												$query5->CloseCursor();
-											}
-											else{
-												echo'Qualitative character: <B>'.$data4['Character_Name'].'</B>';
-										echo'<FORM>
-													<SELECT name="Value" size="1">
-														<option disabled selected value> -- select an option -- </option>';
-													$query6=$bdd->prepare('SELECT * FROM `composed_by` WHERE Id_Qual_Possible_Value_List ='.$data4['Id_Qual_Possible_Value_List'].'');  
-													$query6->execute();									
-													while($data6=$query6->fetch()){	
-													echo '<option value="'.$data6['Value_Name'].'">'.$data6['Value_Name'].'</option>';		
-													}	
-													$query6->CloseCursor();
-											echo'</SELECT>
-												</FORM>';
-											}
-									echo'<button type="button" class="glyphicon glyphicon-question-sign text-center" onclick="toggle_text(\'spanX\');"/>
-											<span id="spanX" style="display:none;">';								
-										echo'<br/><B><I>'.$data4['Explaination'].'</I></B>';
-									echo'</span>';
-										}	
-										$query4->CloseCursor();
-							echo'</td>
-							</tr>';
+		if(isset($_GET['GenusName'])){
+			$GName = $_GET['GenusName'];		
+			echo'
+			<table width="50%">	
+				<tr>
+					<td width="50%">';
+						echo '
+						<strong>Specie name: </strong>
+						<input id="specieName" list="speName" action="Add_Sample.php">
+						<datalist id="speName" >';
+							$query2=$bdd->prepare('SELECT * FROM `species` WHERE Genus_Name="'$GName'"');  
+							$query2->execute();									
+							while($data2=$query2->fetch()){	
+								echo '<option value='.$data2['Species_Name'].'/>';
 							}
-							$query3->CloseCursor();
-							echo'
-						</table>
-						<hr width="50%">
-						<form method="POST" action="SampleDataEntry.php">
-						<div id="radioBtn" class="btn-group">
-							<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="1">OK</a>
-							<a name="Admin" class="btn btn-primary btn-sm active " data-toggle="happy" data-title="N" value="0">Cancel</a>
-						</div>';							
-					}							
-					else{
-						echo'<h3> ERROR </h3>';
-					}?>
+							$query2->CloseCursor();
+				echo '</datalist>
+					</td>
+				</tr>';
+				
+				$query3=$bdd->prepare('SELECT * FROM `is_characterized_by` WHERE Genus_Name="'$GName'"'); 
+				$query3->execute();									
+				while($data3=$query3->fetch())
+				{	
+					echo'
+					<tr><td width="50%"><p>------------------------------------------------------------------------------</p></td></tr>
+					<tr>
+						<td width="50%">';
+							$query4=$bdd->prepare('SELECT * FROM `characters` WHERE Id_Character='.$data3['Id_Character'].''); 
+							$query4->execute();									
+							while($data4=$query4->fetch())
+							{	
+								if ($data4['Id_Qual_Possible_Value_List'] == NULL)
+								{
+									echo'Quantitative character: <B>'.$data4['Character_Name'].'</B>';
+									$query5=$bdd->prepare('SELECT * FROM `in_range` WHERE Id_Range='.$data4['Id_Range'].''); 
+									$query5->execute();	
+									$data5=$query5->fetch();												
+									echo'<br/><B>'.$data5['Unit'].'</B> between <B>'.$data5['Min_Range'].'</B> and <B>'.$data5['Max_Range'].'</B><br/>';
+									echo'<input id="CharValue" type="number" step="0.01" min="'.$data5['Min_Range'].'" max="'.$data5['Max_Range'].'"> <br/>';
+									$query5->CloseCursor();
+								}
+								else{
+									echo'Qualitative character: <B>'.$data4['Character_Name'].'</B>';
+							echo'<FORM>
+										<SELECT name="Value" size="1">
+											<option disabled selected value> -- select an option -- </option>';
+										$query6=$bdd->prepare('SELECT * FROM `composed_by` WHERE Id_Qual_Possible_Value_List ='.$data4['Id_Qual_Possible_Value_List'].'');  
+										$query6->execute();									
+										while($data6=$query6->fetch()){	
+										echo '<option value="'.$data6['Value_Name'].'">'.$data6['Value_Name'].'</option>';		
+										}	
+										$query6->CloseCursor();
+								echo'</SELECT>
+									</FORM>';
+								}
+						echo'<button type="button" class="glyphicon glyphicon-question-sign text-center" onclick="toggle_text(\'spanX\');"/>
+								<span id="spanX" style="display:none;">';								
+							echo'<br/><B><I>'.$data4['Explaination'].'</I></B>';
+						echo'</span>';
+							}	
+							$query4->CloseCursor();
+				echo'</td>
+				</tr>';
+				}
+				$query3->CloseCursor();
+				echo'
+			</table>
+			<hr width="50%">
+			<form method="POST" action="SampleDataEntry.php">
+			<div id="radioBtn" class="btn-group">
+				<a name="Admin" class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="Y" value="1">OK</a>
+				<a name="Admin" class="btn btn-primary btn-sm active " data-toggle="happy" data-title="N" value="0">Cancel</a>
+			</div>';							
+		}							
+		else{
+			echo'<h3> ERROR </h3>';
+		}?>
 				
 	</body>
 
