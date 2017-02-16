@@ -85,37 +85,37 @@
 							
 							<fieldset>
 								<div class="form-group">
-									<label for="Title" class="col-md-3 control-label">Title <span style="color:red">*</span></label>
-									<div class="col-md-9">
+									<label for="Title" class="col-md-4 control-label">Title <span style="color:red">*</span></label>
+									<div class="col-md-8">
 										<input id="Title" type="text" class="form-control" name="Title" placeholder="Enter the title" required="true">
 									</div>
 								</div>
 								<br/>
 								<div class="form-group">
-									<label for="Year" class="col-md-3 control-label">Year <span style="color:red">*</span></label>
-									<div class="col-md-9">
+									<label for="Year" class="col-md-4 control-label">Year <span style="color:red">*</span></label>
+									<div class="col-md-8">
 										<input format="NNNN" minlength="4" maxlength="4" id="Year" type="text" class="form-control" name="Year" placeholder="Enter the Year (YYYY)" required="true">
 									</div>
 								</div>
 								<br/>
 								<div class="form-group">
-									<label for="Journal" class="col-md-3 control-label">Journal <span style="color:red">*</span></label>
-									<div class="col-md-9">
+									<label for="Journal" class="col-md-4 control-label">Journal <span style="color:red">*</span></label>
+									<div class="col-md-8">
 										<input id="Journal" type="text" class="form-control" name="Journal" placeholder="Enter the Journal\'s name" required="true">
 									</div>
 								</div>
 								<br/>
 								<div class="form-group">
-									<label for="Published_in" class="col-md-3 control-label">Published in <span style="color:red">*</span></label>
-									<div class="col-md-9">
+									<label for="Published_in" class="col-md-4 control-label">Published in <span style="color:red">*</span></label>
+									<div class="col-md-8">
 										<input format="NNNN" minlength="4" maxlength="4" id="Published_in" type="text" class="form-control" name="Published_in" placeholder="Enter the Year (YYYY)" required="true">
 									</div>
 								</div>
 								<br/>
 								<!-- Select Basic -->
 								<div class="form-group">
-								  <label for="Name_Author" class="col-md-3 control-label">Author Name <span style="color:red">*</span></label>
-								  <div class="col-md-9">
+								  <label for="Name_Author" class="col-md-4 control-label">The first Author name <span style="color:red">*</span></label>
+								  <div class="col-md-8">
 									<input id="Name_Author" list="AutName" class="form-control" placeholder="Select a name" name="Name_Author">
 									<datalist id="AutName">';
 										while($result=$query->fetch()){	
@@ -128,8 +128,8 @@
 								</div>
 								<br/>
 								<div class="form-group">
-									<label for="Rank" class="col-md-3 control-label">Rank <span style="color:red">*</span></label>
-									<div class="col-md-9">
+									<label for="Rank" class="col-md-4 control-label">Rank <span style="color:red">*</span></label>
+									<div class="col-md-8">
 										<input id="Rank" type="number" min="1" class="form-control" name="Rank" placeholder="Select the Rank" required="true">
 									</div>
 								</div>

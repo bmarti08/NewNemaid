@@ -13,6 +13,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/portfolio-item.css" rel="stylesheet">
@@ -28,7 +29,8 @@
 
 <body>
 
-                    <?php 
+    
+                <?php 
 		//Cette fonction doit être appelé avant tout code html
 	session_start();
 	
@@ -48,7 +50,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new reference</h1>    
+                    <h1 class="page-header"> Add a new character </h1>    
 					<ol class="breadcrumb">
 						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <FONT color="#BDBDBD"> Add a new character </FONT>
 						</li>
@@ -57,122 +59,251 @@
                 </div>
             </div>
 			<br/>	
+		
 			
-	<?php
-		/*
-		if (!isset($_POST['Genus_Name'])) //On est dans la page de formulaire
-		{
-			//recherche des genus qui ne sont pas déjà rattaché à une species 
-			//Vérification de la présence
-			$query=$bdd->prepare('SELECT `Genus_Name` FROM `genus` where Genus_Name not in (SELECT Genus_Name FROM species)');
-			$query->execute();
-			
-			
-			echo'<!-- --------------------FORMULAIRE ---------------------------- -->		
-			<div class="row">
-			   <div class="col-lg-offset-3 col-lg-7">	
-				<div class="panel panel-warning" id="signupbox1" style="display:none;">
-						<div class="panel-heading">
-							<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
-							<br/>
-							<h4>WARNING : Be sure to fill in all fields followed by a <span style="color:red">*</span> !</h4>
-						</div>
-					</div>
-					
-					<div id="signupbox2" class="panel panel-default">
-						<div class="panel-body">
-							<form method="POST" action="addReferences.php" enctype="multipart/form-data">
-							
-							<fieldset>
-								<div class="form-group">
-									<label for="Species_Name" class="col-md-3 control-label">Species Name <span style="color:red">*</span></label>
-									<div class="col-md-9">
-										<input id="Species_Name" type="text" class="form-control" name="Species_Name" placeholder="Enter a name" required="true">
-									</div>
-								</div>
-								<br/>
-								<!-- Select Basic -->
-								<div class="form-group">
-								  <label for="Genus_Name" class="col-md-3 control-label">Genus Name <span style="color:red">*</span></label>
-								  <div class="col-md-9">
-									<input id="Genus_Name" list="genName" class="form-control" placeholder="Enter a name" name="Genus_Name">
-									<datalist id="genName">';
-										while($result=$query->fetch()){	
-										  echo'<option value="'.$result['Genus_Name'].'">'.$result['Genus_Name'].'</option>';
-										}
-										$query->CloseCursor();
-									echo'
-									</datalist>
-								  </div>
-								</div>
-								
-								<br/><br/>
-							</fieldset>
-							
-							<div class="col-sm-12 controls">
-								<input type="submit" value="Submit" class="btn btn-primary"/></p>
-								</form>
-							</div>
-						</div>
+        <!-- /.row -->
+        <br/>
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-10">
+				<div class="panel panel-default text-center">
+					<div class="panel-body">
+						<!-- Bouton execution modal -->
+						<button class="btn btn-info btn-lg" data-toggle="modal" data-target="#quantC">
+						  <span class="glyphicon glyphicon-plus"></span>
+						  Add a new quantitative character
+						</button>
+						<!-- --------------- -->
+						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#qualiC">
+						  <span class="glyphicon glyphicon-plus"></span>
+						  Add a new qualitative character
+						</button>
 					</div>
 				</div>
-			</div>';
-		}
-		else{
-			$Speciesname=$_POST['Species_Name'];
-			$Genusname=$_POST['Genus_Name'];
-			$i=0;
-			
-			//initialisation
-			$mail_erreur1 = NULL;
-			$mail_erreur2 = NULL;
-			$pswd_erreur = NULL;
-			
+			</div>
+		</div>		
+    <!-- ----------------------------------------------------------------------------------------------------------- -->
+		<?php
+			//recherche des genus qui sont déjà rattaché à une species 
 			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM species WHERE Species_Name =:Speciesname');
-			$query->bindValue(':Speciesname',$Speciesname, PDO::PARAM_STR);
+			$query=$bdd->prepare('SELECT `Genus_Name` FROM `genus` where Genus_Name in (SELECT Genus_Name FROM species)');
 			$query->execute();
-			$nameS_free=($query->fetchColumn()==0)?1:0;
-			$query->CloseCursor();
-			
-			if(!$nameS_free)
-			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
-				$i++;
-			}
-			
-			//vérification pour l'enregistrement dans la BDD
-		   if ($i==0)
-		   {
-			   $query=$bdd->prepare('INSERT INTO `species` (`Species_Name`, `Genus_Name`) VALUES (:Speciesname, :Genusname)');
-				$query->bindValue(':Speciesname', $Speciesname, PDO::PARAM_STR);
-				$query->bindValue(':Genusname', $Genusname, PDO::PARAM_STR);
-				$query->execute();
-				//var_dump($Speciesname);
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findSpecies.php">';
-		   }
-		   else{
-			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
-					echo'<h1 style="color:red">ERROR</h1>';
-				echo'</span>';
-				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addSpecies.php">';
-				echo $mail_erreur1;
-		   }
-			
-		}*/
 		?>
-		
-	</div>
-</div>								 	
+		<!-- Modal quantitative -->
+		<div class="modal fade" id="quantC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Add a new quantitative character</h4>
+					</div>
+					<div class="modal-body">
 						
-        
-        <!-------------------------- /Container --------------------------------->
+						<div class="panel panel-warning">
+							<div class="panel-heading">
+								<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+								<br/>
+								<h4>WARNING : Be sure to fill in all fields followed by a <span style="color:red">*</span> !</h4>
+							</div>
+						</div>
+						
+							<div id="signupbox2" class="panel panel-default">
+								<div class="panel-body">
+									<form method="POST" action="modal/addquantC.php" enctype="multipart/form-data">
+									
+									<fieldset>
+										<!-- Select Basic -->
+										<div class="form-group">
+										  <label for="Genus_Name" class="col-md-5 control-label">Genus Name <span style="color:red">*</span></label>
+										  <div class="col-md-7">
+											<input id="Genus_Name" list="genusName" class="form-control" placeholder="Select a name" name="Genus_Name">
+											<datalist id="genusName">
+											<?php
+												while($result=$query->fetch()){	
+												  echo'<option value="'.$result['Genus_Name'].'">'.$result['Genus_Name'].'</option>';
+												}
+												$query->CloseCursor();
+											?>
+											</datalist>
+										  </div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Character_Name" class="col-md-5 control-label">Character Name <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Character_Name" type="text" class="form-control" name="Character_Name" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Explaination" class="col-md-5 control-label">Explaination <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Explaination" type="text" class="form-control" name="Explaination" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Entitled_Character" class="col-md-5 control-label">Entitled Character <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Entitled_Character" type="text" class="form-control" name="Entitled_Character" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Weight" class="col-md-5 control-label">Weight <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Weight" type="number" min="0" class="form-control" name="Weight" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Correction_Factor" class="col-md-5 control-label">Correction Factor <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Correction_Factor" type="number" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Min_Range" class="col-md-5 control-label">Min Range <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Min_Range" type="number" min="0" class="form-control" name="Min_Range" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Max_Range" class="col-md-5 control-label">Max Range <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Max_Range" type="number" min="0" class="form-control" name="Max_Range" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Unit" class="col-md-5 control-label">Unit <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Unit" type="text" class="form-control" name="Unit" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<br/><br/>
+									</fieldset>
+									
+									<div class="col-sm-12 controls">
+										<input type="submit" value="Submit" class="btn btn-primary"/></p>
+										</form>
+									</div>
+								</div>
+							</div>
+
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+		
+	<!-- ----------------------------------------------------------------------------------------------------------- -->
+	
+	
+		<!-- Modal qualitative -->
+		<div class="modal fade" id="qualiC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Add a new qualitative character</h4>
+					</div>
+					<div class="modal-body">
+						
+						<div class="panel panel-warning">
+							<div class="panel-heading">
+								<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+								<br/>
+								<h4>WARNING : Be sure to fill in all fields followed by a <span style="color:red">*</span> !</h4>
+							</div>
+						</div>
+						
+							<div id="signupbox2" class="panel panel-default">
+								<div class="panel-body">
+									<form method="POST" action="modal/addqualiC.php" enctype="multipart/form-data">
+									
+									<fieldset>
+										<!-- Select Basic -->
+										<div class="form-group">
+										  <label for="Genus_Name" class="col-md-5 control-label">Genus Name <span style="color:red">*</span></label>
+										  <div class="col-md-7">
+											<input id="Genus_Name" list="genusName" class="form-control" placeholder="Select a name" name="Genus_Name">
+											<datalist id="genusName">
+											<?php
+												while($result=$query->fetch()){	
+												  echo'<option value="'.$result['Genus_Name'].'">'.$result['Genus_Name'].'</option>';
+												}
+												$query->CloseCursor();
+											?>
+											</datalist>
+										  </div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Character_Name" class="col-md-5 control-label">Character Name <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Character_Name" type="text" class="form-control" name="Character_Name" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Explaination" class="col-md-5 control-label">Explaination <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Explaination" type="text" class="form-control" name="Explaination" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Entitled_Character" class="col-md-5 control-label">Entitled Character <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Entitled_Character" type="text" class="form-control" name="Entitled_Character" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Weight" class="col-md-5 control-label">Weight <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Weight" type="number" min="0" class="form-control" name="Weight" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<div class="form-group">
+											<label for="Correction_Factor" class="col-md-5 control-label">Correction Factor <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Correction_Factor" type="number" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>
+										<div class="form-group">
+											<label for="Value_Name" class="col-md-5 control-label">Value Name <span style="color:red">*</span></label>
+											<div class="col-md-7">
+												<input id="Value_Name" type="text" class="form-control" name="Value_Name" placeholder="" required="true">
+											</div>
+										</div>
+										<br/>	
+										<br/><br/>
+									</fieldset>
+									
+									<div class="col-sm-12 controls">
+										<input type="submit" value="Submit" class="btn btn-primary"/></p>
+										</form>
+									</div>
+								</div>
+							</div>
+						
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	<!-- -------------------------------------------------------- -->       
 
 
         
-    <?php include("footer.php"); ?> 
+    <?php 
+	include("footer.php"); 
+	?> 
     </div>
     <!-- /content -->
 
@@ -181,6 +312,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/dataTables.bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	
 
 </body>
 

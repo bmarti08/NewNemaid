@@ -136,7 +136,7 @@
 			$i=0;
 			
 			//initialisation
-			$mail_erreur1 = NULL;
+			$erreur1 = NULL;
 			
 			//recherche id de l'auteur sélectionné
 			   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
@@ -156,7 +156,7 @@
 			
 			if(!$refAuthor_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
+				$erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
 				$i++;
 			}
 			
@@ -181,7 +181,7 @@
 				echo'</span>';
 				echo'<br/>
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">'; 
-				echo $mail_erreur1;
+				echo $erreur1;
 		   }
 			
 		}

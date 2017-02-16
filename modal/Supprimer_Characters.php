@@ -43,7 +43,14 @@
 <!-- content goes here -->
                 <?php	
 				var_dump($_GET['characterId']);
-
+				
+				//vérifier que c'est un charcter quantittif (Id_Range != NULL && Id_Qual_Possible_Value_List==NULL)
+					
+				//Si Id_Range != NULL && Id_Qual_Possible_Value_List==NULL alors supprimer les données du in_range
+				
+				//Sinon supprimer les données de toutes les tables liées aux character qualitatif
+				
+				//Supprimer les données du character
 				if(isset($_GET['characterId'])){	
 						$characterId = $_GET['characterId'];
 						$query=$bdd->prepare('DELETE FROM `characters` WHERE `characters`.`Id_Character` ="'.$characterId.'"');
