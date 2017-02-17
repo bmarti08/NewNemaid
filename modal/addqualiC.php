@@ -59,8 +59,10 @@
 			$erreur1 = NULL;
 			
 			//Vérification de du character name
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM characters WHERE Character_Name =:CharacterName');
+			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM characters inner join is_characterized_by USING(Id_Character) 
+									WHERE Character_Name = :CharacterName and Genus_Name = :GenusName');
 			$query->bindValue(':CharacterName',$CharacterName, PDO::PARAM_STR);
+			$query->bindValue(':GenusName',$GenusName, PDO::PARAM_STR);
 			$query->execute();
 			$nameC_free=($query->fetchColumn()==0)?1:0;
 			$query->CloseCursor();
@@ -74,36 +76,36 @@
 			//vérification pour l'enregistrement dans la BDD
 		   if ($i==0)
 		   {		
-			/*	
+				//var_dump($ValueName);7
+				
 				//requête SQL pour add dans qualitative_value
 				$query1=$bdd->prepare('INSERT INTO `qualitative_value` (`Value_Name`)
 										VALUES (:Value_Name)');
-				$query1->bindValue(':Value_Name', $ValueName, PDO::PARAM_INT);
+				$query1->bindValue(':Value_Name', $ValueName, PDO::PARAM_STR);
 				$query1->execute();
 			
 			
-				//calcul du nombre de ligne dans la table composed_by
-				$queryNb_Ligne=$bdd->prepare('SELECT count(Value_Name) as NbLigne FROM `composed_by`');
-			    $queryNb_Ligne->execute();
-			    $resultNb_Ligne = $queryNb_Ligne->fetch();
-					$Nb_Ligne = $resultNb_Ligne['NbLigne'];
-				
-			//	var_dump($Nb_Ligne);
-				
+				//requête SQL pour add dans qualitative_list
+				$query2=$bdd->prepare('INSERT INTO `qualitative_list` (`Id_Qual_Possible_Value_List`)
+										VALUES (NULL)');
+				$query2->execute();
+								
 			
 				//requête SQL pour retrouver l'id du Id_Qual_Possible_Value_List ajouté
-				$queryId_Character=$bdd->prepare('SELECT * FROM `characters` WHERE Character_Name="'.$CharacterName.'"');
-			    $queryId_Character->execute();
-			    $result2 = $queryId_Character->fetch();
-					$IdChar = $result2['Id_Character'];
+				$queryId_Qual=$bdd->prepare('SELECT MAX(Id_Qual_Possible_Value_List) as maxId_Qual FROM qualitative_list');
+			    $queryId_Qual->execute();
+			    $result = $queryId_Qual->fetch();
+					$IdQual = $result['maxId_Qual'];
+					
+					//var_dump($IdQual);
 				
-				//requête SQL pour add dans qualitative_list
-				$query1=$bdd->prepare('INSERT INTO `in_range` (`Id_Range`, `Min_Range`, `Max_Range`, `Unit`)
-										VALUES (NULL, :MinRange, :MaxRange, :Unit)');
-				$query1->bindValue(':MinRange', $MinRange, PDO::PARAM_INT);
-				$query1->bindValue(':MaxRange', $MaxRange, PDO::PARAM_STR);
-				$query1->bindValue(':Unit', $Unit, PDO::PARAM_STR);
-				$query1->execute();
+				//requête SQL pour add dans composed_by
+				$query3=$bdd->prepare('INSERT INTO `composed_by` (`Value_Name`, `Id_Qual_Possible_Value_List`)
+										VALUES (:Value_Name, :Id_Qual_Possible_Value_List)');
+				$query3->bindValue(':Value_Name', $ValueName, PDO::PARAM_STR);
+				$query3->bindValue(':Id_Qual_Possible_Value_List', $IdQual, PDO::PARAM_INT);
+				$query3->execute();
+				
 				
 				//requête SQL pour add dans character				
 				$query=$bdd->prepare('INSERT INTO `characters` (`Id_Character`, `Character_Name`, `Explaination`, `Entitled_Character`, `Weight`, `Correction_Factor`, `Id_Range`, `Id_Qual_Possible_Value_List`) 
@@ -113,16 +115,16 @@
 				$query->bindValue(':Entitled_Character', $EntitledCharacter, PDO::PARAM_STR);
 				$query->bindValue(':Weight', $Weight, PDO::PARAM_INT);
 				$query->bindValue(':Correction_Factor', $CorrectionFactor, PDO::PARAM_INT);
-				$query->bindValue(':Id_Qual_Possible_Value_List', $Id_QualPossibleValue_List, PDO::PARAM_INT);
+				$query->bindValue(':Id_Qual_Possible_Value_List', $IdQual, PDO::PARAM_INT);
 				$query->execute();
 				
 				//requête SQL pour retrouver l'id du character ajouté
-				$queryId_Character=$bdd->prepare('SELECT * FROM `characters` WHERE Character_Name="'.$CharacterName.'"');
+				$queryId_Character=$bdd->prepare('SELECT MAX(Id_Character) as nbMax FROM `characters` WHERE Character_Name="'.$CharacterName.'"');
 			    $queryId_Character->execute();
 			    $result2 = $queryId_Character->fetch();
-					$IdChar = $result2['Id_Character'];
+					$IdChar = $result2['nbMax'];
 					
-					var_dump($IdChar);
+					//var_dump($IdChar);
 				
 				//requête SQL pour add dans is_characterized_by
 				$query1=$bdd->prepare('INSERT INTO `is_characterized_by` (`Id_Character`, `Genus_Name`)
@@ -132,8 +134,8 @@
 				$query1->execute();
 
 				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findCharacters.php">';  
-				*/
+				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';  
+				
 		   }
 		   else{
 			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';

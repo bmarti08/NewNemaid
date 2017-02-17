@@ -36,7 +36,9 @@
 <body>
 
 	<?php 
+	session_start();
 	include("../bdd/identifiants.php");
+	include("../bdd/variableSession.php");
 	?>
 
 
@@ -55,13 +57,22 @@
 						echo'<h3 class="text-center">'.$result['Character_Name'].'</h3>
 						<hr width="50%">';
 						
-						
+						if($Admin == 1){
+							if ($result['Id_Range']!=null && $result['Id_Qual_Possible_Value_List']==null){
+								echo'
+								<a href="addQualiC_ValueName.php?IdRef='.$characterId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Value Name</a>';
+							}
+							if ($result['Id_Range']==null && $result['Id_Qual_Possible_Value_List']!=null){
+								echo'
+								<a href="addQuantC_Range.php?IdRef='.$characterId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Range</a>';
+							}
+						} 
 						
 						///si le Id_Range est non vide et Id_Qual_Possible_Value_List est vide == données quantitatives
 						if ($result['Id_Range']!=null && $result['Id_Qual_Possible_Value_List']==null){
 							
 							////recherche pour affichage dans le tableau
-						$query1=$bdd->prepare('SELECT * FROM characters inner join in_range USING (`Id_Range`) 
+						$query1=$bdd->prepare('SELECT * FROM characters inner join in_range USING (`Id_Range`) inner join is_characterized_by USING(Id_Character)
 												where Id_Character ="'.$characterId.'"');
 						$query1->execute();
 														
@@ -69,6 +80,7 @@
 								<caption>Quantitatives characters : </caption>
 								<thead>	
 									<tr>
+										<th class="text-center">Genus Name</th>
 										<th class="text-center">Min_Range</th>
 										<th class="text-center">Max_Range</th>
 										<th class="text-center">Unit</th>
@@ -79,6 +91,7 @@
 											echo'
 											
 												<tr>
+													<td>'.$data['Genus_Name'].'</td>
 													<td>'.$data['Min_Range'].'</td>
 													<td>'.$data['Max_Range'].'</td>
 													<td>'.$data['Unit'].'</td>
@@ -101,7 +114,7 @@
 								<caption>Qualitatives characters : </caption>
 								<thead>	
 									<tr>
-										<th class="text-center">Character Name</th>
+										<th class="text-center">Value Name</th>
 									</tr>
 								</thead>
 								<tbody>';

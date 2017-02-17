@@ -75,6 +75,7 @@
 								}
 							?>
 							<tr>
+								<th>Genus Name</th>
 								<th>Character Name</th>
 								<th>Explaination</th>
 								<th>Entitled Character</th>
@@ -85,12 +86,14 @@
 						</thead>
 						<tbody>
 							<?php
-								$query=$bdd->prepare('SELECT * FROM `characters` order by Character_Name ASC ');
+								$query=$bdd->prepare('SELECT * FROM `characters` inner join is_characterized_by USING(Id_Character) 
+														order by Character_Name ASC ');
 									$query->execute();
 									
 								while($data=$query->fetch()){	
 									echo'
 									<tr>
+										<td>'.$data['Genus_Name'].'</td>
 										<td>'.$data['Character_Name'].'</td>
 										<td>'.$data['Explaination'].'</td>
 										<td>'.$data['Entitled_Character'].'</td>

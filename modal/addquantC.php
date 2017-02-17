@@ -98,7 +98,7 @@
 			    $result = $queryIdrange->fetch();
 					$Idrange = $result['Id_Range'];
 					
-					var_dump($Idrange);
+					//var_dump($Idrange);
 				
 			/*	var_dump($GenusName);
 				var_dump($CharacterName);
@@ -119,12 +119,12 @@
 				$query->execute();
 				
 				//requête SQL pour retrouver l'id du character ajouté
-				$queryId_Character=$bdd->prepare('SELECT * FROM `characters` WHERE Character_Name="'.$CharacterName.'"');
+				$queryId_Character=$bdd->prepare('SELECT MAX(Id_Character) as MaxChar FROM `characters` WHERE Character_Name="'.$CharacterName.'"');
 			    $queryId_Character->execute();
 			    $result2 = $queryId_Character->fetch();
-					$IdChar = $result2['Id_Character'];
+					$IdChar = $result2['MaxChar'];
 					
-					var_dump($IdChar);
+					//var_dump($IdChar);
 					
 				//requête SQL pour add dans is_characterized_by
 				$query1=$bdd->prepare('INSERT INTO `is_characterized_by` (`Id_Character`, `Genus_Name`)

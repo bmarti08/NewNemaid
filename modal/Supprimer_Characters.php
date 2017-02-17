@@ -43,18 +43,53 @@
 <!-- content goes here -->
                 <?php	
 				var_dump($_GET['characterId']);
+				$characterId = $_GET['characterId'];
 				
-				//vérifier que c'est un charcter quantittif (Id_Range != NULL && Id_Qual_Possible_Value_List==NULL)
+			if(isset($_GET['characterId'])){
+				
+				//recherches des informations pour le character
+				$queryIdChar=$bdd->prepare('SELECT * FROM characters WHERE `Id_Character` ="'.$characterId.'" ');
+			    $queryIdChar->execute();
+			    $result = $queryIdChar->fetch();
 					
-				//Si Id_Range != NULL && Id_Qual_Possible_Value_List==NULL alors supprimer les données du in_range
+				//vérifier que c'est un character quantitatif (Id_Range != NULL && Id_Qual_Possible_Value_List==NULL)
+				if ($result['Id_Range']!=NULL && $result['Id_Qual_Possible_Value_List']==NULL){
+					//supprimer les données du in_range				
+					$query=$bdd->prepare('DELETE FROM `in_range` WHERE `Id_Range` ="'.$result['Id_Range'].'"');
+					$query->execute();
+				}
+				//Sinon supprimer les données de toutes les tables liées aux character qualitatif	
+				else{
+					//recherche Value_Name dans composed_by
+					$queryNameV=$bdd->prepare('SELECT * FROM composed_by WHERE `Id_Qual_Possible_Value_List` ="'.$result['Id_Qual_Possible_Value_List'].'"');
+					$queryNameV->execute();
+					$result2 = $queryNameV->fetch();
+					
+					$query=$bdd->prepare('DELETE FROM `composed_by` WHERE `Id_Qual_Possible_Value_List` ="'.$result['Id_Qual_Possible_Value_List'].'"');
+					$query->execute();
+										
+					$query=$bdd->prepare('DELETE FROM `qualitative_list` WHERE `Id_Qual_Possible_Value_List` ="'.$result['Id_Qual_Possible_Value_List'].'"');
+					$query->execute();
+					
+					//Vérification de l'utilisation du Value_Name dans un autre composed_by
+					$query=$bdd->prepare('SELECT COUNT(*) AS nbrX FROM composed_by WHERE Value_Name ="'.$result2['Value_Name'].'" 
+												and Id_Qual_Possible_Value_List != "'.$result['Id_Qual_Possible_Value_List'].'"');
+					$query->execute();
+					$result3 = $query->fetch();
+					$nbrX = $result3['nbrX'];
+					
+					if($nbrX == 0)
+					{
+						$query=$bdd->prepare('DELETE FROM `qualitative_value` WHERE `Value_Name` ="'.$result2['Value_Name'].'"');
+						$query->execute();
+					}
+				}
 				
-				//Sinon supprimer les données de toutes les tables liées aux character qualitatif
 				
 				//Supprimer les données du character
-				if(isset($_GET['characterId'])){	
-						$characterId = $_GET['characterId'];
-						$query=$bdd->prepare('DELETE FROM `characters` WHERE `characters`.`Id_Character` ="'.$characterId.'"');
-						$query->execute();
+				$characterId = $_GET['characterId'];
+				$query=$bdd->prepare('DELETE FROM `characters` WHERE `characters`.`Id_Character` ="'.$characterId.'"');
+				$query->execute();
 
 						echo'<h3 class="text-center">Deletion completed! </h3>';
 							
