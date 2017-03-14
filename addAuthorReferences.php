@@ -125,65 +125,70 @@
 			</div>';
 		}
 		else{
-			$idRef = $_GET['IdRef'];
-			$NameAuthor=$_POST['Name_Author'];
-			$Rank=$_POST['Rank'];
-
-			//var_dump($idRef);
-			//var_dump($NameAuthor);
-			//var_dump($Rank);
-			
-			$i=0;
-			
-			//initialisation
-			$erreur1 = NULL;
-			
-			//recherche id de l'auteur sélectionné
-			   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
-			   $queryIdAuthor->execute();
-			   $result = $queryIdAuthor->fetch();
-					$IdAuthor = $result['Id_Author'];
-				
-				//var_dump($IdAuthor);
-			
-			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM writen_by WHERE Id_Author =:IdAuthor and Id_Biblio=:IdBiblio');
-			$query->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
-			$query->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
-			$query->execute();
-			$refAuthor_free=($query->fetchColumn()==0)?1:0;
-			$query->CloseCursor();
-			
-			if(!$refAuthor_free)
+			if (!empty($_POST['Name_Author'])) 
 			{
-				$erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
-				$i++;
+				$idRef = $_GET['IdRef'];
+				$NameAuthor=$_POST['Name_Author'];
+				$Rank=$_POST['Rank'];
+
+				//var_dump($idRef);
+				//var_dump($NameAuthor);
+				//var_dump($Rank);
+				
+				$i=0;
+				
+				//initialisation
+				$erreur1 = NULL;
+				
+				//recherche id de l'auteur sélectionné
+				   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
+				   $queryIdAuthor->execute();
+				   $result = $queryIdAuthor->fetch();
+						$IdAuthor = $result['Id_Author'];
+					
+					//var_dump($IdAuthor);
+				
+				//Vérification de la présence
+				$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM writen_by WHERE Id_Author =:IdAuthor and Id_Biblio=:IdBiblio');
+				$query->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
+				$query->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
+				$query->execute();
+				$refAuthor_free=($query->fetchColumn()==0)?1:0;
+				$query->CloseCursor();
+				
+				if(!$refAuthor_free)
+				{
+					$erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
+					$i++;
+				}
+				
+				//vérification pour l'enregistrement dans la BDD
+			   if ($i==0)
+			   {			   				
+				   //ajout du lien entre auteur et bibliography => table write_by
+				   $queryAjoutRef=$bdd->prepare('INSERT INTO `writen_by` (`Id_Author`, `Id_Biblio`, `Rank`) 
+														VALUES (:IdAuthor, :IdBiblio, :Rank)');
+					$queryAjoutRef->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
+					$queryAjoutRef->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
+					$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
+					$queryAjoutRef->execute();
+				   
+							
+					echo'<center><div class="alert alert-success" role="alert">The new Author reference is adding !</div></center>';
+					echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">';   
+			   }
+			   else{
+				   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
+						echo'<h1 style="color:red">ERROR</h1>';
+					echo'</span>';
+					echo'<br/>
+					<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">'; 
+					echo $erreur1;
+			   }
 			}
-			
-			//vérification pour l'enregistrement dans la BDD
-		   if ($i==0)
-		   {			   				
-			   //ajout du lien entre auteur et bibliography => table write_by
-			   $queryAjoutRef=$bdd->prepare('INSERT INTO `writen_by` (`Id_Author`, `Id_Biblio`, `Rank`) 
-													VALUES (:IdAuthor, :IdBiblio, :Rank)');
-				$queryAjoutRef->bindValue(':IdAuthor',$IdAuthor, PDO::PARAM_INT);
-				$queryAjoutRef->bindValue(':IdBiblio',$idRef, PDO::PARAM_INT);
-				$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
-				$queryAjoutRef->execute();
-			   
-						
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">';   
-		   }
-		   else{
-			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
-					echo'<h1 style="color:red">ERROR</h1>';
-				echo'</span>';
-				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$_GET['IdRef'].'">'; 
-				echo $erreur1;
-		   }
-			
+			else{
+				msg_addAR_WARNING(MSG_CO_empty);
+			}
 		}
 		?>
 		

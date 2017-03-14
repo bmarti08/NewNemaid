@@ -32,8 +32,6 @@
 <body>
 
     <?php 
-	
-	
 		//Cette fonction doit être appelée avant tout code html
 		session_start();
 
@@ -94,7 +92,7 @@
 											<div class="panel-heading">
 												<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
 												<br/>
-												<h4>ATTENTION : Veillez à remplir tous les champs suivis d\'un <span style="color:red">*</span> !</h4>
+												<h4>Be sure to fill in all fields followed by <span style="color:red">*</span> !</h4>
 											</div>
 										</div>
 										
@@ -181,7 +179,6 @@
 												</fieldset>
 												
 												<div class="col-sm-12 controls">
-													<p>Les champs suivis d\'un <span style="color:red">*</span> sont obligatoires</p>
 													<input type="submit" value="Submit" class="btn btn-primary"/></p>
 													</form>
 												</div>

@@ -39,11 +39,14 @@
 		include("../bdd/variableSession.php");
 		include("../bdd/identifiants.php");
 		include("../header_index.php"); 
+		
+		if ($id==0) erreur2(ERR_IS_CO);
 	?> 
 
 	<div class="container">
 		<?php
-		
+		if (!empty($_POST['Genus_Name'])) //On est dans la page de formulaire
+		{
 			//On récupère les variables
 
 			$i=0;
@@ -63,7 +66,7 @@
 			
 			/////////////Verification que le character n'existe pas pour le genre sélectionné !!!!!
 			
-			//Vérification de du character name
+			//Vérification du character name
 			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM characters inner join is_characterized_by USING(Id_Character) 
 									WHERE Character_Name = :CharacterName and Genus_Name = :GenusName');
 			$query->bindValue(':CharacterName',$CharacterName, PDO::PARAM_STR);
@@ -93,7 +96,7 @@
 				
 				
 				//requête SQL pour retrouver l'id du range ajouté
-				$queryIdrange=$bdd->prepare('SELECT * FROM `in_range` WHERE Min_Range='.$MinRange.' and Max_Range='.$MaxRange.' and Unit="'.$Unit.'" ');
+				$queryIdrange=$bdd->prepare('SELECT MAX(Id_Range) FROM `in_range` WHERE Min_Range='.$MinRange.' and Max_Range='.$MaxRange.' and Unit="'.$Unit.'" ');
 			    $queryIdrange->execute();
 			    $result = $queryIdrange->fetch();
 					$Idrange = $result['Id_Range'];
@@ -133,7 +136,7 @@
 				$query1->bindValue(':Genus_Name', $GenusName, PDO::PARAM_STR);
 				$query1->execute();
 
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
+				echo'<center><div class="alert alert-success" role="alert">The new quantitative character is adding !</div></center>';
 				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';  
 		   }
 		   else{
@@ -144,7 +147,9 @@
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';
 				echo $erreur1;
 		   }
-		
+		else{
+			msg_addQ_WARNING(MSG_CO_empty);
+		}
 
 		?>
 	</div>

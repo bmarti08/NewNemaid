@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new species</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <FONT color="#BDBDBD"> Add a new species </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <a href="findSpecies.php"> Find a specie </a> / <FONT color="#BDBDBD"> Add a new species </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -118,48 +118,53 @@
 			</div>';
 		}
 		else{
-			$Speciesname=$_POST['Species_Name'];
-			$Genusname=$_POST['Genus_Name'];
-			$i=0;
-			
-			//initialisation
-			$mail_erreur1 = NULL;
-			$mail_erreur2 = NULL;
-			$pswd_erreur = NULL;
-			
-			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM species WHERE Species_Name =:Speciesname');
-			$query->bindValue(':Speciesname',$Speciesname, PDO::PARAM_STR);
-			$query->execute();
-			$nameS_free=($query->fetchColumn()==0)?1:0;
-			$query->CloseCursor();
-			
-			if(!$nameS_free)
+			if (!empty($_POST['Genus_Name'])) 
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
-				$i++;
-			}
-			
-			//vérification pour l'enregistrement dans la BDD
-		   if ($i==0)
-		   {
-			   $query=$bdd->prepare('INSERT INTO `species` (`Species_Name`, `Genus_Name`) VALUES (:Speciesname, :Genusname)');
-				$query->bindValue(':Speciesname', $Speciesname, PDO::PARAM_STR);
-				$query->bindValue(':Genusname', $Genusname, PDO::PARAM_STR);
+				$Speciesname=$_POST['Species_Name'];
+				$Genusname=$_POST['Genus_Name'];
+				$i=0;
+				
+				//initialisation
+				$mail_erreur1 = NULL;
+				$mail_erreur2 = NULL;
+				$pswd_erreur = NULL;
+				
+				//Vérification de la présence
+				$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM species WHERE Species_Name =:Speciesname');
+				$query->bindValue(':Speciesname',$Speciesname, PDO::PARAM_STR);
 				$query->execute();
-				//var_dump($Speciesname);
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findSpecies.php">';
-		   }
-		   else{
-			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
-					echo'<h1 style="color:red">ERROR</h1>';
-				echo'</span>';
-				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addSpecies.php">';
-				echo $mail_erreur1;
-		   }
-			
+				$nameS_free=($query->fetchColumn()==0)?1:0;
+				$query->CloseCursor();
+				
+				if(!$nameS_free)
+				{
+					$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
+					$i++;
+				}
+				
+				//vérification pour l'enregistrement dans la BDD
+			   if ($i==0)
+			   {
+				   $query=$bdd->prepare('INSERT INTO `species` (`Species_Name`, `Genus_Name`) VALUES (:Speciesname, :Genusname)');
+					$query->bindValue(':Speciesname', $Speciesname, PDO::PARAM_STR);
+					$query->bindValue(':Genusname', $Genusname, PDO::PARAM_STR);
+					$query->execute();
+					//var_dump($Speciesname);
+					echo'<center><div class="alert alert-success" role="alert">The new species is adding !</div></center>
+					<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findSpecies.php">';
+			   }
+			   else{
+				   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
+						echo'<h1 style="color:red">ERROR</h1>';
+					echo'</span>';
+					echo'<br/>
+					<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addSpecies.php">';
+					echo $mail_erreur1;
+			   }
+			}
+			else{
+				msg_addS_WARNING(MSG_CO_empty);
+			}
 		}
 		?>
 		

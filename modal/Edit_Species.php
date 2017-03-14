@@ -51,14 +51,20 @@
 												inner join characters using(Id_Character)
 												where Species_Name ="'.$SpeciesName.'"');
 						$query->execute();
+						/////Requete 2
+						$query2=$bdd->prepare('SELECT Genus_Name FROM `species` 
+												where Species_Name ="'.$SpeciesName.'"');
+						$query2->execute();
+						$result = $query2->fetch();
 						
 						echo'<h3 class="text-center">'.$SpeciesName.'</h3>
 						<hr width="50%">';
 						
+						echo'<p class="text-info"> <b>Genus Name : </b>'.$result['Genus_Name'].'</p>';
+						
 					echo'<table class="table table-striped table-hover" width="50%">
 						<thead>	
 							<tr>
-								<th class="text-center">Genus Name</th>
 								<th class="text-center">Character Name</th>
 								<th class="text-center">Explaination</th>
 								<th class="text-center">Entitled Character</th>
@@ -71,7 +77,6 @@
 									echo'
 									
 										<tr>
-											<td>'.$data['Genus_Name'].'</td>
 											<td>'.$data['Character_Name'].'</td>
 											<td>'.$data['Explaination'].'</td>
 											<td>'.$data['Entitled_Character'].'</td>

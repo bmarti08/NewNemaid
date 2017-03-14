@@ -58,13 +58,9 @@
 						<hr width="50%">';
 						
 						if($Admin == 1){
-							if ($result['Id_Range']!=null && $result['Id_Qual_Possible_Value_List']==null){
-								echo'
-								<a href="addQualiC_ValueName.php?IdRef='.$characterId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Value Name</a>';
-							}
 							if ($result['Id_Range']==null && $result['Id_Qual_Possible_Value_List']!=null){
 								echo'
-								<a href="addQuantC_Range.php?IdRef='.$characterId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Range</a>';
+								<a href="addQualiC_ValueName.php?IdRef='.$characterId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Value Name</a>';
 							}
 						} 
 						
@@ -72,10 +68,10 @@
 						if ($result['Id_Range']!=null && $result['Id_Qual_Possible_Value_List']==null){
 							
 							////recherche pour affichage dans le tableau
-						$query1=$bdd->prepare('SELECT * FROM characters inner join in_range USING (`Id_Range`) inner join is_characterized_by USING(Id_Character)
-												where Id_Character ="'.$characterId.'"');
-						$query1->execute();
-														
+							$query1=$bdd->prepare('SELECT * FROM characters inner join in_range USING (`Id_Range`) inner join is_characterized_by USING(Id_Character)
+													where Id_Character ="'.$characterId.'"');
+							$query1->execute();
+															
 							echo'<table class="table table-striped table-hover" width="50%">
 								<caption>Quantitatives characters : </caption>
 								<thead>	

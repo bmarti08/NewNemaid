@@ -48,9 +48,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Comparison performance</h1>  
+                    <h1 class="page-header">Perform Comparison</h1>  
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Comparison Performance </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Perform Comparison</FONT>
 						</li>
 						<li class="active"></li>
 					</ol>						
@@ -62,17 +62,13 @@
 		
         
             <!-- ICI mettre ce qu'on veut -->
-		<h2 class="second-title"> Sample selection </h2>
-		<h3 class="third_tiltle"> Your samples </h3>
-		<br/>				
-			
-        <br/>
-		<div class="row_text">
-			<h2 class="second-title2">Comparison Parameters</h2>	
-			<h3 class="third_tiltle2">Formula version</h3>
-			<h3 class="third_tiltle3">Validity of species</h3>
-			<h3 class="third_tiltle4">T</h3>
-		</div>
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+						<br/>
+						<h4>WORK IN PROGRESS !</h4>
+					</div>
+				</div>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <!-- ------------------------ -->
         

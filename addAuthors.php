@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new Author</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <FONT color="#BDBDBD"> Add a new author </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <a href="findAuthors.php"> Find a character </a> / <FONT color="#BDBDBD"> Add a new author </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -126,7 +126,7 @@
 				$query->bindValue(':Authorname', $Authorname, PDO::PARAM_STR);
 				$query->execute();
 				//var_dump($Authorname);
-				echo'<center><div class="alert alert-sucess" role="alert">The new author is adding !</div></center>
+				echo'<center><div class="alert alert-success" role="alert">The new author is adding !</div></center>
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findAuthors.php">';
 		   }
 		   else{

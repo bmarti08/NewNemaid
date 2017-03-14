@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new reference</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#BDBDBD"> Add a new reference </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#424242"> Genera </FONT> / <a href="findReferences.php"> Find a reference </a> / <FONT color="#BDBDBD"> Add a new reference </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -148,84 +148,89 @@
 			</div>';
 		}
 		else{
-			$Title=$_POST['Title'];
-			$Year=$_POST['Year'];
-			$Journal=$_POST['Journal'];
-			$Published_in=$_POST['Published_in'];
-			$NameAuthor=$_POST['Name_Author'];
-			$Rank=$_POST['Rank'];
-
-			var_dump($NameAuthor);
-			
-			$i=0;
-			
-			//initialisation
-			$mail_erreur1 = NULL;
-			$mail_erreur2 = NULL;
-			$pswd_erreur = NULL;
-			
-			//Vérification de la présence
-			$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM bibliography WHERE Title =:Title');
-			$query->bindValue(':Title',$Title, PDO::PARAM_STR);
-			$query->execute();
-			$Title_free=($query->fetchColumn()==0)?1:0;
-			$query->CloseCursor();
-			
-			if(!$Title_free)
+			if (!empty($_POST['Name_Author'])) 
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
-				$i++;
+				$Title=$_POST['Title'];
+				$Year=$_POST['Year'];
+				$Journal=$_POST['Journal'];
+				$Published_in=$_POST['Published_in'];
+				$NameAuthor=$_POST['Name_Author'];
+				$Rank=$_POST['Rank'];
+
+				//var_dump($NameAuthor);
+				
+				$i=0;
+				
+				//initialisation
+				$mail_erreur1 = NULL;
+				$mail_erreur2 = NULL;
+				$pswd_erreur = NULL;
+				
+				//Vérification de la présence
+				$query=$bdd->prepare('SELECT COUNT(*) AS nbr FROM bibliography WHERE Title =:Title');
+				$query->bindValue(':Title',$Title, PDO::PARAM_STR);
+				$query->execute();
+				$Title_free=($query->fetchColumn()==0)?1:0;
+				$query->CloseCursor();
+				
+				if(!$Title_free)
+				{
+					$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
+					$i++;
+				}
+				
+				//vérification pour l'enregistrement dans la BDD
+			   if ($i==0)
+			   {			   
+				   //ajout des données en lien avec la table bibliography
+					$queryAjoutBiblio=$bdd->prepare('INSERT INTO `bibliography` (`Id_Biblio`, `Title`, `Year`, `Journal`, `Published_in`) 
+														VALUES (NULL, :Title, :Year, :Journal, :Published_in)');
+					$queryAjoutBiblio->bindValue(':Title', $Title, PDO::PARAM_STR);
+					$queryAjoutBiblio->bindValue(':Year', $Year, PDO::PARAM_INT);
+					$queryAjoutBiblio->bindValue(':Journal', $Journal, PDO::PARAM_STR);
+					$queryAjoutBiblio->bindValue(':Published_in', $Published_in, PDO::PARAM_INT);
+					$queryAjoutBiblio->execute();
+						
+					//recherche id des données entrées dans la bibliography
+				   $queryIdBiblio=$bdd->prepare('SELECT * FROM `bibliography` WHERE Title="'.$Title.'"');
+				   $queryIdBiblio->execute();
+				   $result2 = $queryIdBiblio->fetch();
+						$IdBiblio = $result2['Id_Biblio'];
+						
+						//var_dump($IdBiblio);
+					
+				   //recherche id de l'auteur sélectionné
+				   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
+				   $queryIdAuthor->execute();
+				   $result = $queryIdAuthor->fetch();
+						$IdAuthor = $result['Id_Author'];
+					
+						//var_dump($IdAuthor);
+						
+				   //ajout du lien entre auteur et bibliography => table write_by
+				   $queryAjoutRef=$bdd->prepare('INSERT INTO `writen_by` (`Id_Author`, `Id_Biblio`, `Rank`) 
+														VALUES (:IdAuthor, :IdBiblio, :Rank)');
+					$queryAjoutRef->bindValue(':IdAuthor', $IdAuthor, PDO::PARAM_STR);
+					$queryAjoutRef->bindValue(':IdBiblio', $IdBiblio, PDO::PARAM_STR);
+					$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
+					$queryAjoutRef->execute();
+				   
+					
+					echo'<center><div class="alert alert-success" role="alert">The new reference is adding !</div></center>';
+					echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
+			   }
+			   else{
+				   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
+						echo'<h1 style="color:red">ERROR</h1>';
+					echo'</span>';
+					echo'<br/>
+					<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addReferences.php">';
+					echo $mail_erreur1;
+			   }
 			}
-			
-			//vérification pour l'enregistrement dans la BDD
-		   if ($i==0)
-		   {			   
-			   //ajout des données en lien avec la table bibliography
-				$queryAjoutBiblio=$bdd->prepare('INSERT INTO `bibliography` (`Id_Biblio`, `Title`, `Year`, `Journal`, `Published_in`) 
-													VALUES (NULL, :Title, :Year, :Journal, :Published_in)');
-				$queryAjoutBiblio->bindValue(':Title', $Title, PDO::PARAM_STR);
-				$queryAjoutBiblio->bindValue(':Year', $Year, PDO::PARAM_INT);
-				$queryAjoutBiblio->bindValue(':Journal', $Journal, PDO::PARAM_STR);
-				$queryAjoutBiblio->bindValue(':Published_in', $Published_in, PDO::PARAM_INT);
-				$queryAjoutBiblio->execute();
-					
-				//recherche id des données entrées dans la bibliography
-			   $queryIdBiblio=$bdd->prepare('SELECT * FROM `bibliography` WHERE Title="'.$Title.'"');
-			   $queryIdBiblio->execute();
-			   $result2 = $queryIdBiblio->fetch();
-					$IdBiblio = $result2['Id_Biblio'];
-					
-					//var_dump($IdBiblio);
-				
-			   //recherche id de l'auteur sélectionné
-			   $queryIdAuthor=$bdd->prepare('SELECT * FROM `author` WHERE Name_Author="'.$NameAuthor.'"');
-			   $queryIdAuthor->execute();
-			   $result = $queryIdAuthor->fetch();
-					$IdAuthor = $result['Id_Author'];
-				
-					//var_dump($IdAuthor);
-					
-			   //ajout du lien entre auteur et bibliography => table write_by
-			   $queryAjoutRef=$bdd->prepare('INSERT INTO `writen_by` (`Id_Author`, `Id_Biblio`, `Rank`) 
-													VALUES (:IdAuthor, :IdBiblio, :Rank)');
-				$queryAjoutRef->bindValue(':IdAuthor', $IdAuthor, PDO::PARAM_STR);
-				$queryAjoutRef->bindValue(':IdBiblio', $IdBiblio, PDO::PARAM_STR);
-				$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
-				$queryAjoutRef->execute();
-			   
-				
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
-		   }
-		   else{
-			   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
-					echo'<h1 style="color:red">ERROR</h1>';
-				echo'</span>';
-				echo'<br/>
-				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addReferences.php">';
-				echo $mail_erreur1;
-		   }
-			
+		else{
+				msg_addR_WARNING(MSG_CO_empty);
+			}	
 		}
 		?>
 		

@@ -64,7 +64,7 @@
             <!-- /.row -->
         <br/>
 		<div class="row">
-			<div class="col-lg-offset-1 col-lg-10">
+			<div class="col-lg-12">
 				<div class="panel panel-default">
 			
 					<table id="characterList" class="table table-striped table-hover">
@@ -75,9 +75,10 @@
 								}
 							?>
 							<tr>
+								<th>Character type</th>
 								<th>Genus Name</th>
 								<th>Character Name</th>
-								<th>Explaination</th>
+								<th>Explanation</th>
 								<th>Entitled Character</th>
 								<th>Weight</th>
 								<th>Correction Factor</th>
@@ -92,7 +93,13 @@
 									
 								while($data=$query->fetch()){	
 									echo'
-									<tr>
+									<tr>';
+										if ($data['Id_Range']!=null && $data['Id_Qual_Possible_Value_List']==null){
+											echo'<td class="text-danger">Quantitative</td>';
+										}else{
+											echo'<td class="text-success">Qualitative</td>';
+										}
+										echo'
 										<td>'.$data['Genus_Name'].'</td>
 										<td>'.$data['Character_Name'].'</td>
 										<td>'.$data['Explaination'].'</td>

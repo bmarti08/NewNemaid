@@ -70,33 +70,36 @@
 			$query->CloseCursor();
 			if(!$mail_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">There is already an account with this E-mail adress !</div></center>";
+				$mail_erreur1 = '<center><div class="alert alert-danger" role="alert">There is already an account with this E-mail adress !
+									<br/>
+									Click <a href="./connexion.php">here</a> to restart registration</div></center>
+										<META HTTP-EQUIV="Refresh" CONTENT="2;URL=./connexion.php">';
 				$i++;
 			}
 
 			//On vérifie la forme
 			if (!preg_match("#^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]{2,}\.[a-z]{2,4}$#", $mail) || empty($mail))
 			{
-				$mail_erreur2 = "<center><div class=\"alert alert-danger\" role=\"alert\">Your E-mail adress do not have a right format.</div></center>";
+				$mail_erreur2 = '<center><div class="alert alert-danger" role="alert">Your E-mail adress do not have a right format.
+									<br/>
+									Click <a href="./connexion.php">here</a> to restart registration</div></center>
+										<META HTTP-EQUIV="Refresh" CONTENT="2;URL=./connexion.php">';
 				$i++;
 			}
 
 			//Vérification du mdp
 			if ($pass != $confirm || empty($confirm) || empty($pass))
 			{
-				$pswd_erreur = "<center><div class=\"alert alert-warning\" role=\"alert\">Your password and your conformation password are different, or are empty</div></center>";
+				$pswd_erreur = '<center><div class="alert alert-warning" role="alert">Your password and your conformation password are different, or are empty !
+									<br/>
+									Click <a href="./connexion.php">here</a> to restart registration</div></center>
+										<META HTTP-EQUIV="Refresh" CONTENT="2;URL=./connexion.php">';
 				$i++;
 			}
 			
 			//vérification pour l'enregistrement dans la BDD
 		   if ($i==0)
-		   {
-			echo '<center><div class="alert alert-info" role="alert">';
-				echo'<h1><strong>Registration completed</strong></h1>';
-				echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['e_mail'])).' You are registered !</p>';
-			echo'</div></center>';
-				echo'<p>Click <a href="./index.php">here</a> to return to the homepage</p>';
-			
+		   {		
 				//requête SQL
 				$query=$bdd->prepare('INSERT INTO `usr` (`Id_User`, `First_name`, `Last_name`, `e_mail`, `Country`, `City`, `Institution`, `Password`, `Admin`) 
 										VALUES (:Id_User, :First_name, :Last_name, :e_mail, :Country, :City, :Institution, :Password, :Admin)');
@@ -116,7 +119,21 @@
 				$_SESSION['e_mail'] = $mail;
 				$_SESSION['Id_User'] = $bdd->lastInsertId(); ;
 				$_SESSION['Admin'] = 0;
+				$_SESSION['First_name'] = $First_name;
+				$_SESSION['Last_name'] = $Last_name;
+				$_SESSION['Country'] = $Country;
+				$_SESSION['City'] = $City;
+				$_SESSION['Institution'] = $Institution;
+				
 				$query->CloseCursor();
+				
+				echo '<center><div class="alert alert-info" role="alert">';
+					echo'<h1><strong>Registration completed</strong></h1>';
+					echo'<p>Bienvenue '.stripslashes(htmlspecialchars($_POST['e_mail'])).' !</p>
+					<br/>
+					Click <a href="./index.php">here</a> to restart registration</div></center>
+						<META HTTP-EQUIV="Refresh" CONTENT="2;URL=./index.php">
+				</div></center>';
 			}
 			else
 			{
@@ -128,8 +145,6 @@
 				echo $mail_erreur1;
 				echo $mail_erreur2;
 				echo $pswd_erreur;
-			   
-				echo'<p>Click <a href="./connexion.php">here</a> to restart registration</p>';
 			}
 		
 

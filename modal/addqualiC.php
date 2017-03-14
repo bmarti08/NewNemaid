@@ -39,11 +39,14 @@
 		include("../bdd/variableSession.php");
 		include("../bdd/identifiants.php");
 		include("../header_index.php"); 
+		
+		if ($id==0) erreur2(ERR_IS_CO);
 	?> 
 
 	<div class="container">
 		<?php
-		
+		if (!empty($_POST['Genus_Name'])) 
+		{
 			//On récupère les variables
 
 			$i=0;
@@ -76,7 +79,7 @@
 			//vérification pour l'enregistrement dans la BDD
 		   if ($i==0)
 		   {		
-				//var_dump($ValueName);7
+				//var_dump($ValueName);
 				
 				//requête SQL pour add dans qualitative_value
 				$query1=$bdd->prepare('INSERT INTO `qualitative_value` (`Value_Name`)
@@ -133,8 +136,8 @@
 				$query1->bindValue(':Genus_Name', $GenusName, PDO::PARAM_STR);
 				$query1->execute();
 
-				echo'<center><div class="alert alert-sucess" role="alert">The new species is adding !</div></center>';
-				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';  
+				echo'<center><div class="alert alert-success" role="alert">The new qualitative character is adding !</div></center>';
+				echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../addQualiC_ValueName.php?IdRef='.$IdChar.'">';  
 				
 		   }
 		   else{
@@ -145,7 +148,10 @@
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';
 				echo $erreur1;
 		   } 
-		
+		}
+		else{
+			msg_addQ_WARNING(MSG_CO_empty);
+		}
 
 		?>
 	</div>

@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new genus</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <FONT color="#BDBDBD"> Add a new genus </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <a href="findGenus.php"> Find a genus </a> / <FONT color="#BDBDBD"> Add a new genus </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -114,7 +114,7 @@
 			
 			if(!$nameG_free)
 			{
-				$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Name not available !</div></center>";
+				$mail_erreur1 = '<center><div class="alert alert-danger" role="alert">Name not available !</div></center>';
 				$i++;
 			}
 			
@@ -125,7 +125,8 @@
 				$query->bindValue(':GenusName', $Genusname, PDO::PARAM_STR);
 				$query->execute();
 				//var_dump($Genusname);
-				echo'<center><div class="alert alert-sucess" role="alert">The new genus is adding !</div></center>
+				
+				echo'<center><div class="alert alert-success" role="alert">The new genus is adding !</div></center>
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=findGenus.php">';
 		   }
 		   else{
