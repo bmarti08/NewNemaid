@@ -21,7 +21,7 @@
                         <a href="PerformComparison.php">Perform comparison</a>
                     </li>
 					<li>
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">Databases views<b class="caret"></b></a>
+						<a href="" class="dropdown-toggle" data-toggle="dropdown">Database view<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="findSpecies.php">Species data view</a></li>
 							<li><a href="findReferences.php">References view</a></li>
