@@ -66,7 +66,7 @@
 						<thead>	
 							<tr>
 								<th class="text-center">Character Name</th>
-								<th class="text-center">Explaination</th>
+								<th class="text-center">Explanation</th>
 								<th class="text-center">Entitled Character</th>
 								<th class="text-center">Correction Factor</th>
 								<th class="text-center">Weight</th>

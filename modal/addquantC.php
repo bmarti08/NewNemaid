@@ -96,10 +96,10 @@
 				
 				
 				//requête SQL pour retrouver l'id du range ajouté
-				$queryIdrange=$bdd->prepare('SELECT MAX(Id_Range) FROM `in_range` WHERE Min_Range='.$MinRange.' and Max_Range='.$MaxRange.' and Unit="'.$Unit.'" ');
+				$queryIdrange=$bdd->prepare('SELECT MAX(Id_Range) as Max FROM `in_range` WHERE Min_Range='.$MinRange.' and Max_Range='.$MaxRange.' and Unit="'.$Unit.'" ');
 			    $queryIdrange->execute();
 			    $result = $queryIdrange->fetch();
-					$Idrange = $result['Id_Range'];
+					$Idrange = $result['Max'];
 					
 					//var_dump($Idrange);
 				
@@ -147,6 +147,7 @@
 				<META HTTP-EQUIV="Refresh" CONTENT="2;URL=../findCharacters.php">';
 				echo $erreur1;
 		   }
+		}
 		else{
 			msg_addQ_WARNING(MSG_CO_empty);
 		}
