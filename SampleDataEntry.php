@@ -65,6 +65,16 @@
             </div>
 			<br/>	
 
+		<!-- ----------------------------WORK IN PROGRESS !----------------------------------- -->	
+			<div class="panel panel-warning">
+					<div class="panel-heading">
+						<center><i class="glyphicon glyphicon-warning-sign" style="font-size:50px;"></i>
+						<br/>
+						<h4>WORK IN PROGRESS !</h4>
+					</div>
+				</div>
+		<!-- --------------------------------------------------------------- -->		
+			
             <!-- /.row -->
         <br/>
 	<div class="row">
