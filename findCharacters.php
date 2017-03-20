@@ -112,7 +112,7 @@
 											}
 											if($Admin == 1){											
 												echo'
-													<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+													<button data-toggle="modal" data-target="#edit_character" id="'.$data['Id_Character'].'" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span> Details</button>
 													<button data-toggle="modal" data-target="#supp_character" id="'.$data['Id_Character'].'" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete </button>';
 											}
 										echo'</td>

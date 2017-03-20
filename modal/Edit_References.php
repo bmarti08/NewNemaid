@@ -119,14 +119,14 @@
 						
 						///////////////////
 						echo'
-						<br/>
 						<hr>
-						<br/><br/>';
+						<br/>';
 						
 						/////////////////////
 						
 						if($Admin == 1){
 							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'#AddCharRef" class="btn btn-success btn-xs pull-right"><b>+</b> Add another character</a>';
+						echo'<br/>';
 						} 
 						
 						if(!empty($quantQ))
