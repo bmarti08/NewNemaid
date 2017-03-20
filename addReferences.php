@@ -67,6 +67,9 @@
 			$query=$bdd->prepare('SELECT `Name_Author` FROM `author`');
 			$query->execute();
 			
+			$query2=$bdd->prepare('SELECT * FROM `species`');
+			$query2->execute();
+			
 			
 			echo'<!-- --------------------FORMULAIRE ---------------------------- -->		
 			<div class="row">
@@ -134,8 +137,35 @@
 									</div>
 								</div>
 								<br/>
-								
+								<!-- Select Basic -->
+								<div class="form-group">
+								  <label for="Species_Name" class="col-md-4 control-label">The specie name <span style="color:red">*</span></label>
+								  <div class="col-md-8">
+									<select id="Species_Name" name="Species_Name" class="form-control">';
+										while($result2=$query2->fetch()){	
+										  echo'<option value="'.$result2['Species_Name'].'">'.$result2['Species_Name'].'</option>';
+										}
+										$query2->CloseCursor();
+									echo'
+									</select>
+								  </div>
+								</div>
 								<br/><br/>
+								
+								<div class="form-group">
+								  <label for="Species_Name" class="col-md-4 control-label">Population type <span style="color:red">*</span></label>
+									<div class="col-md-8">
+										<div class="btn-group" data-toggle="buttons">
+											<label class="btn btn-primary active">
+												<input type="radio" name="Population_Type" value="1" id="Population_Type" autocomplete="off" checked> Yes
+											</label>
+											<label class="btn btn-primary">
+												<input type="radio" name="Population_Type" value="0" id="Population_Type" autocomplete="off"> No
+											</label>
+										</div>
+									</div>
+								</div>
+								
 							</fieldset>
 							
 							<div class="col-sm-12 controls">
@@ -150,6 +180,7 @@
 		else{
 			if (!empty($_POST['Name_Author'])) 
 			{
+				//////////////////////////////////////////////////////////////////Enregistrement pour la table bibliography 
 				$Title=$_POST['Title'];
 				$Year=$_POST['Year'];
 				$Journal=$_POST['Journal'];
@@ -214,10 +245,28 @@
 					$queryAjoutRef->bindValue(':IdBiblio', $IdBiblio, PDO::PARAM_STR);
 					$queryAjoutRef->bindValue(':Rank', $Rank, PDO::PARAM_INT);
 					$queryAjoutRef->execute();
-				   
+
 					
+				//////////////////////////////////////////////////////////////////Enregistrement pour la table Species_Description
+				$PopulationType = $_POST['Population_Type'];
+				$SpeciesName = $_POST['Species_Name'];
+				
+				var_dump($IdBiblio);
+				var_dump($SpeciesName);
+				var_dump($PopulationType);
+				
+				//ajout dans la table => Species_Description
+				   $queryAjoutRef=$bdd->prepare('INSERT INTO `species_description` (`Id_Species_Description`, `Population_Type`, `Id_Species`, `Id_Bibliography`) 
+														VALUES (NULL, :PopulationType, :SpeciesName, :Id_Bibliography)');
+					$queryAjoutRef->bindValue(':PopulationType', $PopulationType, PDO::PARAM_INT);
+					$queryAjoutRef->bindValue(':SpeciesName', $SpeciesName, PDO::PARAM_STR);
+					$queryAjoutRef->bindValue(':Id_Bibliography', $IdBiblio, PDO::PARAM_INT);
+					$queryAjoutRef->execute();
+
+					
+				//////////////////////////////////////////////////////////////////FIN Enregistrement
 					echo'<center><div class="alert alert-success" role="alert">The new reference is adding !</div></center>';
-					echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
+					//echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
 			   }
 			   else{
 				   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';
@@ -252,6 +301,73 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+	<script >
+		$(function () {
+    $('.button-checkbox').each(function () {
+
+        // Settings
+        var $widget = $(this),
+            $button = $widget.find('button'),
+            $checkbox = $widget.find('input:checkbox'),
+            color = $button.data('color'),
+            settings = {
+                on: {
+                    icon: 'glyphicon glyphicon-check'
+                },
+                off: {
+                    icon: 'glyphicon glyphicon-unchecked'
+                }
+            };
+
+        // Event Handlers
+        $button.on('click', function () {
+            $checkbox.prop('checked', !$checkbox.is(':checked'));
+            $checkbox.triggerHandler('change');
+            updateDisplay();
+        });
+        $checkbox.on('change', function () {
+            updateDisplay();
+        });
+		
+		        // Actions
+        function updateDisplay() {
+            var isChecked = $checkbox.is(':checked');
+
+            // Set the button's state
+            $button.data('state', (isChecked) ? "on" : "off");
+
+            // Set the button's icon
+            $button.find('.state-icon')
+                .removeClass()
+                .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+            // Update the button's color
+            if (isChecked) {
+                $button
+                    .removeClass('btn-default')
+                    .addClass('btn-' + color + ' active');
+            }
+            else {
+                $button
+                    .removeClass('btn-' + color + ' active')
+                    .addClass('btn-default');
+            }
+        }
+		
+		  // Initialization
+        function init() {
+
+            updateDisplay();
+
+            // Inject the icon if applicable
+            if ($button.find('.state-icon').length == 0) {
+                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+            }
+        }
+        init();
+    });
+});
+	</script>
 </body>
 
 </html>

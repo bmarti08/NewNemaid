@@ -48,7 +48,7 @@
 			$query->execute();
 			$result = $query->fetch();
 		?>
-        <!-------------------------- Container --------------------------------->
+        <!-------------------------- Container : Author References --------------------------------->
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -194,21 +194,145 @@
 		
 	</div>
 </div>								 	
-						
-        
         <!-------------------------- /Container --------------------------------->
+		
+		
+		<!-------------------------- Container : Add character reference --------------------------------->
+	<!-- Page Content -->
+    <div class="container" id="AddCharRef">  
+		<br/><br/>
+		<hr>
+		<?php
+			$query2=$bdd->prepare('SELECT * FROM species_description speD INNER JOIN bibliography b on b.Id_Biblio = speD.Id_Bibliography 
+									WHERE speD.Id_Bibliography ='.$_GET['IdRef'].'');
+			$query2->execute();
+			$result2 = $query2->fetch();
+		?>
+		<!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Add a new character for "<u><i><?php echo $result2['Title'] ?></i></u>" on "<i><?php echo $result2['Id_Species'] ?></i>"</h1>    
+					<ol class="breadcrumb">
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <a href="findReferences.php"> Find a reference </a> / <FONT color="#BDBDBD"> Add a new character for "<u><i><?php echo $result2['Title'] ?></i></u>" on "<i><?php echo $result2['Id_Species'] ?></i>" </FONT>
+						</li>
+						<li class="active"></li>
+					</ol>	
+                </div>
+            </div>
+			<br/>	
+			
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-offset-1 col-lg-10">
+					<div class="panel panel-default text-center">
+						<div class="panel-body">
+							<!-- Bouton execution modal -->
+							<button class="btn btn-info btn-md" data-toggle="modal" data-target="#AddquantRef" id="<?php echo $result2['Id_Species_Description'] ?>">
+							  <span class="glyphicon glyphicon-plus"></span>
+							  Add a new <b>quantitative</b> character for the reference
+							</button>							
+							<!-- --------------- -->
+							<button class="btn btn-primary btn-md" data-toggle="modal" data-target="#AddqualiRef" id="<?php echo $result2['Id_Species_Description'] ?>">
+							  <span class="glyphicon glyphicon-plus"></span>
+							  Add a new <b>qualitative</b> character for the reference
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+	<!-- -------------------------------------------------------- -->
+		<!-- modal quantitative -->
+		<div class="modal fade" id="AddquantRef" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="lineModalLabel"> Add quantitative character for reference </h3>
+				</div>
+				<div class="modal-body edit-content">
+						   
+					
 
+				</div>
+			</div>
+		  </div>
+		</div>   
+	<!-- -------------------------------------------------------- -->	
+	<!-- -------------------------------------------------------- -->
+		<!-- modal qualitative -->
+		<div class="modal fade" id="AddqualiRef" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title" id="lineModalLabel"> Add quanlitative character for reference </h3>
+				</div>
+				<div class="modal-body edit-content">
+						   
+					
+
+				</div>
+			</div>
+		  </div>
+		</div>   
+	<!-- -------------------------------------------------------- -->
+	
+		
+	</div>
+</div>
 
         
     <?php include("footer.php"); ?> 
     </div>
     <!-- /content -->
-
+	
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+	
+	<script>	
+		$('#AddquantRef').on('show.bs.modal', function(e) {
+				
+				var $Id_Species_Description = $(this),
+					esseyId = e.relatedTarget.id;
+				
+				$.ajax({
+					cache: false,
+					type: 'GET',
+					url: 'modal/AddquantRef.php',
+					data: 'Id_Species_Description='+esseyId,
+					success: function(data) 
+					{
+						$(".edit-content").html(data);
+					}
+				});
+				
+			})
+			
+			
+		///////////////////////
+		
+		$('#AddqualiRef').on('show.bs.modal', function(e) {
+				
+				var $Id_Species_Description = $(this),
+					esseyId = e.relatedTarget.id;
+				
+				$.ajax({
+					cache: false,
+					type: 'GET',
+					url: 'modal/AddqualiRef.php',
+					data: 'Id_Species_Description='+esseyId,
+					success: function(data) 
+					{
+						$(".edit-content").html(data);
+					}
+				});
+				
+			})
+		</script>
 
 </body>
 

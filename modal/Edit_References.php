@@ -63,8 +63,8 @@
 						<hr width="50%">';
 						
 						if($Admin == 1){
-							echo'
-							<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another author</a>';
+							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another author</a>';
+							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'#AddCharRef" class="btn btn-success btn-xs pull-right"><b>+</b> Add another character</a>';
 						} 
 					
 					echo'<table class="table table-striped table-hover" width="50%">
