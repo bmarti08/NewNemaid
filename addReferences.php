@@ -251,9 +251,9 @@
 				$PopulationType = $_POST['Population_Type'];
 				$SpeciesName = $_POST['Species_Name'];
 				
-				var_dump($IdBiblio);
-				var_dump($SpeciesName);
-				var_dump($PopulationType);
+				//var_dump($IdBiblio);
+				//var_dump($SpeciesName);
+				//var_dump($PopulationType);
 				
 				//ajout dans la table => Species_Description
 				   $queryAjoutRef=$bdd->prepare('INSERT INTO `species_description` (`Id_Species_Description`, `Population_Type`, `Id_Species`, `Id_Bibliography`) 
@@ -266,7 +266,7 @@
 					
 				//////////////////////////////////////////////////////////////////FIN Enregistrement
 					echo'<center><div class="alert alert-success" role="alert">The new reference is adding !</div></center>';
-					//echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
+					echo'<META HTTP-EQUIV="Refresh" CONTENT="2;URL=addAuthorReferences.php?IdRef='.$IdBiblio.'">';   
 			   }
 			   else{
 				   echo'<span class="input-group-addon"><i class="glyphicon glyphicon-warning-sign"></i>';

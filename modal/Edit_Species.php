@@ -46,11 +46,11 @@
 
 				if(isset($_GET['SpeciesName'])){
 						$SpeciesName = $_GET['SpeciesName'];
-						$query=$bdd->prepare('SELECT * FROM `species` inner join genus using (Genus_Name) 
-												inner join is_characterized_by USING (Genus_Name) 
-												inner join characters using(Id_Character)
+						$query=$bdd->prepare('SELECT * FROM `species`sp inner join species_description sp_desc on sp.Species_Name = sp_desc.Id_Species
+												inner join bibliography b on b.Id_Biblio=sp_desc.Id_Bibliography 
 												where Species_Name ="'.$SpeciesName.'"');
 						$query->execute();
+						
 						/////Requete 2
 						$query2=$bdd->prepare('SELECT Genus_Name FROM `species` 
 												where Species_Name ="'.$SpeciesName.'"');
@@ -65,11 +65,11 @@
 					echo'<table class="table table-striped table-hover" width="50%">
 						<thead>	
 							<tr>
-								<th class="text-center">Character Name</th>
-								<th class="text-center">Explanation</th>
-								<th class="text-center">Entitled Character</th>
-								<th class="text-center">Correction Factor</th>
-								<th class="text-center">Weight</th>
+								<th class="text-center">Title</th>
+								<th class="text-center">Year</th>
+								<th class="text-center">Journal</th>
+								<th class="text-center">Publish In</th>
+								<th class="text-center">Population type</th>
 							</tr>
 						</thead>
 						<tbody>';
@@ -77,12 +77,16 @@
 									echo'
 									
 										<tr>
-											<td>'.$data['Character_Name'].'</td>
-											<td>'.$data['Explaination'].'</td>
-											<td>'.$data['Entitled_Character'].'</td>
-											<td>'.$data['Weight'].'</td>
-											<td>'.$data['Correction_Factor'].'</td>
-										</tr>
+											<td>'.$data['Title'].'</td>
+											<td>'.$data['Year'].'</td>
+											<td>'.$data['Journal'].'</td>
+											<td>'.$data['Published_in'].'</td>';
+										if($data['Population_Type']==1){
+											echo'<td>YES</td>';
+										}else{
+											echo'<td>NO</td>';
+										}
+										echo'</tr>
 									';
 								}
 						echo'</tbody>

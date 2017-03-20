@@ -47,19 +47,19 @@
 		if (!isset($_POST['Character_Name'])){
 		//var_dump($_GET['Id_Species_Description']);
 			$Id_Species_Desc=$_GET['Id_Species_Description'];
-			var_dump($Id_Species_Desc);
+			//var_dump($Id_Species_Desc);
 		
 			//////////Récupération du species id = species name
 			$query=$bdd->prepare('SELECT * FROM `species_description` WHERE Id_Species_Description ="'.$Id_Species_Desc.'"');
 			$query->execute();
 			$result = $query->fetch();
-			var_dump($result['Id_Species']);
+			//var_dump($result['Id_Species']);
 			
 			////Récupération du genus name en lien avec la species
 			$query2=$bdd->prepare('SELECT * FROM `species` WHERE Species_Name ="'.$result['Id_Species'].'"');
 			$query2->execute();
 			$result2 = $query2->fetch();
-			var_dump($result2['Genus_Name']);
+			//var_dump($result2['Genus_Name']);
 			
 			///Récupération de tous les characters qualitatifs en lien avec le genus
 			$query3=$bdd->prepare('SELECT * FROM characters 
@@ -126,9 +126,9 @@
 				$Quantitative_value=$_POST['Quantitative_value'];
 				$Id_Species_Desc=$_GET['Id_Species_Description'];
 				
-				var_dump($Character_Name);
-				var_dump($Id_Species_Desc);
-				var_dump($Quantitative_value);
+				//var_dump($Character_Name);
+				//var_dump($Id_Species_Desc);
+				//var_dump($Quantitative_value);
 				
 				
 				//////////Recherche de l'id du character via son nom

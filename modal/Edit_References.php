@@ -49,49 +49,142 @@
 
 				if(isset($_GET['ReferencesId'])){
 						$ReferencesId = $_GET['ReferencesId'];
-						////recherche pour le tableau
+						
+						/////Requete 2
+						$req=$bdd->prepare('SELECT * FROM `bibliography` 
+												where Id_Biblio ="'.$ReferencesId.'"');
+						$req->execute();
+						$res = $req->fetch();
+						
+						////recherche pour le tableau author
 						$query1=$bdd->prepare('SELECT * FROM bibliography inner join `writen_by` using (`Id_Biblio`) 
 												inner join author USING (`Id_Author`)
 												where Id_Biblio ="'.$ReferencesId.'"');
 						$query1->execute();
-						///recherche pour récupération des données
-						$query=$bdd->prepare('SELECT * FROM `bibliography` WHERE Id_Biblio='.$ReferencesId.'');
-						$query->execute();
-						$result = $query->fetch();
+
+						////recherche pour le tableau character quantitatif
+						$quantQ=$bdd->prepare('SELECT * FROM species_description 
+													inner join has_for_quant_value using (`Id_Species_Description`) 
+													inner join characters USING(Id_Character)
+													WHERE Id_Bibliography = "'.$ReferencesId.'"
+													ORDER by Id_Species ASC');
+						$quantQ->execute();
 						
-						echo'<h3 class="text-center">'.$result['Title'].'</h3>
+						////recherche pour le tableau character qualitatif
+						$qualiQ=$bdd->prepare('SELECT * FROM species_description 
+							inner join has_for_value using (`Id_Species_Description`) 
+							inner join qualitative_value USING(Value_Name)  
+							INNER JOIN composed_by USING(Value_Name)
+							INNER JOIN qualitative_list USING(Id_Qual_Possible_Value_List)
+							INNER JOIN characters USING(Id_Qual_Possible_Value_List)
+							WHERE Id_Bibliography = "'.$ReferencesId.'"
+							ORDER by Id_Species ASC');
+						$qualiQ->execute();
+						
+						
+						//////
+						echo'<h3 class="text-center">'.$res['Title'].'</h3>
 						<hr width="50%">';
+						
+						///details
+						echo'<p class="text-info"> <b> Year : </b>'.$res['Year'].'</p>';
+						echo'<p class="text-info"> <b> Journal : </b>'.$res['Journal'].'</p>';
+						echo'<p class="text-info"> <b> Published_in : </b>'.$res['Published_in'].'</p>';
 						
 						if($Admin == 1){
 							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another author</a>';
-							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'#AddCharRef" class="btn btn-success btn-xs pull-right"><b>+</b> Add another character</a>';
 						} 
 					
-					echo'<table class="table table-striped table-hover" width="50%">
-						<thead>	
-							<tr>
-								<th class="text-center">Year</th>
-								<th class="text-center">Journal</th>
-								<th class="text-center">Published in</th>
-								<th class="text-center">Author</th>
-								<th class="text-center">Rank</th>
-							</tr>
-						</thead>
-						<tbody>';
-						while($data=$query1->fetch()){	
-									echo'
-									
-										<tr>
-											<td>'.$data['Year'].'</td>
-											<td>'.$data['Journal'].'</td>
-											<td>'.$data['Published_in'].'</td>
-											<td>'.$data['Name_Author'].'</td>
-											<td>'.$data['Rank'].'</td>
-										</tr>
-									';
-								}
-						echo'</tbody>
+						echo'<p class="text-info"> <b> Authors : </b></p>';
+						echo'<table class="table table-striped table-hover" width="50%">
+							<thead>	
+								<tr>
+									<th class="text-center">Author</th>
+									<th class="text-center">Rank</th>
+								</tr>
+							</thead>
+							<tbody>';
+							while($data=$query1->fetch()){	
+										echo'
+										
+											<tr>
+												<td>'.$data['Name_Author'].'</td>
+												<td>'.$data['Rank'].'</td>
+											</tr>
+										';
+									}
+							echo'</tbody>
 						</table>';
+						
+						
+						///////////////////
+						echo'
+						<br/>
+						<hr>
+						<br/><br/>';
+						
+						/////////////////////
+						
+						if($Admin == 1){
+							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'#AddCharRef" class="btn btn-success btn-xs pull-right"><b>+</b> Add another character</a>';
+						} 
+						
+						if(!empty($quantQ))
+						{
+							echo'<p class="text-info"> <b> Quantitatives characters : </b></p>';
+							echo'<table class="table table-striped table-hover" width="50%">
+								<thead>	
+									<tr>
+										<th class="text-center">Character name</th>
+										<th class="text-center">Explanation</th>
+										<th class="text-center">Quantitative value</th>
+									</tr>
+								</thead>
+								<tbody>';
+								while($quant=$quantQ->fetch()){	
+											echo'
+											
+												<tr>
+													<td>'.$quant['Character_Name'].'</td>
+													<td>'.$quant['Explaination'].'</td>
+													<td>'.$quant['Quantitative_value'].'</td>
+												</tr>
+											';
+										}
+								echo'</tbody>
+							</table>';
+						}
+						/////////////////////
+						echo'<br/>';
+						////////////////////
+						if(!empty($qualiQ))
+						{
+							echo'<p class="text-info"> <b> Qualitatives characters : </b></p>';
+							echo'<table class="table table-striped table-hover" width="50%">
+								<thead>	
+									<tr>
+										<th class="text-center">Character name</th>
+										<th class="text-center">Explanation</th>
+										<th class="text-center">value Name</th>
+										<th class="text-center">Value proportion</th>
+									</tr>
+								</thead>
+								<tbody>';
+								while($quali=$qualiQ->fetch()){	
+											echo'
+											
+												<tr>
+													<td>'.$quali['Character_Name'].'</td>
+													<td>'.$quali['Explaination'].'</td>
+													<td>'.$quali['Value_Name'].'</td>
+													<td>'.$quali['value_proportion'].'</td>
+												</tr>
+											';
+										}
+								echo'</tbody>
+							</table>';
+						}
+						
 						
 						echo'
 						<hr width="50%">
@@ -101,7 +194,6 @@
 								</div>
 							</div>';
 								$query1->CloseCursor();
-								$query->CloseCursor();
 					}
 					else{
 						echo'<h3> ERROR </h3>';

@@ -131,9 +131,9 @@
 				$valueproportion=$_POST['value_proportion'];
 				$Id_Species_Desc=$_GET['Id_Species_Description'];
 				
-				var_dump($ValueName);
-				var_dump($Id_Species_Desc);
-				var_dump($valueproportion);
+				//var_dump($ValueName);
+				//var_dump($Id_Species_Desc);
+				//var_dump($valueproportion);
 		
 				////Insert dans la table => has_for_value
 				$query=$bdd->prepare('INSERT INTO `has_for_value` (`Value_Name`, `Id_Species_Description`, `value_proportion`) 
