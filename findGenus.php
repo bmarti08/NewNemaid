@@ -50,9 +50,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find a genus</h1>    
+                    <h1 class="page-header">Genera view</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <FONT color="#BDBDBD"> Find a genus </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <FONT color="#BDBDBD"> Genera view </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

@@ -72,11 +72,11 @@
 							<?php
 								if($Admin == 1){
 									echo'
-										<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Specie</a>';
+										<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Species</a>';
 								}
 							?>
 							<tr>
-								<th>Specie Name</th>
+								<th>Species Name</th>
 								<th>Genus Name</th>
 								<th class="text-center">Action</th>
 							</tr>
@@ -118,7 +118,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel"> Specie details </h3>
+					<h3 class="modal-title" id="lineModalLabel"> Species details </h3>
 				</div>
 				<div class="modal-body edit-content">
 						   
@@ -135,7 +135,7 @@
 			<div class="modal-content">
 				<div style="background-color:#d9534f;" class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" onclick='window.location.reload(false)'><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel">Delete specie</h3>
+					<h3 class="modal-title" id="lineModalLabel">Delete species</h3>
 				</div>
 				<div class="modal-body supp-content">
 						   

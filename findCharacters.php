@@ -50,9 +50,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find a character</h1>    
+                    <h1 class="page-header">Characters view</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <FONT color="#BDBDBD"> Find a character </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <FONT color="#BDBDBD"> Characters view </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
