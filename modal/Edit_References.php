@@ -51,8 +51,9 @@
 						$ReferencesId = $_GET['ReferencesId'];
 						
 						/////Requete 2
-						$req=$bdd->prepare('SELECT * FROM `bibliography` 
-												where Id_Biblio ="'.$ReferencesId.'"');
+						$req=$bdd->prepare('SELECT * FROM `bibliography` b inner join species_description spe_desc on b.Id_Biblio = spe_desc.Id_Bibliography
+												inner join Species s on s.Species_Name = spe_desc.Id_Species
+												where b.Id_Biblio ="'.$ReferencesId.'"');
 						$req->execute();
 						$res = $req->fetch();
 						
@@ -87,6 +88,8 @@
 						<hr width="50%">';
 						
 						///details
+						echo'<p class="text-info"> <b> Genera : </b>'.$res['Genus_Name'].'</p>';
+						echo'<p class="text-info"> <b> Species : </b>'.$res['Id_Species'].'</p>';
 						echo'<p class="text-info"> <b> Year : </b>'.$res['Year'].'</p>';
 						echo'<p class="text-info"> <b> Journal : </b>'.$res['Journal'].'</p>';
 						echo'<p class="text-info"> <b> Published_in : </b>'.$res['Published_in'].'</p>';
