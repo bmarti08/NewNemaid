@@ -50,9 +50,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find an author</h1>    
+                    <h1 class="page-header">Authors view</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <FONT color="#BDBDBD"> Find an author </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <FONT color="#BDBDBD"> Authors view </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -72,7 +72,7 @@
 							<?php
 								if($Admin == 1){
 									echo'
-										<a href="addAuthors.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new author</a>';
+										<a href="addAuthors.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Author</a>';
 								}
 							?>
 							<tr>

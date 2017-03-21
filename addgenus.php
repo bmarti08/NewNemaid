@@ -48,9 +48,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new genus</h1>    
+                    <h1 class="page-header">Add a new Genus</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <a href="findGenus.php"> Find a genus </a> / <FONT color="#BDBDBD"> Add a new genus </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Genera </FONT> / <a href="findGenus.php"> Genera view </a> / <FONT color="#BDBDBD"> Add a new Genus </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

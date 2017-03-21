@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new author for "<u><i><?php echo $result['Title'] ?></i></u>"</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <a href="findReferences.php"> Find a reference </a> / <FONT color="#BDBDBD"> Add a new author for "<u><i><?php echo $result['Title'] ?></i></u>" </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <a href="findReferences.php"> References view </a> / <FONT color="#BDBDBD"> Add a new author for "<u><i><?php echo $result['Title'] ?></i></u>" </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

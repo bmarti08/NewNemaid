@@ -48,9 +48,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new species</h1>    
+                    <h1 class="page-header">Add a new Species</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <a href="findSpecies.php"> Find a specie </a> / <FONT color="#BDBDBD"> Add a new species </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <a href="findSpecies.php"> Species data view </a> / <FONT color="#BDBDBD"> Add a new Species </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

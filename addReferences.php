@@ -48,9 +48,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Add a new reference</h1>    
+                    <h1 class="page-header">Add a new Reference</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#424242"> Genera </FONT> / <a href="findReferences.php"> Find a reference </a> / <FONT color="#BDBDBD"> Add a new reference </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> /  <a href="findReferences.php"> References view </a> / <FONT color="#BDBDBD"> Add a new Reference </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

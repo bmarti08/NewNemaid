@@ -50,7 +50,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Add a new Author</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Authors </FONT> / <a href="findAuthors.php"> Find a character </a> / <FONT color="#BDBDBD"> Add a new author </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <a href="findAuthors.php"> Authors </a> / <FONT color="#BDBDBD"> Add a new Author </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

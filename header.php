@@ -38,36 +38,36 @@
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Genera</a>  
 								<ul class="dropdown-menu">
-									<li><a tabindex="-1" href="addgenus.php">Add a new genus</a></li>
-									<li><a href="findGenus.php">Manage genera</a></li>
+									<li><a tabindex="-1" href="addgenus.php">Add a new Genus</a></li>
+									<li><a href="findGenus.php">Manage Genera</a></li>
 								</ul>
 							</li>
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Species Data</span></a>  
 								<ul class="dropdown-menu">
-									<li><a href="addSpecies.php">Add a new species</a></li>
-									<li><a href="findSpecies.php">Manage species</a></li>
+									<li><a href="addSpecies.php">Add a new Species</a></li>
+									<li><a href="findSpecies.php">Manage Species</a></li>
 								</ul>
 							</li>
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Characters</a>
 								<ul class="dropdown-menu">
-									<li><a href="addCharacters.php">Add a new characters</a></li>
-									<li><a href="findCharacters.php">Manage characters</a></li>
+									<li><a href="addCharacters.php">Add a new Characters</a></li>
+									<li><a href="findCharacters.php">Manage Characters</a></li>
 								</ul>
 							</li>	
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Authors</span></a>  
 								<ul class="dropdown-menu">
-									<li><a href="addAuthors.php">Add an author</a></li>
-									<li><a href="findAuthors.php">Manage authors</a></li>
+									<li><a href="addAuthors.php">Add a new Author</a></li>
+									<li><a href="findAuthors.php">Manage Authors</a></li>
 								</ul>
 							</li>							
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">References</span></a>  
 								<ul class="dropdown-menu">
-									<li><a href="addReferences.php">Add a reference</a></li>
-									<li><a href="findReferences.php">Manage references</a></li>
+									<li><a href="addReferences.php">Add a new Reference</a></li>
+									<li><a href="findReferences.php">Manage References</a></li>
 								</ul>
 							</li>
 							<li>

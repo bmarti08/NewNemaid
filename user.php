@@ -57,7 +57,7 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">List of users</h1>  
+                    <h1 class="page-header">Users Management</h1>  
 					<ol class="breadcrumb">
 						<li><a href="index.php">Home</a> / <FONT color="#BDBDBD"> Users </FONT>
 						</li>
