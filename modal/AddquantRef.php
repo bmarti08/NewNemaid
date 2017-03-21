@@ -101,9 +101,9 @@
 									</div>
 									<br/>
 									<div class="form-group">
-										<label for="Quantitative_value" class="col-md-4 control-label">Value proportion <span style="color:red">*</span></label>
+										<label for="Quantitative_value" class="col-md-4 control-label">Quantitative value <span style="color:red">*</span></label>
 										<div class="col-md-8">
-											<input id="Quantitative_value" type="number" min="0" class="form-control" name="Quantitative_value" placeholder="Enter the value proportion" required="true">
+											<input id="Quantitative_value" type="text" class="form-control" name="Quantitative_value" placeholder="Enter a name" required="true" maxlength="10">
 										</div>
 									</div>
 									<br/><br/>
@@ -135,7 +135,7 @@
 				$query4=$bdd->prepare('SELECT * FROM `characters` WHERE `Character_Name`="'.$Character_Name.'"');
 				$query4->execute();
 				$result4 = $query4->fetch();
-				var_dump($result4['Id_Character']);
+				//var_dump($result4['Id_Character']);
 				
 			
 				////Insert dans la table => has_for_quant_value

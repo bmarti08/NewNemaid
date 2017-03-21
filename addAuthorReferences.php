@@ -266,7 +266,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel"> Add quanlitative character for reference </h3>
+					<h3 class="modal-title" id="lineModalLabel"> Add qualitative character for reference </h3>
 				</div>
 				<div class="modal-body edit-content">
 						   
