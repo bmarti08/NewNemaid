@@ -50,9 +50,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find a genus</h1>    
+                    <h1 class="page-header">Species data view</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <FONT color="#BDBDBD"> Find a specie </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Species Data </FONT> / <FONT color="#BDBDBD"> Species data view </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
@@ -72,11 +72,11 @@
 							<?php
 								if($Admin == 1){
 									echo'
-										<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new species</a>';
+										<a href="addSpecies.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Specie</a>';
 								}
 							?>
 							<tr>
-								<th>Species Name</th>
+								<th>Specie Name</th>
 								<th>Genus Name</th>
 								<th class="text-center">Action</th>
 							</tr>
@@ -118,7 +118,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel"> Species details </h3>
+					<h3 class="modal-title" id="lineModalLabel"> Specie details </h3>
 				</div>
 				<div class="modal-body edit-content">
 						   
@@ -135,7 +135,7 @@
 			<div class="modal-content">
 				<div style="background-color:#d9534f;" class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" onclick='window.location.reload(false)'><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-					<h3 class="modal-title" id="lineModalLabel">Delete species</h3>
+					<h3 class="modal-title" id="lineModalLabel">Delete specie</h3>
 				</div>
 				<div class="modal-body supp-content">
 						   

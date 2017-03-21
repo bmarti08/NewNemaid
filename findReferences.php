@@ -50,9 +50,9 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Find a reference</h1>    
+                    <h1 class="page-header">References view</h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#BDBDBD"> Find a reference </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> References </FONT> / <FONT color="#BDBDBD"> References view</FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	
