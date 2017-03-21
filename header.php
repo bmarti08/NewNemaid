@@ -39,7 +39,7 @@
 								<a tabindex="-1" href="#">Genera</a>  
 								<ul class="dropdown-menu">
 									<li><a tabindex="-1" href="addgenus.php">Add a new genus</a></li>
-									<li><a href="findGenus.php">Manage genus</a></li>
+									<li><a href="findGenus.php">Manage genera</a></li>
 								</ul>
 							</li>
 							<li class ="dropdown-submenu">
@@ -53,20 +53,20 @@
 								<a tabindex="-1" href="#">Characters</a>
 								<ul class="dropdown-menu">
 									<li><a href="addCharacters.php">Add a new characters</a></li>
-									<li><a href="findCharacters.php">Manage character</a></li>
+									<li><a href="findCharacters.php">Manage characters</a></li>
 								</ul>
 							</li>	
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">Authors</span></a>  
 								<ul class="dropdown-menu">
 									<li><a href="addAuthors.php">Add an author</a></li>
-									<li><a href="findAuthors.php">Manage author</a></li>
+									<li><a href="findAuthors.php">Manage authors</a></li>
 								</ul>
 							</li>							
 							<li class ="dropdown-submenu">
 								<a tabindex="-1" href="#">References</span></a>  
 								<ul class="dropdown-menu">
-									<li><a href="addReferences.php">Add a references</a></li>
+									<li><a href="addReferences.php">Add a reference</a></li>
 									<li><a href="findReferences.php">Manage references</a></li>
 								</ul>
 							</li>
