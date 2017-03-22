@@ -151,28 +151,28 @@
 										<div class="form-group">
 											<label for="Weight" class="col-md-5 control-label">Weight <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Weight" type="number" min="0" class="form-control" name="Weight" placeholder="" required="true">
+												<input id="Weight" type="number" step="0.1" min="0" class="form-control" name="Weight" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>	
 										<div class="form-group">
 											<label for="Correction_Factor" class="col-md-5 control-label">Correction Factor <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Correction_Factor" type="number" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
+												<input id="Correction_Factor" step="0.1" type="number" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>
 										<div class="form-group">
 											<label for="Min_Range" class="col-md-5 control-label">Min Range <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Min_Range" type="number" min="0" class="form-control" name="Min_Range" placeholder="" required="true">
+												<input id="Min_Range" type="number" step="0.1" min="0" class="form-control" name="Min_Range" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>	
 										<div class="form-group">
 											<label for="Max_Range" class="col-md-5 control-label">Max Range <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Max_Range" type="number" min="0" class="form-control" name="Max_Range" placeholder="" required="true">
+												<input id="Max_Range" type="number" step="0.1" min="0" class="form-control" name="Max_Range" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>	
