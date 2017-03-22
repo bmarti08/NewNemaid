@@ -56,7 +56,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header"> Add a new Qualitative Value </h1>    
 					<ol class="breadcrumb">
-						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <a href="findCharacters.php"> Find a character </a> / <FONT color="#BDBDBD"> Add a new Qualitative Value for the character " <u><i><?php echo $result['Character_Name'] ?></i></u> " </FONT>
+						<li><a href="index.php">Home</a> / <FONT color="#424242"> Database Management </FONT> / <FONT color="#424242"> Characters </FONT> / <a href="findCharacters.php"> Characters view </a> / <FONT color="#BDBDBD"> Add a new Qualitative Value for the character " <u><i><?php echo $result['Character_Name'] ?></i></u> " </FONT>
 						</li>
 						<li class="active"></li>
 					</ol>	

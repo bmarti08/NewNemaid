@@ -42,7 +42,7 @@
 
 <!-- content goes here -->
                 <?php	
-				var_dump($_GET['SpeciesName']);
+				//var_dump($_GET['SpeciesName']);
 
 				if(isset($_GET['SpeciesName'])){	
 						$SpeciesName = $_GET['SpeciesName'];

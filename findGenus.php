@@ -72,7 +72,7 @@
 							<?php
 								if($Admin == 1){
 									echo'							
-										<a href="addgenus.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new genus</a>';
+										<a href="addgenus.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Genus</a>';
 								}
 							?>
 							<tr>

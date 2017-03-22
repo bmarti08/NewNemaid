@@ -71,7 +71,7 @@
 						<thead>
 							<?php
 								if($Admin == 1){
-									echo'<a href="addCharacters.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new character</a>';	
+									echo'<a href="addCharacters.php" class="btn btn-primary btn-xs pull-right"><b>+</b> Add new Character</a>';	
 								}
 							?>
 							<tr>
