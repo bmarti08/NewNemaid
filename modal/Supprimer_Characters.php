@@ -42,7 +42,7 @@
 
 <!-- content goes here -->
                 <?php	
-				var_dump($_GET['characterId']);
+				//var_dump($_GET['characterId']);
 				$characterId = $_GET['characterId'];
 				
 			if(isset($_GET['characterId'])){
