@@ -166,6 +166,14 @@
 									</div>
 								</div>
 								
+								<br/>
+								<div class="form-group">
+									<label for="id_Population" class="col-md-4 control-label">Population number <span style="color:red">*</span></label>
+									<div class="col-md-8">
+										<input id="id_Population" type="number" min="0" class="form-control" name="id_Population" placeholder="Enter the Population number" required="true">
+									</div>
+								</div>
+								
 							</fieldset>
 							
 							<div class="col-sm-12 controls">
@@ -187,7 +195,8 @@
 				$Published_in=$_POST['Published_in'];
 				$NameAuthor=$_POST['Name_Author'];
 				$Rank=$_POST['Rank'];
-
+				$idPopulation=$_POST['id_Population'];
+				
 				//var_dump($NameAuthor);
 				
 				$i=0;
@@ -204,9 +213,22 @@
 				$Title_free=($query->fetchColumn()==0)?1:0;
 				$query->CloseCursor();
 				
+				//Vérification de la présence pop
+				$queryPop=$bdd->prepare('SELECT COUNT(*) AS nbrPop FROM population WHERE id_Population =:idPopulation');
+				$queryPop->bindValue(':idPopulation',$idPopulation, PDO::PARAM_STR);
+				$queryPop->execute();
+				$Pop_free=($queryPop->fetchColumn()==0)?1:0;
+				$queryPop->CloseCursor();
+				
 				if(!$Title_free)
 				{
 					$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Title not available !</div></center>";
+					$i++;
+				}
+				
+				if(!$Pop_free)
+				{
+					$mail_erreur1 = "<center><div class=\"alert alert-danger\" role=\"alert\">Population number is not available !</div></center>";
 					$i++;
 				}
 				
@@ -251,16 +273,22 @@
 				$PopulationType = $_POST['Population_Type'];
 				$SpeciesName = $_POST['Species_Name'];
 				
+				//ajout dans la table => population
+				   $queryAjoutRef=$bdd->prepare('INSERT INTO `population` (`id_Population`) VALUES (:idPopulation)');
+					$queryAjoutRef->bindValue(':idPopulation', $idPopulation, PDO::PARAM_INT);
+					$queryAjoutRef->execute();
+				
 				//var_dump($IdBiblio);
 				//var_dump($SpeciesName);
 				//var_dump($PopulationType);
 				
 				//ajout dans la table => Species_Description
-				   $queryAjoutRef=$bdd->prepare('INSERT INTO `species_description` (`Id_Species_Description`, `Population_Type`, `Id_Species`, `Id_Bibliography`) 
-														VALUES (NULL, :PopulationType, :SpeciesName, :Id_Bibliography)');
+				   $queryAjoutRef=$bdd->prepare('INSERT INTO `species_description` (`Id_Species_Description`, `Population_Type`, `Id_Species`, `Id_Bibliography`, `id_Population`) 
+														VALUES (NULL, :PopulationType, :SpeciesName, :Id_Bibliography, :idPopulation)');
 					$queryAjoutRef->bindValue(':PopulationType', $PopulationType, PDO::PARAM_INT);
 					$queryAjoutRef->bindValue(':SpeciesName', $SpeciesName, PDO::PARAM_STR);
 					$queryAjoutRef->bindValue(':Id_Bibliography', $IdBiblio, PDO::PARAM_INT);
+					$queryAjoutRef->bindValue(':idPopulation', $idPopulation, PDO::PARAM_INT);
 					$queryAjoutRef->execute();
 
 					

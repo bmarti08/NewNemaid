@@ -265,14 +265,14 @@
 										<div class="form-group">
 											<label for="Weight" class="col-md-5 control-label">Weight <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Weight" type="number" min="0" class="form-control" name="Weight" placeholder="" required="true">
+												<input id="Weight" type="number" min="0" step="0.1" class="form-control" name="Weight" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>	
 										<div class="form-group">
 											<label for="Correction_Factor" class="col-md-5 control-label">Correction Factor <span style="color:red">*</span></label>
 											<div class="col-md-7">
-												<input id="Correction_Factor" type="number" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
+												<input id="Correction_Factor" type="number" step="0.1" min="0" class="form-control" name="Correction_Factor" placeholder="" required="true">
 											</div>
 										</div>
 										<br/>

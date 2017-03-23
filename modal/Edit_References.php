@@ -88,11 +88,21 @@
 						<hr width="50%">';
 						
 						///details
-						echo'<p class="text-info"> <b> Genera : </b>'.$res['Genus_Name'].'</p>';
-						echo'<p class="text-info"> <b> Species : </b>'.$res['Id_Species'].'</p>';
 						echo'<p class="text-info"> <b> Year : </b>'.$res['Year'].'</p>';
 						echo'<p class="text-info"> <b> Journal : </b>'.$res['Journal'].'</p>';
 						echo'<p class="text-info"> <b> Published_in : </b>'.$res['Published_in'].'</p>';
+						
+						echo'<br/><br/><br/>';
+						
+						//////////////////////////////////////////////////////
+						if($Admin == 1){
+							echo'<a href="#" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another Species /!\ TODO</a>';
+						} 
+						echo'<p class="text-info"> <b> Species : </b>'.$res['Id_Species'].'</p>';
+							echo'<p>/!\TODO - Display the Species in the reference</p>';
+						////////////////////////////////////////////////////////////
+
+						echo'<br/><br/><br/>';
 						
 						if($Admin == 1){
 							echo'<a href="addAuthorReferences.php?IdRef='.$ReferencesId.'" class="btn btn-primary btn-xs pull-right"><b>+</b> Add another author</a>';
